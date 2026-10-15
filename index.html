@@ -40,6 +40,7 @@ a{color:var(--cyan)}
     <h1><span class="k">Kazu</span><span class="p">Player</span></h1>
     <p class="tag">自分で作った曲を、聴く・比べる・確かめる・仕上げる・公開する。<br>AIで曲を作る人のための、スマホ1台で完結するプレイヤー。</p>
     <a class="dl" href="https://github.com/kazuSato-Japan/KazuPlayer/releases/latest/download/KazuPlayer.apk">無料ダウンロード（Android）</a>
+    <p class="small" id="ver">最新版を確認中…</p>
     <p class="small">Android 11以降 ・ 広告なし ・ アカウント不要</p>
   </section>
 
@@ -71,5 +72,12 @@ a{color:var(--cyan)}
 
   <footer>© 2026 kazuSato ・ <a href="https://github.com/kazuSato-Japan/KazuPlayer/releases">すべてのバージョン</a></footer>
 </main>
+<script>
+fetch("https://api.github.com/repos/kazuSato-Japan/KazuPlayer/releases/latest")
+ .then(r=>r.json()).then(j=>{
+  const d=new Date(j.published_at);
+  document.getElementById("ver").textContent="最新版 "+j.tag_name+"（"+d.getFullYear()+"年"+(d.getMonth()+1)+"月"+d.getDate()+"日 公開）";
+ }).catch(()=>{document.getElementById("ver").innerHTML='<a href="https://github.com/kazuSato-Japan/KazuPlayer/releases">これまでの版はこちら</a>';});
+</script>
 </body>
 </html>
