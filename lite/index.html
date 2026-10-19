@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>KazuPlayer Lite — 音量をそろえて聴き比べ</title>
+<meta name="description" content="2つの曲を、同じ位置・同じ音量で聴き比べ。音量（LUFS）・トゥルーピーク・音割れも測ります。インストール不要、曲はどこにも送りません。">
+<meta property="og:title" content="KazuPlayer Lite">
+<meta property="og:description" content="2つの曲を、同じ位置・同じ音量で聴き比べ。インストール不要・無料。">
+<meta property="og:image" content="https://kazusato-japan.github.io/KazuPlayer/logo.png">
+<link rel="icon" href="../logo.png">
+<style>
+:root{--bg:#070a1c;--card:#11152e;--card2:#181d3d;--text:#eef0f8;--sub:#aab0c8;--cyan:#7fd8ff;--pink:#ff8ad0;--line:#252b4d;--bad:#ff8a8a;--ok:#8be3a8}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(1000px 500px at 50% -10%,#1b2160 0%,var(--bg) 60%);color:var(--text);font-family:system-ui,-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;line-height:1.6}
+main{max-width:720px;margin:0 auto;padding:20px 16px 56px}
+header{display:flex;align-items:center;gap:10px}
+header img{width:40px;height:40px}
+header h1{font-size:1.25rem;margin:0}.k{color:var(--cyan)}.p{color:var(--pink)}
+header .lang{margin-left:auto;display:flex;gap:4px}
+.lang button{background:none;border:1px solid var(--line);color:var(--sub);border-radius:8px;padding:4px 10px;font-size:.8rem}
+.lang button.on{border-color:var(--cyan);color:var(--cyan)}
+.lead{color:var(--sub);margin:10px 0 16px;font-size:.95rem}
+.demo{width:100%;background:none;border:1px dashed var(--cyan);color:var(--cyan);border-radius:12px;padding:12px;font-size:1rem;font-weight:700;margin-bottom:14px}
+.slots{display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:620px){.slots{grid-template-columns:1fr 1fr}}
+.slot{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px;position:relative}
+.slot.on{border-color:var(--cyan);box-shadow:0 0 0 1px var(--cyan) inset}
+.slot .tag{font-weight:800;font-size:1.1rem;color:var(--cyan)}
+.slot[data-s="b"] .tag{color:var(--pink)}
+.slot.on[data-s="b"]{border-color:var(--pink);box-shadow:0 0 0 1px var(--pink) inset}
+.slot label.pick{display:inline-block;margin-left:8px;font-size:.85rem;border:1px solid var(--line);border-radius:8px;padding:4px 10px;color:var(--text);cursor:pointer}
+.slot input{display:none}
+.slot .name{font-size:.85rem;color:var(--sub);margin-top:6px;word-break:break-all}
+.slot table{width:100%;border-collapse:collapse;margin-top:8px;font-size:.85rem}
+.slot td{padding:3px 0;border-top:1px solid var(--line)}
+.slot td:last-child{text-align:right;font-variant-numeric:tabular-nums}
+.bad{color:var(--bad)}.ok{color:var(--ok)}
+.player{background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:14px;margin-top:14px}
+.ab{display:flex;gap:8px;align-items:center}
+.ab button{flex:1;font-size:1.3rem;font-weight:800;padding:12px 0;border-radius:12px;border:2px solid var(--line);background:none;color:var(--sub)}
+.ab button.on.a{border-color:var(--cyan);color:#06101a;background:var(--cyan)}
+.ab button.on.b{border-color:var(--pink);color:#1a0612;background:var(--pink)}
+.ab .play{flex:0 0 64px;font-size:1.4rem;background:var(--text);color:#06101a;border:none}
+input[type=range]{width:100%;margin:14px 0 4px;accent-color:var(--cyan)}
+.time{display:flex;justify-content:space-between;font-size:.8rem;color:var(--sub);font-variant-numeric:tabular-nums}
+.row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:10px;font-size:.9rem}
+.row small{display:block;color:var(--sub);font-size:.78rem}
+.sw{position:relative;width:46px;height:26px;flex:0 0 46px}
+.sw input{opacity:0;width:0;height:0}
+.sw span{position:absolute;inset:0;border-radius:13px;background:var(--line);transition:.2s}
+.sw span::after{content:"";position:absolute;left:3px;top:3px;width:20px;height:20px;border-radius:50%;background:var(--text);transition:.2s}
+.sw input:checked+span{background:var(--cyan)}.sw input:checked+span::after{left:23px;background:#06101a}
+select{background:var(--card);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:6px 8px;font-size:.9rem;max-width:58%}
+.hint{color:var(--sub);font-size:.8rem;margin-top:8px}
+.app{margin-top:22px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;font-size:.92rem}
+.app a.btn{display:inline-block;margin-top:8px;background:linear-gradient(90deg,#3fb6ff,#c86bff,#ff6fb5);color:#fff;text-decoration:none;font-weight:700;padding:10px 18px;border-radius:999px}
+footer{margin-top:22px;color:var(--sub);font-size:.78rem;text-align:center}
+a{color:var(--cyan)}
+</style>
+</head>
+<body>
+<main>
+<header>
+  <img src="../logo.png" alt="">
+  <h1><span class="k">Kazu</span><span class="p">Player</span> Lite</h1>
+  <div class="lang"><button data-l="ja" class="on">日本語</button><button data-l="en">EN</button></div>
+</header>
+<p class="lead" data-t="lead"></p>
+<button class="demo" id="demo" data-t="demo"></button>
+
+<div class="slots">
+  <div class="slot on" data-s="a"><span class="tag">A</span><label class="pick"><span data-t="pick"></span><input type="file" accept="audio/*,video/mp4" id="fa"></label><div class="name" id="na" data-t="empty"></div><table id="ta"></table></div>
+  <div class="slot" data-s="b"><span class="tag">B</span><label class="pick"><span data-t="pick"></span><input type="file" accept="audio/*,video/mp4" id="fb"></label><div class="name" id="nb" data-t="empty"></div><table id="tb"></table></div>
+</div>
+
+<div class="player">
+  <div class="ab"><button class="a on" id="ba">A</button><button class="play" id="pp">▶</button><button class="b" id="bb">B</button></div>
+  <input type="range" id="seek" min="0" max="1000" value="0">
+  <div class="time"><span id="tc">0:00</span><span id="td">0:00</span></div>
+  <div class="row"><div><span data-t="match"></span><small data-t="matchNote"></small></div><label class="sw"><input type="checkbox" id="match" checked><span></span></label></div>
+  <div class="row"><div><span data-t="sim"></span><small data-t="simNote"></small></div><select id="sim"></select></div>
+  <p class="hint" data-t="keys"></p>
+</div>
+
+<div class="app"><span data-t="app"></span><br><a class="btn" href="../" data-t="appBtn"></a></div>
+<footer><span data-t="privacy"></span><br><a href="https://youtube.com/playlist?list=PLL_rooIt0xpI" target="_blank" rel="noopener" data-t="demoCredit"></a></footer>
+</main>
+
+<script>
+const T={
+ja:{lead:"2つの曲を、同じ位置・同じ音量で切り替えて聴き比べます。大きい方が良く聞こえる錯覚を外して、本当の違いだけを聴けます。音量（LUFS）・トゥルーピーク・音割れも測ります。",
+demo:"▶ お試し曲で聴き比べる（元の音 と 仕上げた音）",pick:"曲を選ぶ",empty:"まだ選んでいません",analyzing:"解析中…",
+lufs:"音量（LUFS）",tp:"トゥルーピーク",clip:"音割れ（0dBに張りついた点）",len:"長さ",yt:"YouTube・Spotify（−14）",ap:"Apple Music（−16）",
+down:"dB 下げて再生",asis:"そのまま再生",none:"なし",tpBad:"−1.0超（配信で割れやすい）",
+match:"音量をそろえて比べる",matchNote:"オフにすると、本当の音量のまま比べます",sim:"聞こえ方",simNote:"リスナーの環境をまねします",
+sims:["そのまま","スマホのスピーカー","安いイヤホン","車","ラジオ","片耳・モノラル"],
+keys:"キーボード：A / B で切り替え、スペースで再生・停止",
+app:"仕上げ（ジャンルやお手本に合わせたマスタリング）、歌詞の同期、書き出しまでやるなら、Android アプリの KazuPlayer で。無料・広告なしです。",appBtn:"Android アプリを見る",
+privacy:"曲はこの端末のブラウザの中だけで処理し、どこにも送りません。",demoCredit:"お試し曲：KazuSato「僕は僕を知らない」（聴く本棚）",
+demoA:"お試し曲・元の音（Suno から出したまま）",demoB:"お試し曲・仕上げた音（KazuPlayer：ロック・迫力、曲全体を −14 LUFS に）",err:"この形式は読み込めませんでした"},
+en:{lead:"Compare two tracks at the same position and the same loudness. Louder always sounds better, so we level them first — you hear only the real difference. It also measures loudness (LUFS), true peak and clipping.",
+demo:"▶ Try with a demo song (original vs. mastered)",pick:"Choose a file",empty:"No file yet",analyzing:"Analyzing…",
+lufs:"Loudness (LUFS)",tp:"True peak",clip:"Clipped samples",len:"Length",yt:"YouTube / Spotify (−14)",ap:"Apple Music (−16)",
+down:"dB quieter on playback",asis:"plays as is",none:"none",tpBad:"over −1.0 (may distort when streamed)",
+match:"Match loudness",matchNote:"Turn off to compare at the real levels",sim:"Listen as",simNote:"Simulates your listener's device",
+sims:["As is","Phone speaker","Cheap earbuds","Car","Radio","One ear / mono"],
+keys:"Keyboard: A / B to switch, Space to play/pause",
+app:"For mastering to a genre or a reference track, lyric sync and export, get the KazuPlayer Android app. Free, no ads.",appBtn:"See the Android app",
+privacy:"Your files are processed only inside this browser and are never uploaded.",demoCredit:"Demo song: KazuSato “Boku wa Boku wo Shiranai” (Kiku Hondana)",
+demoA:"Demo · original (straight from Suno)",demoB:"Demo · mastered (KazuPlayer: Rock · Punch, whole song to −14 LUFS)",err:"This format could not be read"}};
+let L=(navigator.language||"ja").startsWith("ja")?"ja":"en";
+const $=id=>document.getElementById(id);
+function applyLang(){document.documentElement.lang=L;document.querySelectorAll("[data-t]").forEach(e=>{const k=e.dataset.t;if(e.id==="na"&&S.a.name)return;if(e.id==="nb"&&S.b.name)return;e.textContent=T[L][k]});
+ document.querySelectorAll(".lang button").forEach(b=>b.classList.toggle("on",b.dataset.l===L));
+ const s=$("sim"),v=s.value||"0";s.innerHTML=T[L].sims.map((n,i)=>`<option value="${i}">${n}</option>`).join("");s.value=v;
+ ["a","b"].forEach(k=>{if(S[k].res)showRes(k);if(S[k].label)$("n"+k).textContent=S[k].label});}
+document.querySelectorAll(".lang button").forEach(b=>b.onclick=()=>{L=b.dataset.l;applyLang()});
+
+// ---------- 測定（ITU-R BS.1770：アプリと同じ式） ----------
+function kw(sr){const f0=1681.974450955533,G=3.999843853973347,Q=0.7071752369554196,K=Math.tan(Math.PI*f0/sr),Vh=Math.pow(10,G/20),Vb=Math.pow(Vh,0.4996667741545416),a0=1+K/Q+K*K;
+ const s=[(Vh+Vb*K/Q+K*K)/a0,2*(K*K-Vh)/a0,(Vh-Vb*K/Q+K*K)/a0,2*(K*K-1)/a0,(1-K/Q+K*K)/a0];
+ const f1=38.13547087602444,Q1=0.5003270373238773,K1=Math.tan(Math.PI*f1/sr),a1=1+K1/Q1+K1*K1;return [s,[1,-2,1,2*(K1*K1-1)/a1,(1-K1/Q1+K1*K1)/a1]]}
+const tpH=[1,2,3].map(p=>{const h=new Float64Array(12);for(let j=0;j<12;j++){const d=5+p/4-j;h[j]=Math.abs(d)>=6?0:(Math.abs(d)<1e-9?1:Math.sin(Math.PI*d)/(Math.PI*d))*0.5*(1+Math.cos(Math.PI*d/6))}return h});
+const tick=()=>new Promise(r=>setTimeout(r,0));
+async function measure(buf){
+ const sr=buf.sampleRate,n=buf.length,chs=Math.min(buf.numberOfChannels,2),seg=Math.floor(sr/10),nseg=Math.floor(n/seg);
+ const segs=new Float64Array(nseg);let peak=0,clip=0;
+ for(let c=0;c<chs;c++){const x=buf.getChannelData(c);const [A,B]=kw(sr);let z1=0,z2=0,w1=0,w2=0;const h=new Float64Array(12);let hp=0;
+  for(let i=0;i<n;i++){const v=x[i];
+   const y=A[0]*v+z1;z1=A[1]*v-A[3]*y+z2;z2=A[2]*v-A[4]*y;
+   const u=B[0]*y+w1;w1=B[1]*y-B[3]*u+w2;w2=B[2]*y-B[4]*u;
+   const si=(i/seg)|0;if(si<nseg)segs[si]+=u*u;
+   const a=v<0?-v:v;if(a>=0.9999)clip++;
+   h[hp]=v;hp=(hp+1)%12;
+   if(a>peak)peak=a;
+   for(const f of tpH){let s=0;for(let j=0;j<12;j++)s+=h[(hp+j)%12]*f[j];s=s<0?-s:s;if(s>peak)peak=s}
+   if((i&0xFFFFF)===0)await tick();}}
+ const lu=z=>z>0?-0.691+10*Math.log10(z):-200;const bl=seg*4;const blocks=[];
+ for(let i=0;i+3<nseg;i++)blocks.push((segs[i]+segs[i+1]+segs[i+2]+segs[i+3])/bl);
+ const g1=blocks.filter(b=>lu(b)>-70);let lufs=-70;
+ if(g1.length){const m1=g1.reduce((a,b)=>a+b,0)/g1.length;const rel=lu(m1)-10;const g2=g1.filter(b=>lu(b)>rel);lufs=lu(g2.length?g2.reduce((a,b)=>a+b,0)/g2.length:m1)}
+ return {lufs,tp:20*Math.log10(Math.max(peak,1e-9)),clip,len:buf.duration}}
+
+// ---------- 再生 ----------
+const S={a:{},b:{}};let ctx,mixA,mixB,simIn,simOut,playing=false,startAt=0,offset=0,cur="a",srcs=[];
+function ensure(){if(ctx)return;ctx=new (window.AudioContext||window.webkitAudioContext)();mixA=ctx.createGain();mixB=ctx.createGain();simIn=ctx.createGain();simOut=ctx.createGain();
+ mixA.connect(simIn);mixB.connect(simIn);simOut.connect(ctx.destination);buildSim();setGains(true)}
+function buildSim(){if(!ctx)return;simIn.disconnect();let node=simIn;const k=+$("sim").value;
+ const bq=(t,f,q,g)=>{const b=ctx.createBiquadFilter();b.type=t;b.frequency.value=f;if(q)b.Q.value=q;if(g!==undefined)b.gain.value=g;node.connect(b);node=b};
+ const mono=()=>{const m=ctx.createGain();m.channelCount=1;m.channelCountMode="explicit";m.channelInterpretation="speakers";node.connect(m);node=m};
+ if(k===1){mono();bq("highpass",450,.707);bq("highpass",450,.707);bq("peaking",3000,1,4);bq("lowpass",12000,.707)}
+ if(k===2){bq("highpass",40,.707);bq("peaking",120,.8,5);bq("peaking",2500,1.2,-3);bq("peaking",6500,2,5);bq("lowpass",14000,.707)}
+ if(k===3){bq("lowshelf",90,.7,6);bq("peaking",250,1,3);bq("peaking",3500,1,-3);bq("lowpass",11000,.707)}
+ if(k===4){mono();bq("highpass",300,.707);bq("highpass",300,.707);bq("lowpass",4500,.707);bq("lowpass",4500,.707)}
+ if(k===5){mono()}
+ node.connect(simOut)}
+$("sim").onchange=buildSim;
+function gainOf(k){const s=S[k];if(!s.res||!$("match").checked)return 1;const o=S[k==="a"?"b":"a"];const ref=o.res?Math.min(s.res.lufs,o.res.lufs):s.res.lufs;return Math.pow(10,(ref-s.res.lufs)/20)}
+function setGains(now){if(!ctx)return;const t=ctx.currentTime;[["a",mixA],["b",mixB]].forEach(([k,g])=>{const v=(cur===k?1:0)*gainOf(k);g.gain.cancelScheduledValues(t);if(now)g.gain.setValueAtTime(v,t);else g.gain.setTargetAtTime(v,t,0.01)})}
+$("match").onchange=()=>setGains(false);
+function dur(){return Math.max(S.a.buf?S.a.buf.duration:0,S.b.buf?S.b.buf.duration:0)}
+function pos(){return playing?offset+(ctx.currentTime-startAt):offset}
+function stopSrc(){srcs.forEach(s=>{try{s.stop()}catch(e){}});srcs=[]}
+function start(){ensure();stopSrc();if(offset>=dur())offset=0;startAt=ctx.currentTime+0.05;
+ [["a",mixA],["b",mixB]].forEach(([k,g])=>{const b=S[k].buf;if(!b||offset>=b.duration)return;const s=ctx.createBufferSource();s.buffer=b;s.connect(g);s.start(startAt,offset);srcs.push(s)});
+ startAt-=0;playing=true;$("pp").textContent="❚❚"}
+function pause(){offset=pos();stopSrc();playing=false;$("pp").textContent="▶"}
+$("pp").onclick=async()=>{ensure();await ctx.resume();if(!S.a.buf&&!S.b.buf)return;playing?pause():start()};
+function choose(k){cur=k;$("ba").classList.toggle("on",k==="a");$("bb").classList.toggle("on",k==="b");
+ document.querySelectorAll(".slot").forEach(e=>e.classList.toggle("on",e.dataset.s===k));setGains(false)}
+$("ba").onclick=()=>choose("a");$("bb").onclick=()=>choose("b");
+document.addEventListener("keydown",e=>{if(e.target.tagName==="INPUT"&&e.target.type!=="range")return;if(e.key==="a"||e.key==="A")choose("a");else if(e.key==="b"||e.key==="B")choose("b");else if(e.key===" "){e.preventDefault();$("pp").click()}});
+const fmt=s=>{s=Math.max(0,s);return Math.floor(s/60)+":"+String(Math.floor(s%60)).padStart(2,"0")};
+let dragging=false;$("seek").oninput=()=>{dragging=true;$("tc").textContent=fmt($("seek").value/1000*dur())};
+$("seek").onchange=()=>{dragging=false;offset=$("seek").value/1000*dur();if(playing)start()};
+(function loop(){const d=dur();if(d&&!dragging){const p=pos();if(playing&&p>=d){pause();offset=0}$("seek").value=Math.min(1000,p/d*1000);$("tc").textContent=fmt(p)}$("td").textContent=fmt(d);requestAnimationFrame(loop)})();
+
+// ---------- 読み込み ----------
+function showRes(k){const r=S[k].res,t=T[L];const pl=(tgt)=>r.lufs>tgt+0.05?`<span>${(r.lufs-tgt).toFixed(1)} ${t.down}</span>`:t.asis;
+ $("t"+k).innerHTML=`<tr><td>${t.lufs}</td><td><b>${r.lufs.toFixed(1)}</b></td></tr><tr><td>${t.tp}</td><td class="${r.tp>-1?"bad":"ok"}">${r.tp.toFixed(1)} dBTP${r.tp>-1?"<br>"+t.tpBad:""}</td></tr><tr><td>${t.clip}</td><td class="${r.clip?"bad":"ok"}">${r.clip||t.none}</td></tr><tr><td>${t.len}</td><td>${fmt(r.len)}</td></tr><tr><td>${t.yt}</td><td>${pl(-14)}</td></tr><tr><td>${t.ap}</td><td>${pl(-16)}</td></tr>`}
+async function load(k,data,label){ensure();const s=S[k];s.label=label;s.name=true;$("n"+k).textContent=label;$("t"+k).innerHTML=`<tr><td>${T[L].analyzing}</td><td></td></tr>`;
+ try{const buf=await ctx.decodeAudioData(data);s.buf=buf;s.res=await measure(buf);showRes(k);setGains(false);if(playing)start()}
+ catch(e){$("t"+k).innerHTML=`<tr><td class="bad">${T[L].err}</td><td></td></tr>`}}
+["a","b"].forEach(k=>{$("f"+k).onchange=async e=>{const f=e.target.files[0];if(!f)return;load(k,await f.arrayBuffer(),f.name)}});
+$("demo").onclick=async()=>{ensure();await ctx.resume();const [a,b]=await Promise.all(["demo/orig.mp3","demo/mast.mp3"].map(u=>fetch(u).then(r=>r.arrayBuffer())));
+ await Promise.all([load("a",a,T[L].demoA),load("b",b,T[L].demoB)]);S.a.label=null;S.b.label=null;S.a.demo="demoA";S.b.demo="demoB";
+ offset=0;choose("a");start()};
+const _apply=applyLang;applyLang=function(){_apply();["a","b"].forEach(k=>{if(S[k].demo)$("n"+k).textContent=T[L][S[k].demo]})};
+applyLang();
+</script>
+</body>
+</html>
