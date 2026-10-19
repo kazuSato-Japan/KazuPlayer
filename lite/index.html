@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>KazuPlayer Lite — ブラウザでマスタリングを試す</title>
+<meta name="description" content="曲を入れて曲調を選ぶだけ。聴きどころ1分をマスタリングして、元の音と同じ位置・同じ音量で聴き比べ。インストール不要、曲はどこにも送りません。">
+<meta property="og:title" content="KazuPlayer Lite">
+<meta property="og:description" content="曲を入れて曲調を選ぶだけ。1分のマスタリング結果を元の音と聴き比べ。インストール不要・無料。">
+<meta property="og:image" content="https://kazusato-japan.github.io/KazuPlayer/logo.png">
+<link rel="icon" href="../logo.png">
+<style>
+:root{--bg:#070a1c;--card:#11152e;--card2:#181d3d;--text:#eef0f8;--sub:#aab0c8;--cyan:#7fd8ff;--pink:#ff8ad0;--line:#252b4d;--bad:#ff8a8a;--ok:#8be3a8}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(1000px 500px at 50% -10%,#1b2160 0%,var(--bg) 60%);color:var(--text);font-family:system-ui,-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;line-height:1.6}
+main{max-width:720px;margin:0 auto;padding:20px 16px 56px}
+header{display:flex;align-items:center;gap:10px}
+header img{width:40px;height:40px}
+header h1{font-size:1.25rem;margin:0}.k{color:var(--cyan)}.p{color:var(--pink)}
+.lang{margin-left:auto;display:flex;gap:4px}
+.lang button{background:none;border:1px solid var(--line);color:var(--sub);border-radius:8px;padding:4px 10px;font-size:.8rem}
+.lang button.on{border-color:var(--cyan);color:var(--cyan)}
+.lead{color:var(--sub);margin:10px 0 14px;font-size:.95rem}
+.step{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin-top:12px}
+.step.off{opacity:.45;pointer-events:none}
+.step h2{font-size:1rem;margin:0 0 8px;display:flex;align-items:center;gap:8px}
+.step h2 .n{display:inline-flex;width:24px;height:24px;border-radius:50%;background:var(--cyan);color:#06101a;align-items:center;justify-content:center;font-size:.85rem}
+.big{display:block;width:100%;text-align:center;background:var(--cyan);color:#06101a;font-weight:800;font-size:1.05rem;border:none;border-radius:12px;padding:13px;cursor:pointer}
+.big.go{background:linear-gradient(90deg,#3fb6ff,#c86bff,#ff6fb5);color:#fff}
+.alt{display:block;width:100%;margin-top:8px;background:none;border:1px dashed var(--cyan);color:var(--cyan);border-radius:12px;padding:10px;font-size:.95rem}
+input[type=file]{display:none}
+.name{font-size:.88rem;color:var(--sub);margin-top:8px;word-break:break-all}
+table{width:100%;border-collapse:collapse;margin-top:6px;font-size:.85rem}
+td{padding:4px 0;border-top:1px solid var(--line);vertical-align:top}
+td:last-child{text-align:right;font-variant-numeric:tabular-nums}
+.bad{color:var(--bad)}.ok{color:var(--ok)}
+.lbl{font-size:.85rem;color:var(--sub);margin:10px 0 4px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1px solid var(--line);background:none;color:var(--text);border-radius:999px;padding:5px 12px;font-size:.85rem}
+.chip.on{border-color:var(--cyan);background:rgba(127,216,255,.16);color:var(--cyan)}
+.note{font-size:.8rem;color:var(--sub);margin-top:4px}
+.prog{height:8px;background:var(--line);border-radius:4px;overflow:hidden;margin:10px 0 4px}.prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,#3fb6ff,#ff6fb5)}
+.wait{font-size:.95rem;text-align:center}
+.ab{display:flex;gap:8px;align-items:center;margin-top:6px}
+.ab button{flex:1;font-size:1rem;font-weight:800;padding:12px 0;border-radius:12px;border:2px solid var(--line);background:none;color:var(--sub);line-height:1.3}
+.ab button small{display:block;font-size:.72rem;font-weight:600}
+.ab button.on.a{border-color:var(--sub);color:#06101a;background:var(--sub)}
+.ab button.on.b{border-color:var(--pink);color:#1a0612;background:var(--pink)}
+.ab .play{flex:0 0 60px;font-size:1.3rem;background:var(--text);color:#06101a;border:none}
+input[type=range]{width:100%;margin:12px 0 2px;accent-color:var(--cyan)}
+.time{display:flex;justify-content:space-between;font-size:.8rem;color:var(--sub);font-variant-numeric:tabular-nums}
+.row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:10px;font-size:.9rem}
+.row small{display:block;color:var(--sub);font-size:.78rem}
+.sw{position:relative;width:46px;height:26px;flex:0 0 46px}
+.sw input{opacity:0;width:0;height:0}
+.sw span{position:absolute;inset:0;border-radius:13px;background:var(--line);transition:.2s}
+.sw span::after{content:"";position:absolute;left:3px;top:3px;width:20px;height:20px;border-radius:50%;background:var(--text);transition:.2s}
+.sw input:checked+span{background:var(--cyan)}.sw input:checked+span::after{left:23px;background:#06101a}
+select{background:var(--card2);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:6px 8px;font-size:.9rem;max-width:58%}
+ul.chg{margin:8px 0 0;padding-left:1.2em;font-size:.88rem}
+.app{margin-top:18px;background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:14px;font-size:.92rem}
+.app a.btn{display:inline-block;margin-top:8px;background:linear-gradient(90deg,#3fb6ff,#c86bff,#ff6fb5);color:#fff;text-decoration:none;font-weight:700;padding:10px 18px;border-radius:999px}
+footer{margin-top:20px;color:var(--sub);font-size:.78rem;text-align:center}
+a{color:var(--cyan)}
+</style>
+</head>
+<body>
+<main>
+<header>
+  <img src="../logo.png" alt="">
+  <h1><span class="k">Kazu</span><span class="p">Player</span> Lite</h1>
+  <div class="lang"><button data-l="ja">日本語</button><button data-l="en">EN</button></div>
+</header>
+<p class="lead" data-t="lead"></p>
+
+<section class="step" id="s1">
+  <h2><span class="n">1</span><span data-t="s1"></span></h2>
+  <label class="big" for="file" data-t="pick"></label><input type="file" id="file" accept="audio/*,video/mp4">
+  <button class="alt" id="demo" data-t="demo"></button>
+  <div class="name" id="name"></div>
+  <table id="diag"></table>
+</section>
+
+<section class="step off" id="s2">
+  <h2><span class="n">2</span><span data-t="s2"></span></h2>
+  <div class="lbl" data-t="genre"></div><div class="chips" id="cg"></div><div class="note" id="gnote"></div>
+  <div class="lbl" data-t="mood"></div><div class="chips" id="cm"></div>
+  <div class="lbl" data-t="strength"></div><div class="chips" id="cs"></div>
+  <div class="lbl" data-t="target"></div><div class="chips" id="ct"></div>
+  <div style="height:14px"></div>
+  <button class="big go" id="go" data-t="go"></button>
+  <div id="waiting" style="display:none"><div class="prog"><i id="bar"></i></div><div class="wait"><span data-t="wait"></span> <span id="pct"></span></div></div>
+  <div class="note" id="again" style="display:none" data-t="again"></div>
+</section>
+
+<section class="step off" id="s3">
+  <h2><span class="n">3</span><span data-t="s3"></span></h2>
+  <div class="note" id="where"></div>
+  <div class="ab"><button class="a on" id="ba"><span data-t="orig"></span><small>A</small></button><button class="play" id="pp">▶</button><button class="b" id="bb"><span data-t="mast"></span><small>B</small></button></div>
+  <input type="range" id="seek" min="0" max="1000" value="0">
+  <div class="time"><span id="tc">0:00</span><span id="td">1:00</span></div>
+  <div class="row"><div><span data-t="match"></span><small data-t="matchNote"></small></div><label class="sw"><input type="checkbox" id="match" checked><span></span></label></div>
+  <div class="row"><div><span data-t="sim"></span><small data-t="simNote"></small></div><select id="sim"></select></div>
+  <div class="lbl" data-t="result"></div>
+  <div id="resnum"></div>
+  <ul class="chg" id="chg"></ul>
+</section>
+
+<div class="app"><span data-t="app"></span><br><a class="btn" href="../" data-t="appBtn"></a></div>
+<footer><span data-t="privacy"></span><br><a href="https://youtube.com/playlist?list=PLL_rooIt0xpI" target="_blank" rel="noopener" data-t="demoCredit"></a></footer>
+</main>
+
+<script src="master.js"></script>
+<script>
+const T={
+ja:{lead:"曲を入れて、曲調を選ぶだけ。聴きどころ1分をマスタリングして、元の音と同じ位置・同じ音量で聴き比べできます。インストール不要です。",
+s1:"曲を選ぶ",pick:"曲を選ぶ（mp3・wav・m4a など）",demo:"お試し曲を使う",analyzing:"読み込んで測っています…",
+lufs:"音量（LUFS）",tp:"トゥルーピーク",clip:"音割れ（0dBに張りついた点）",len:"長さ",none:"なし",tpBad:"−1.0超（配信で割れやすい）",
+s2:"仕上げ方を選ぶ",genre:"曲調",mood:"雰囲気",strength:"強さ",target:"配信先（音量の目安）",
+genres:{auto:"おまかせ",pop:"ポップ",jpop:"J-POP・アニソン",rock:"ロック",edm:"EDM・ダンス",hiphop:"ヒップホップ",ballad:"バラード",acoustic:"アコースティック",jazz:"ジャズ",lofi:"ローファイ",classical:"クラシック・ピアノ"},
+gnotes:{auto:"曲の個性を残し、出っ張り・へこみだけを整えます",pop:"低音と声のバランスがよい、聴きやすい音",jpop:"声が前に出て、明るく密度の高い音",rock:"ギターと中域に厚みのある、勢いのある音",edm:"低音が太く、音圧の高い音",hiphop:"キックとベースが主役の、どっしりした音",ballad:"声とピアノが自然に聞こえる、やわらかい音",acoustic:"生楽器の響きを残した、軽めの処理",jazz:"強弱の幅を残した、あたたかい音",lofi:"高音を落とし、少し歪ませた懐かしい音",classical:"ほとんど圧縮せず、響きと強弱を残す"},
+moods:{natural:"自然",bright:"明るく",warm:"あたたかく",punch:"迫力",clear:"クリア",soft:"やわらかく"},
+strengths:["弱め","標準","強め"],targets:["YouTube・Spotify（−14）","Apple Music（−16）"],
+go:"マスタリングする（聴きどころ1分）",wait:"マスタリング中です。お待ちください…",again:"仕上げ方を変えたら、もう一度「マスタリングする」を押してください。",
+s3:"聴き比べる",orig:"元の音",mast:"仕上がり",where:(a,b)=>`聴きどころ ${a}〜${b} の1分を仕上げました`,
+match:"音量をそろえて比べる",matchNote:"大きい方が良く聞こえる錯覚を外します。オフで本当の音量",sim:"聞こえ方（環境）",simNote:"リスナーの環境をまねします",
+sims:["そのまま","スマホのスピーカー","安いイヤホン"],
+result:"仕上がり",resnum:(l,t,o)=>`この1分：${l} LUFS / ${t} dBTP（元の音：${o} LUFS）<br><span class="note">曲全体を目安の音量に合わせたときの、この1分の音量です</span>`,
+app:"Android アプリの KazuPlayer なら、曲調11種類・雰囲気6種類・聞こえ方6種類から選べて、曲全体の書き出し、お手本の曲に近づける仕上げ、歌詞の同期までできます。無料・広告なしです。",appBtn:"Android アプリを見る",
+privacy:"曲はこの端末のブラウザの中だけで処理し、どこにも送りません。",demoCredit:"お試し曲：KazuSato「僕は僕を知らない」（聴く本棚）",demoName:"お試し曲：僕は僕を知らない（Suno から出したままの音・1分）",err:"この形式は読み込めませんでした"},
+en:{lead:"Drop in a track and pick a style. We master the best 1 minute and let you compare it with the original at the same position and the same loudness. No install.",
+s1:"Choose a track",pick:"Choose a file (mp3, wav, m4a…)",demo:"Use the demo song",analyzing:"Loading and measuring…",
+lufs:"Loudness (LUFS)",tp:"True peak",clip:"Clipped samples",len:"Length",none:"none",tpBad:"over −1.0 (may distort when streamed)",
+s2:"Choose how to master",genre:"Style",mood:"Mood",strength:"Strength",target:"Where it's going (loudness)",
+genres:{auto:"Auto",pop:"Pop",jpop:"J-Pop / Anime",rock:"Rock",edm:"EDM / Dance",hiphop:"Hip-hop",ballad:"Ballad",acoustic:"Acoustic",jazz:"Jazz",lofi:"Lo-fi",classical:"Classical / Piano"},
+gnotes:{auto:"Keeps the character, only evens out bumps and dips",pop:"Balanced low end and vocals, easy to listen to",jpop:"Vocals forward, bright and dense",rock:"Thick guitars and mids, energetic",edm:"Big low end, loud",hiphop:"Kick and bass up front, solid",ballad:"Natural vocals and piano, soft",acoustic:"Light touch that keeps the room",jazz:"Keeps the dynamics, warm",lofi:"Rolled-off highs, a little grit",classical:"Barely compressed, keeps the dynamics"},
+moods:{natural:"Natural",bright:"Bright",warm:"Warm",punch:"Punchy",clear:"Clear",soft:"Soft"},
+strengths:["Light","Normal","Strong"],targets:["YouTube / Spotify (−14)","Apple Music (−16)"],
+go:"Master it (best 1 minute)",wait:"Mastering. Please wait…",again:"You changed the settings. Press “Master it” again.",
+s3:"Compare",orig:"Original",mast:"Mastered",where:(a,b)=>`Mastered the best minute, ${a}–${b}`,
+match:"Match loudness",matchNote:"Removes the “louder sounds better” bias. Off = real levels",sim:"Listen as",simNote:"Simulates your listener's device",
+sims:["As is","Phone speaker","Cheap earbuds"],
+result:"Result",resnum:(l,t,o)=>`This minute: ${l} LUFS / ${t} dBTP (original: ${o} LUFS)<br><span class="note">Level of this minute when the whole song is set to the target</span>`,
+app:"The KazuPlayer Android app adds 11 styles, 6 moods and 6 listening devices, exports the whole song, matches a reference track and syncs lyrics. Free, no ads.",appBtn:"See the Android app",
+privacy:"Your files are processed only inside this browser and are never uploaded.",demoCredit:"Demo song: KazuSato “Boku wa Boku wo Shiranai” (Kiku Hondana)",demoName:"Demo: “Boku wa Boku wo Shiranai” (straight from Suno, 1 min)",err:"This format could not be read"}};
+let L=(navigator.language||"ja").startsWith("ja")?"ja":"en";
+const $=id=>document.getElementById(id);
+const P={genre:"auto",mood:"natural",strength:1,target:-14};
+const GK=["auto","pop","rock"],MK=["natural","bright","punch"],SV=[0.5,1,1.5],TV=[-14,-16];
+let src=null,srcName="",srcDemo=false,diag=null,res=null,stale=false;
+const fmt=s=>{s=Math.max(0,s);return Math.floor(s/60)+":"+String(Math.floor(s%60)).padStart(2,"0")};
+
+function chips(id,keys,labels,cur,set){$(id).innerHTML="";keys.forEach((k,i)=>{const b=document.createElement("button");b.className="chip"+(k===cur?" on":"");b.textContent=labels[i];b.onclick=()=>{set(k);render()};$(id).appendChild(b)})}
+function changed(){if(res){stale=true}}
+function render(){const t=T[L];document.documentElement.lang=L;
+ document.querySelectorAll("[data-t]").forEach(e=>{const v=t[e.dataset.t];if(typeof v==="string")e.textContent=v});
+ document.querySelectorAll(".lang button").forEach(b=>b.classList.toggle("on",b.dataset.l===L));
+ chips("cg",GK,GK.map(k=>t.genres[k]),P.genre,k=>{P.genre=k;changed()});$("gnote").textContent=t.gnotes[P.genre];
+ chips("cm",MK,MK.map(k=>t.moods[k]),P.mood,k=>{P.mood=k;changed()});
+ chips("cs",SV,t.strengths,P.strength,k=>{P.strength=k;changed()});
+ chips("ct",TV,t.targets,P.target,k=>{P.target=k;changed()});
+ const s=$("sim"),v=s.value||"0";s.innerHTML=t.sims.map((n,i)=>`<option value="${i}">${n}</option>`).join("");s.value=v;
+ $("name").textContent=srcDemo?t.demoName:srcName;
+ if(diag)showDiag();if(res)showRes();
+ $("again").style.display=stale?"block":"none";
+ $("s2").classList.toggle("off",!src);$("s3").classList.toggle("off",!res);}
+document.querySelectorAll(".lang button").forEach(b=>b.onclick=()=>{L=b.dataset.l;render()});
+
+// ---------- ① 読み込みと診断 ----------
+let ctx;function ensure(){if(!ctx){ctx=new (window.AudioContext||window.webkitAudioContext)();setupGraph()}return ctx}
+function diagOf(buf){const chs=Math.min(2,buf.numberOfChannels),m=new KPMaster.Meter(buf.sampleRate,chs),tp=new KPMaster.TpMeter(chs),f=new Float64Array(chs),c=[];let clip=0;
+ for(let i=0;i<chs;i++)c.push(buf.getChannelData(i));for(let i=0;i<buf.length;i++){for(let k=0;k<chs;k++){f[k]=c[k][i];if(f[k]>=0.9999||f[k]<=-0.9999)clip++}m.add(f);tp.add(f)}
+ return {lufs:m.result(),tp:20*Math.log10(Math.max(tp.peak,1e-9)),clip,len:buf.duration}}
+function showDiag(){const t=T[L],d=diag;$("diag").innerHTML=`<tr><td>${t.lufs}</td><td><b>${d.lufs.toFixed(1)}</b></td></tr><tr><td>${t.tp}</td><td class="${d.tp>-1?"bad":"ok"}">${d.tp.toFixed(1)} dBTP${d.tp>-1?"<br>"+t.tpBad:""}</td></tr><tr><td>${t.clip}</td><td class="${d.clip?"bad":"ok"}">${d.clip||t.none}</td></tr><tr><td>${t.len}</td><td>${fmt(d.len)}</td></tr>`}
+async function load(data,name,demo){ensure();stop();res=null;stale=false;src=null;srcName=name;srcDemo=demo;diag=null;$("diag").innerHTML=`<tr><td>${T[L].analyzing}</td><td></td></tr>`;render();
+ try{src=await ctx.decodeAudioData(data);await new Promise(r=>setTimeout(r,30));diag=diagOf(src)}catch(e){$("diag").innerHTML=`<tr><td class="bad">${T[L].err}</td><td></td></tr>`}
+ render();if(src)$("s2").scrollIntoView({behavior:"smooth",block:"start"})}
+$("file").onchange=async e=>{const f=e.target.files[0];if(f)load(await f.arrayBuffer(),f.name,false)};
+$("demo").onclick=async()=>{ensure();await ctx.resume();load(await (await fetch("demo/orig.mp3")).arrayBuffer(),"",true)};
+
+// ---------- ② マスタリング ----------
+let bufA=null,bufB=null;
+$("go").onclick=async()=>{if(!src)return;ensure();await ctx.resume();stop();$("go").style.display="none";$("waiting").style.display="block";$("again").style.display="none";
+ const r=await KPMaster.master(src,{genre:P.genre,mood:P.mood,strength:P.strength,target:P.target},p=>{$("bar").style.width=(p*100).toFixed(0)+"%";$("pct").textContent=(p*100).toFixed(0)+"%"});
+ const mk=chans=>{const b=ctx.createBuffer(r.chs,chans[0].length,r.sr);chans.forEach((c,i)=>b.copyToChannel(Float32Array.from(c),i));return b};
+ bufA=mk(r.orig);bufB=mk(r.out);res=r;stale=false;offset=0;$("waiting").style.display="none";$("go").style.display="block";render();choose("b");start();
+ $("s3").scrollIntoView({behavior:"smooth",block:"start"})};
+function showRes(){const t=T[L],r=res;$("where").textContent=t.where(fmt(r.start),fmt(r.start+r.orig[0].length/r.sr));
+ $("resnum").innerHTML=t.resnum(r.lufsClipOut.toFixed(1),r.tp.toFixed(1),r.lufsClipOrig.toFixed(1));
+ $("chg").innerHTML=KPMaster.describe(r,L).map(s=>`<li>${s}</li>`).join("")}
+
+// ---------- ③ 聴き比べ ----------
+let mixA,mixB,simIn,simOut,playing=false,startAt=0,offset=0,cur="b",srcs=[];
+function setupGraph(){mixA=ctx.createGain();mixB=ctx.createGain();simIn=ctx.createGain();simOut=ctx.createGain();mixA.connect(simIn);mixB.connect(simIn);simOut.connect(ctx.destination);buildSim()}
+function buildSim(){if(!ctx)return;simIn.disconnect();let node=simIn;const k=+$("sim").value;
+ const bq=(t,f,q,g)=>{const b=ctx.createBiquadFilter();b.type=t;b.frequency.value=f;if(q)b.Q.value=q;if(g!==undefined)b.gain.value=g;node.connect(b);node=b};
+ const mono=()=>{const m=ctx.createGain();m.channelCount=1;m.channelCountMode="explicit";m.channelInterpretation="speakers";node.connect(m);node=m};
+ if(k===1){mono();bq("highpass",450,.707);bq("highpass",450,.707);bq("peaking",3000,1,4);bq("lowpass",12000,.707)}
+ if(k===2){bq("highpass",40,.707);bq("peaking",120,.8,5);bq("peaking",2500,1.2,-3);bq("peaking",6500,2,5);bq("lowpass",14000,.707)}
+ node.connect(simOut)}
+$("sim").onchange=buildSim;
+function gainOf(k){if(!res||!$("match").checked)return 1;const a=res.lufsClipOrig,b=res.lufsClipOut,ref=Math.min(a,b);return Math.pow(10,(ref-(k==="a"?a:b))/20)}
+function setGains(now){if(!ctx)return;const t=ctx.currentTime;[["a",mixA],["b",mixB]].forEach(([k,g])=>{const v=(cur===k?1:0)*gainOf(k);g.gain.cancelScheduledValues(t);if(now)g.gain.setValueAtTime(v,t);else g.gain.setTargetAtTime(v,t,0.01)})}
+$("match").onchange=()=>setGains(false);
+const dur=()=>bufA?bufA.duration:0, pos=()=>playing?offset+(ctx.currentTime-startAt):offset;
+function stopSrc(){srcs.forEach(s=>{try{s.stop()}catch(e){}});srcs=[]}
+function start(){if(!bufA)return;stopSrc();if(offset>=dur())offset=0;startAt=ctx.currentTime+0.05;
+ [[bufA,mixA],[bufB,mixB]].forEach(([b,g])=>{const s=ctx.createBufferSource();s.buffer=b;s.connect(g);s.start(startAt,offset);srcs.push(s)});setGains(true);playing=true;$("pp").textContent="❚❚"}
+function stop(){if(!ctx)return;if(playing)offset=pos();stopSrc();playing=false;$("pp").textContent="▶"}
+$("pp").onclick=async()=>{ensure();await ctx.resume();playing?stop():start()};
+function choose(k){cur=k;$("ba").classList.toggle("on",k==="a");$("bb").classList.toggle("on",k==="b");setGains(false)}
+$("ba").onclick=()=>choose("a");$("bb").onclick=()=>choose("b");
+document.addEventListener("keydown",e=>{if(!res)return;if(e.key==="a"||e.key==="A")choose("a");else if(e.key==="b"||e.key==="B")choose("b");else if(e.key===" "&&e.target.tagName!=="BUTTON"){e.preventDefault();$("pp").click()}});
+let dragging=false;$("seek").oninput=()=>{dragging=true;$("tc").textContent=fmt($("seek").value/1000*dur())};
+$("seek").onchange=()=>{dragging=false;offset=$("seek").value/1000*dur();if(playing)start()};
+(function loop(){const d=dur();if(d&&!dragging){const p=pos();if(playing&&p>=d){stop();offset=0}$("seek").value=Math.min(1000,p/d*1000);$("tc").textContent=fmt(p);$("td").textContent=fmt(d)}requestAnimationFrame(loop)})();
+render();
+</script>
+</body>
+</html>

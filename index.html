@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>KazuPlayer — 自分で作った曲のためのプレイヤー</title>
+<meta name="description" content="AIや自分で曲を作る人のための、Android用の音楽・動画プレイヤー。聴き比べ、音の診断、歌詞の同期、公開準備までスマホ1台で。無料。">
+<meta property="og:title" content="KazuPlayer">
+<meta property="og:description" content="自分で作った曲を、聴く・比べる・確かめる・仕上げる・公開する。Android用・無料。">
+<meta property="og:image" content="https://kazusato-japan.github.io/KazuPlayer/logo.png">
+<link rel="icon" href="logo.png">
+<style>
+:root{--bg:#070a1c;--card:#11152e;--text:#eef0f8;--sub:#aab0c8;--cyan:#7fd8ff;--pink:#ff8ad0;--line:#252b4d}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(1200px 600px at 50% -10%,#1b2160 0%,var(--bg) 60%);color:var(--text);font-family:system-ui,-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;line-height:1.7}
+main{max-width:720px;margin:0 auto;padding:32px 16px 64px}
+.hero{text-align:center}
+.hero img{width:180px;height:180px;filter:drop-shadow(0 8px 30px rgba(127,216,255,.35))}
+h1{font-size:2.2rem;margin:12px 0 4px;letter-spacing:.02em}
+h1 .k{color:var(--cyan)} h1 .p{color:var(--pink)}
+.tag{color:var(--sub);margin:0 0 24px}
+.dl{display:inline-block;background:linear-gradient(90deg,#3fb6ff,#c86bff,#ff6fb5);color:#fff;text-decoration:none;font-weight:700;font-size:1.1rem;padding:14px 28px;border-radius:999px;box-shadow:0 8px 24px rgba(200,107,255,.35)}
+.small{color:var(--sub);font-size:.85rem;margin-top:10px}
+h2{font-size:1.25rem;margin:40px 0 12px;border-left:4px solid var(--pink);padding-left:10px}
+.grid{display:grid;grid-template-columns:1fr;gap:12px}
+@media(min-width:600px){.grid{grid-template-columns:1fr 1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.card b{display:block;color:var(--cyan);margin-bottom:4px}
+.card p{margin:0;color:var(--sub);font-size:.95rem}
+ol{padding-left:1.3em} li{margin:6px 0}
+code{background:#1a1f40;padding:1px 6px;border-radius:6px;color:#ffd38a}
+footer{margin-top:48px;color:var(--sub);font-size:.8rem;text-align:center}
+a{color:var(--cyan)}
+.pl{display:block;background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;text-decoration:none;color:var(--text)}
+.pl img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover}
+.pl div{padding:12px 16px}
+.pl b{color:var(--cyan)} .pl span{display:block;color:var(--sub);font-size:.9rem}
+.try{display:inline-block;border:2px solid var(--cyan);color:var(--cyan);text-decoration:none;font-weight:700;padding:10px 22px;border-radius:999px}
+</style>
+</head>
+<body>
+<main>
+  <section class="hero">
+    <img src="logo.png" alt="KazuPlayer">
+    <h1><span class="k">Kazu</span><span class="p">Player</span></h1>
+    <p class="tag">自分で作った曲を、聴く・比べる・確かめる・仕上げる・公開する。<br>AIで曲を作る人のための、スマホ1台で完結するプレイヤー。</p>
+    <a class="dl" href="https://github.com/kazuSato-Japan/KazuPlayer/releases/latest/download/KazuPlayer.apk">無料ダウンロード（Android）</a>
+    <p style="margin:14px 0 0"><a class="try" href="lite/">まずブラウザで試す（インストール不要）</a></p>
+    <p class="small" id="ver">最新版を確認中…</p>
+    <p class="small">Android 11以降 ・ 広告なし ・ アカウント不要</p>
+  </section>
+
+  <h2>できること</h2>
+  <div class="grid">
+    <div class="card"><b>バージョン聴き比べ</b><p>「曲名_新音源.mp3」などを自動でまとめ、同じ位置のまま切り替え。音量をそろえて公平に比べられます。</p></div>
+    <div class="card"><b>音の診断</b><p>ラウドネス（LUFS）、トゥルーピーク、音割れの箇所、モノラル互換。YouTubeやSpotifyでの扱いも分かります。</p></div>
+    <div class="card"><b>聞こえ方チェック</b><p>スマホのスピーカー、安いイヤホン、車、ラジオ…リスナーの環境での聞こえ方をまねします。</p></div>
+    <div class="card"><b>お手本と比べる</b><p>好きなプロの曲を登録して、音量をそろえて聴き比べ。数値も並べて比較できます。</p></div>
+    <div class="card"><b>歌詞を仕上げる</b><p>タップするだけで歌詞を同期（行ごと・カラオケ式）。曲ファイルへの埋め込み、字幕（.srt）の書き出しも。</p></div>
+    <div class="card"><b>マスタリング</b><p>ジャンル・雰囲気を選ぶか、お手本の曲を選ぶだけ（YouTubeなどで流した曲もお手本として測れます）。EQ・コンプ・音量合わせで仕上げ、元の音と同じ位置で聴き比べてから書き出せます。</p></div>
+    <div class="card"><b>公開準備</b><p>公開前のチェックリストと、YouTube用の説明文をワンタップでコピー。</p></div>
+    <div class="card"><b>こだわりの音質</b><p>10バンドEQ、出力先ごとの自動切替、ReplayGain、低音補強、クロスフィード、セリフ強調、夜間モード。</p></div>
+    <div class="card"><b>動画とYouTube</b><p>歌詞動画をフォルダごとに連続再生、字幕・小窓再生。YouTubeは小窓で再生しながら他の画面へ。</p></div>
+  </div>
+
+  <h2>使い始め方</h2>
+  <ol>
+    <li>上のボタンから <code>KazuPlayer.apk</code> をダウンロードして開きます。</li>
+    <li>「この提供元のアプリを許可」を求められたらオンにして、インストールします。</li>
+    <li>曲と同じフォルダに、同じ名前の <code>.lrc</code>（歌詞）・<code>.mp4</code>（歌詞動画）・<code>.jpg</code>（ジャケット）を置くと、自動で1つの作品にまとまります。</li>
+  </ol>
+  <p class="small">更新するときは、新しい版をダウンロードして上書きインストールするだけです（設定や再生回数はそのまま残ります）。</p>
+
+  <h2>KazuPlayerアプリ作者の楽曲</h2>
+  <a class="pl" href="https://www.youtube.com/playlist?list=PLL_rooIt0xpI" target="_blank" rel="noopener">
+    <img src="kikuhondana.jpg" alt="聴く本棚" loading="lazy">
+    <div><b>聴く本棚</b><span>1冊の本に1曲。作者の自作曲を、YouTubeの再生リストで聴けます ▶</span></div>
+  </a>
+
+  <h2>プライバシー</h2>
+  <p>アカウント・広告・利用状況の送信はありません。設定や再生回数、歌詞などはすべてスマホの中だけに保存されます。歌詞の自動取得（オフにできます）では、曲名・アーティスト名を歌詞サービス LRCLIB に送ります。YouTubeタブを使うと YouTube（Google）の埋め込みプレイヤーが通信します。マスタリングの「流して測る」では、ほかのアプリで再生中の音の特徴（周波数バランスなど）だけを数値で記録します。マイクの音は使わず、音そのものも保存・送信しません。曲ファイルそのものを外部に送ることはありません。</p>
+
+  <h2>クレジット</h2>
+  <p class="small">AndroidX Media3（ExoPlayer）、Jetpack Compose、Kotlin、Guava ほか（Apache License 2.0）。歌詞データ：<a href="https://lrclib.net">LRCLIB</a>。ラウドネス測定は ITU-R BS.1770-4 / EBU R128 に準拠。</p>
+
+  <footer>© 2026 kazuSato ・ <a href="https://github.com/kazuSato-Japan/KazuPlayer/releases">すべてのバージョン</a></footer>
+</main>
+<script>
+fetch("https://api.github.com/repos/kazuSato-Japan/KazuPlayer/releases/latest")
+ .then(r=>r.json()).then(j=>{
+  const d=new Date(j.published_at);
+  document.getElementById("ver").textContent="最新版 "+j.tag_name+"（"+d.getFullYear()+"年"+(d.getMonth()+1)+"月"+d.getDate()+"日 公開）";
+ }).catch(()=>{document.getElementById("ver").innerHTML='<a href="https://github.com/kazuSato-Japan/KazuPlayer/releases">これまでの版はこちら</a>';});
+</script>
+</body>
+</html>
