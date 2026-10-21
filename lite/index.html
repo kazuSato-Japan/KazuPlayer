@@ -107,7 +107,7 @@ a{color:var(--cyan)}
 </section>
 
 <div class="app"><span data-t="app"></span><br><a class="btn" href="../" data-t="appBtn"></a></div>
-<footer><span data-t="privacy"></span><br><a href="https://youtube.com/playlist?list=PLL_rooIt0xpI" target="_blank" rel="noopener" data-t="demoCredit"></a></footer>
+<footer><span data-t="privacy"></span><br><span data-t="terms"></span><br><a href="https://youtube.com/playlist?list=PLL_rooIt0xpI" target="_blank" rel="noopener" data-t="demoCredit"></a></footer>
 </main>
 
 <script src="master.js"></script>
@@ -127,7 +127,7 @@ match:"音量をそろえて比べる",matchNote:"大きい方が良く聞こえ
 sims:["そのまま","スマホのスピーカー","安いイヤホン"],
 result:"仕上がり",resnum:(l,t,o)=>`この1分：${l} LUFS / ${t} dBTP（元の音：${o} LUFS）<br><span class="note">曲全体を目安の音量に合わせたときの、この1分の音量です</span>`,
 app:"Android アプリの KazuPlayer なら、曲調11種類・雰囲気6種類・聞こえ方7種類から選べて、曲全体の書き出し、お手本の曲に近づける仕上げ、歌詞の同期までできます。無料・広告なしです。",appBtn:"Android アプリを見る",
-privacy:"曲はこの端末のブラウザの中だけで処理し、どこにも送りません。",demoCredit:"お試し曲：KazuSato「僕は僕を知らない」（聴く本棚）",demoName:"お試し曲：僕は僕を知らない（Suno から出したままの音・1分）",err:"この形式は読み込めませんでした"},
+privacy:"曲はこの端末のブラウザの中だけで処理し、どこにも送りません。",terms:"個人での利用は自由です。このページやアプリの再配布・転載はお断りします。",demoCredit:"お試し曲：KazuSato「僕は僕を知らない」（聴く本棚）",demoName:"お試し曲：僕は僕を知らない（Suno から出したままの音・1分）",err:"この形式は読み込めませんでした"},
 en:{lead:"Drop in a track and pick a style. We master the best 1 minute and let you compare it with the original at the same position and the same loudness. No install.",
 s1:"Choose a track",pick:"Choose a file (mp3, wav, m4a…)",demo:"Use the demo song",analyzing:"Loading and measuring…",
 lufs:"Loudness (LUFS)",tp:"True peak",clip:"Clipped samples",len:"Length",none:"none",tpBad:"over −1.0 (may distort when streamed)",
@@ -142,7 +142,7 @@ match:"Match loudness",matchNote:"Removes the “louder sounds better” bias. O
 sims:["As is","Phone speaker","Cheap earbuds"],
 result:"Result",resnum:(l,t,o)=>`This minute: ${l} LUFS / ${t} dBTP (original: ${o} LUFS)<br><span class="note">Level of this minute when the whole song is set to the target</span>`,
 app:"The KazuPlayer Android app adds 11 styles, 6 moods and 7 listening devices, exports the whole song, matches a reference track and syncs lyrics. Free, no ads.",appBtn:"See the Android app",
-privacy:"Your files are processed only inside this browser and are never uploaded.",demoCredit:"Demo song: KazuSato “Boku wa Boku wo Shiranai” (Kiku Hondana)",demoName:"Demo: “Boku wa Boku wo Shiranai” (straight from Suno, 1 min)",err:"This format could not be read"}};
+privacy:"Your files are processed only inside this browser and are never uploaded.",terms:"Free for personal use. Please do not redistribute or republish this page or the app.",demoCredit:"Demo song: KazuSato “Boku wa Boku wo Shiranai” (Kiku Hondana)",demoName:"Demo: “Boku wa Boku wo Shiranai” (straight from Suno, 1 min)",err:"This format could not be read"}};
 let L=(navigator.language||"ja").startsWith("ja")?"ja":"en";
 const $=id=>document.getElementById(id);
 const P={genre:"auto",mood:"natural",strength:1,target:-14};
