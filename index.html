@@ -1,19 +1,22 @@
 <!doctype html>
-<html lang="ja">
+<html lang="ja" data-l="ja">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>KazuPlayer — 自分で作った曲のためのプレイヤー</title>
-<meta name="description" content="AIや自分で曲を作る人のための、Android用の音楽・動画プレイヤー。聴き比べ、音の診断、歌詞の同期、公開準備までスマホ1台で。無料。">
+<title>KazuPlayer — 自分で作った曲のためのプレイヤー / A player for your own songs</title>
+<meta name="description" content="AIや自分で曲を作る人のための、Android用の音楽・動画プレイヤー。無料。 A free Android music & video player for people who make songs, including with AI.">
 <meta property="og:title" content="KazuPlayer">
-<meta property="og:description" content="自分で作った曲を、聴く・比べる・確かめる・仕上げる・公開する。Android用・無料。">
+<meta property="og:description" content="自分で作った曲を、聴く・比べる・確かめる・仕上げる・公開する。Android用・無料。 Listen, compare, check, finish and release your own songs. Free for Android.">
 <meta property="og:image" content="https://kazusato-japan.github.io/KazuPlayer/logo.png">
 <link rel="icon" href="logo.png">
+
 <style>
 :root{--bg:#070a1c;--card:#11152e;--text:#eef0f8;--sub:#aab0c8;--cyan:#7fd8ff;--pink:#ff8ad0;--line:#252b4d}
 *{box-sizing:border-box}
-body{margin:0;background:radial-gradient(1200px 600px at 50% -10%,#1b2160 0%,var(--bg) 60%);color:var(--text);font-family:system-ui,-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;line-height:1.7}
-main{max-width:720px;margin:0 auto;padding:32px 16px 64px}
+body{margin:0;background:radial-gradient(1200px 600px at 50% -10%,#1b2160 0%,var(--bg) 60%);background-color:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;line-height:1.7}
+html[data-l="ja"] .en,html[data-l="en"] .ja{display:none!important}
+.lang{position:absolute;top:12px;right:12px;z-index:10;background:#11152ecc;border:1px solid var(--cyan);color:var(--cyan);border-radius:999px;padding:6px 14px;font-weight:700;font-size:.9rem;cursor:pointer;backdrop-filter:blur(6px)}
+main{max-width:720px;margin:0 auto;padding:40px 16px 64px}
 .hero{text-align:center}
 .hero img{width:180px;height:180px;filter:drop-shadow(0 8px 30px rgba(127,216,255,.35))}
 h1{font-size:2.2rem;margin:12px 0 4px;letter-spacing:.02em}
@@ -27,6 +30,7 @@ h2{font-size:1.25rem;margin:40px 0 12px;border-left:4px solid var(--pink);paddin
 .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
 .card b{display:block;color:var(--cyan);margin-bottom:4px}
 .card p{margin:0;color:var(--sub);font-size:.95rem}
+.warnstep svg{display:block;width:100%;max-width:280px;margin:0 auto 10px}
 ol{padding-left:1.3em} li{margin:6px 0}
 code{background:#1a1f40;padding:1px 6px;border-radius:6px;color:#ffd38a}
 footer{margin-top:48px;color:var(--sub);font-size:.8rem;text-align:center}
@@ -37,63 +41,109 @@ a{color:var(--cyan)}
 .pl b{color:var(--cyan)} .pl span{display:block;color:var(--sub);font-size:.9rem}
 .try{display:inline-block;border:2px solid var(--cyan);color:var(--cyan);text-decoration:none;font-weight:700;padding:10px 22px;border-radius:999px}
 </style>
+<script>
+// 言語：?lang=en / ?lang=ja ＞ 前に選んだもの ＞ ブラウザの言語（日本語以外なら英語）
+(function(){var l=null;try{l=new URLSearchParams(location.search).get("lang")}catch(e){}
+if(l!=="ja"&&l!=="en"){try{l=localStorage.getItem("kp-lang")}catch(e){}}
+if(l!=="ja"&&l!=="en"){l=(navigator.language||"ja").toLowerCase().indexOf("ja")===0?"ja":"en"}
+document.documentElement.setAttribute("data-l",l);document.documentElement.lang=l;})();
+</script>
 </head>
 <body>
+<button class="lang" id="lang" type="button" aria-label="Language"><span class="ja">EN</span><span class="en">日本語</span></button>
 <main>
   <section class="hero">
     <img src="logo.png" alt="KazuPlayer">
     <h1><span class="k">Kazu</span><span class="p">Player</span></h1>
-    <p class="tag">自分で作った曲を、聴く・比べる・確かめる・仕上げる・公開する。<br>AIで曲を作る人のための、スマホ1台で完結するプレイヤー。</p>
-    <a class="dl" href="https://github.com/kazuSato-Japan/KazuPlayer/releases/latest/download/KazuPlayer.apk">無料ダウンロード（Android）</a>
-    <p style="margin:14px 0 0"><a class="try" href="lite/">まずブラウザで試す（インストール不要）</a></p>
-    <p class="small" id="ver">最新版を確認中…</p>
-    <p class="small">Android 11以降 ・ 広告なし ・ アカウント不要</p>
+    <p class="tag"><span class="ja">自分で作った曲を、聴く・比べる・確かめる・仕上げる・公開する。<br>AIで曲を作る人のための、スマホ1台で完結するプレイヤー。</span><span class="en">Listen, compare, check, finish and release your own songs.<br>A player for people who make music — including with AI — all on one phone.</span></p>
+    <a class="dl" href="https://github.com/kazuSato-Japan/KazuPlayer/releases/latest/download/KazuPlayer.apk"><span class="ja">無料ダウンロード（Android）</span><span class="en">Free download (Android)</span></a>
+    <p style="margin:14px 0 0"><a class="try" href="lite/"><span class="ja">まずブラウザで試す（インストール不要）</span><span class="en">Try it in your browser first (no install)</span></a></p>
+    <p class="small" id="ver"><span class="ja">最新版を確認中…</span><span class="en">Checking the latest version…</span></p>
+    <p class="small"><span class="ja">Android 11以降 ・ 広告なし ・ アカウント不要</span><span class="en">Android 11+ · No ads · No account</span></p>
   </section>
 
-  <h2>できること</h2>
+  <h2><span class="ja">できること</span><span class="en">Features</span></h2>
   <div class="grid">
-    <div class="card"><b>バージョン聴き比べ</b><p>「曲名_新音源.mp3」などを自動でまとめ、同じ位置のまま切り替え。音量をそろえて公平に比べられます。</p></div>
-    <div class="card"><b>音の診断</b><p>ラウドネス（LUFS）、トゥルーピーク、音割れの箇所、モノラル互換。YouTubeやSpotifyでの扱いも分かります。</p></div>
-    <div class="card"><b>聞こえ方チェック</b><p>スマホのスピーカー、安いイヤホン、車、ラジオ…リスナーの環境での聞こえ方をまねします。</p></div>
-    <div class="card"><b>お手本と比べる</b><p>好きなプロの曲を登録して、音量をそろえて聴き比べ。数値も並べて比較できます。</p></div>
-    <div class="card"><b>歌詞を仕上げる</b><p>タップするだけで歌詞を同期（行ごと・カラオケ式）。曲ファイルへの埋め込み、字幕（.srt）の書き出しも。</p></div>
-    <div class="card"><b>マスタリング</b><p>ジャンル・雰囲気を選ぶか、お手本の曲を選ぶだけ（YouTubeなどで流した曲もお手本として測れます）。EQ・コンプ・音量合わせで仕上げ、元の音と同じ位置で聴き比べてから書き出せます。</p></div>
-    <div class="card"><b>公開準備</b><p>公開前のチェックリストと、YouTube用の説明文をワンタップでコピー。</p></div>
-    <div class="card"><b>こだわりの音質</b><p>10バンドEQ、出力先ごとの自動切替、ReplayGain、低音補強、クロスフィード、セリフ強調、夜間モード。</p></div>
-    <div class="card"><b>動画とYouTube</b><p>歌詞動画をフォルダごとに連続再生、字幕・小窓再生。YouTubeは小窓で再生しながら他の画面へ。</p></div>
+    <div class="card"><div class="ja"><b>バージョン聴き比べ</b><p>「曲名_新音源.mp3」などを自動でまとめ、同じ位置のまま切り替え。音量をそろえて公平に比べられます。</p></div><div class="en"><b>Compare versions</b><p>Files like “Song_new.mp3” are grouped automatically. Switch between versions at the same position, with matched loudness.</p></div></div>
+    <div class="card"><div class="ja"><b>音の診断</b><p>ラウドネス（LUFS）、トゥルーピーク、音割れの箇所、モノラル互換。YouTubeやSpotifyでの扱いも分かります。</p></div><div class="en"><b>Sound check</b><p>Loudness (LUFS), true peak, clipping spots and mono compatibility — and how YouTube or Spotify will treat your track.</p></div></div>
+    <div class="card"><div class="ja"><b>聞こえ方チェック</b><p>スマホのスピーカー、安いイヤホン、車、ラジオ…リスナーの環境での聞こえ方をまねします。</p></div><div class="en"><b>Listening simulator</b><p>Hear your song as listeners will: phone speaker, cheap earbuds, car, radio and more.</p></div></div>
+    <div class="card"><div class="ja"><b>お手本と比べる</b><p>好きなプロの曲を登録して、音量をそろえて聴き比べ。数値も並べて比較できます。</p></div><div class="en"><b>Compare with a reference</b><p>Register a pro track you like and A/B it at matched loudness, with the numbers side by side.</p></div></div>
+    <div class="card"><div class="ja"><b>マスタリング</b><p>ジャンル・雰囲気か、お手本の曲を選ぶだけ。EQ・コンプ・音量合わせで仕上げ、元の音と同じ位置で聴き比べてから WAV・MP3 で書き出せます。</p></div><div class="en"><b>Mastering</b><p>Pick a genre, a mood or a reference track. EQ, compression and loudness are applied; compare with the original at the same position, then export WAV or MP3.</p></div></div>
+    <div class="card"><div class="ja"><b>楽譜・タブ譜（自動採譜・試作）</b><p>曲から五線譜を作ります。メロディ（歌詞付き）・コーラス候補・ギター/鍵盤・ベース・ドラム、ギターとベースのタブ譜。PDF と MIDI で保存。音符を押して小節の頭・テンポ・パートを直せます。</p></div><div class="en"><b>Sheet music & TAB (beta)</b><p>Transcribes your song into notation: melody with lyrics, chorus candidates, guitar/keys, bass, drums, plus guitar and bass TAB. Save as PDF or MIDI. Tap a note to fix bar lines, tempo or parts.</p></div></div>
+    <div class="card"><div class="ja"><b>歌詞を仕上げる</b><p>歌声から歌詞に時刻を自動で付けます（LRC）。タップでの同期（行ごと・カラオケ式）、曲ファイルへの埋め込み、字幕（.srt）の書き出しも。</p></div><div class="en"><b>Finish your lyrics</b><p>Auto-time plain lyrics from the vocals (LRC), or sync by tapping (per line or karaoke style). Embed lyrics in the file and export subtitles (.srt).</p></div></div>
+    <div class="card"><div class="ja"><b>歌詞動画（テロップ）</b><p>曲の画像を背景に、歌詞を時刻どおりに出す動画（1920×1080・MP4）をスマホだけで作れます。カラオケ式の色替えにも対応。</p></div><div class="en"><b>Lyric video</b><p>Make a 1920×1080 MP4 with your cover art and time-synced lyrics, right on your phone — karaoke-style highlighting included.</p></div></div>
+    <div class="card"><div class="ja"><b>公開準備</b><p>公開前のチェックリストと、YouTube用の説明文をワンタップでコピー。</p></div><div class="en"><b>Release prep</b><p>A pre-release checklist and a one-tap YouTube description.</p></div></div>
+    <div class="card"><div class="ja"><b>こだわりの音質</b><p>10バンドEQ、出力先ごとの自動切替、ReplayGain、低音補強、クロスフィード、セリフ強調、夜間モード。</p></div><div class="en"><b>Sound quality</b><p>10-band EQ, per-output auto switching, ReplayGain, bass boost, crossfeed, dialogue boost and night mode.</p></div></div>
+    <div class="card"><div class="ja"><b>動画とYouTube</b><p>歌詞動画をフォルダごとに連続再生、字幕・小窓再生。YouTubeは小窓で再生しながら他の画面へ。</p></div><div class="en"><b>Video & YouTube</b><p>Play lyric videos folder by folder with subtitles and picture-in-picture. YouTube keeps playing in a mini player.</p></div></div>
+    <div class="card"><div class="ja"><b>日本語 / English</b><p>アプリの画面は日本語と英語を切り替えられます（どの画面でも右上のボタンで）。</p></div><div class="en"><b>English / 日本語</b><p>The app works in English and Japanese — switch from the button at the top right of any screen.</p></div></div>
   </div>
+  <p class="small"><span class="ja">楽譜・歌詞の自動同期・書き出しは、インターネットにつながっている所で使えます。</span><span class="en">Sheet music, lyric auto-timing and export need an internet connection.</span></p>
 
-  <h2>使い始め方</h2>
-  <ol>
+  <h2><span class="ja">使い始め方</span><span class="en">Getting started</span></h2>
+  <ol class="ja">
     <li>上のボタンから <code>KazuPlayer.apk</code> をダウンロードして開きます。</li>
-    <li>「この提供元のアプリを許可」を求められたらオンにして、インストールします。</li>
+    <li>「この提供元のアプリを許可」を求められたらオンにして、インストールします（途中で出る警告は<a href="#install-warning">こちら</a>）。</li>
     <li>曲と同じフォルダに、同じ名前の <code>.lrc</code>（歌詞）・<code>.mp4</code>（歌詞動画）・<code>.jpg</code>（ジャケット）を置くと、自動で1つの作品にまとまります。</li>
   </ol>
-  <p class="small">更新するときは、新しい版をダウンロードして上書きインストールするだけです（設定や再生回数はそのまま残ります）。</p>
+  <ol class="en">
+    <li>Download <code>KazuPlayer.apk</code> with the button above and open it.</li>
+    <li>When asked, turn on “Allow from this source” and install (about the warnings, see <a href="#install-warning">below</a>).</li>
+    <li>Put a <code>.lrc</code> (lyrics), <code>.mp4</code> (lyric video) or <code>.jpg</code> (cover) with the same name in the song’s folder, and they are grouped into one work automatically.</li>
+  </ol>
+  <p class="small"><span class="ja">更新するときは、新しい版をダウンロードして上書きインストールするだけです（設定や再生回数はそのまま残ります）。</span><span class="en">To update, just download the new version and install over the old one (your settings and play counts are kept).</span></p>
 
-  <h2>KazuPlayerアプリ作者の楽曲</h2>
+  <h2 id="install-warning"><span class="ja">インストールのときに出る警告について</span><span class="en">About the warnings during install</span></h2>
+  <p><span class="ja">KazuPlayer は Google Play ではなく、このページ（作者の GitHub）から配布しています。そのため Android は、入れる途中で何回か「本当に入れますか」と確かめてきます。<b>警告が出るのは正常です。</b>次の順に進めてください。</span><span class="en">KazuPlayer is distributed from this page (the author’s GitHub), not from Google Play, so Android asks a few times whether you really want to install it. <b>These warnings are normal.</b> Follow these steps.</span></p>
+  <div class="grid">
+    <div class="card warnstep"><div class="ja"><svg viewBox="0 0 280 250" role="img" aria-label="ファイルを保存しますか？" xmlns="http://www.w3.org/2000/svg"><rect width="280" height="250" rx="22" fill="#0b0f26" stroke="#252b4d"/><rect x="14" y="40" width="252" height="200" rx="18" fill="#1a1f40"/><text x="30" y="76" font-size="16" font-weight="700" fill="#eef0f8">ファイルを保存しますか？</text><text x="30" y="108" font-size="13" fill="#d8dcef">このファイルは有害な可能性</text><text x="30" y="130" font-size="13" fill="#d8dcef">があります。KazuPlayer.apk を</text><text x="30" y="152" font-size="13" fill="#d8dcef">保存しますか？</text><rect x="138" y="196" width="116" height="34" rx="17" fill="none" stroke="#ff8ad0" stroke-width="3"/><text x="196" y="218" text-anchor="middle" font-size="14" font-weight="700" fill="#7fd8ff">ダウンロード</text><text x="82" y="218" text-anchor="middle" font-size="14" font-weight="700" fill="#aab0c8">キャンセル</text><text x="140" y="26" text-anchor="middle" font-size="11" fill="#6f7696">画面のイメージ</text></svg><b>1. ダウンロードのとき</b><p>ブラウザが「有害かもしれないファイル」と確かめてきます。Google Play 以外から入れるアプリ（APK）には必ず出る表示です。「ダウンロード」を押します。</p></div><div class="en"><svg viewBox="0 0 280 250" role="img" aria-label="Keep this file?" xmlns="http://www.w3.org/2000/svg"><rect width="280" height="250" rx="22" fill="#0b0f26" stroke="#252b4d"/><rect x="14" y="40" width="252" height="200" rx="18" fill="#1a1f40"/><text x="30" y="76" font-size="16" font-weight="700" fill="#eef0f8">Keep this file?</text><text x="30" y="108" font-size="13" fill="#d8dcef">This type of file can harm</text><text x="30" y="130" font-size="13" fill="#d8dcef">your device. Do you want to</text><text x="30" y="152" font-size="13" fill="#d8dcef">keep KazuPlayer.apk anyway?</text><rect x="160" y="196" width="94" height="34" rx="17" fill="none" stroke="#ff8ad0" stroke-width="3"/><text x="207" y="218" text-anchor="middle" font-size="14" font-weight="700" fill="#7fd8ff">Download</text><text x="116" y="218" text-anchor="middle" font-size="14" font-weight="700" fill="#aab0c8">Cancel</text><text x="140" y="26" text-anchor="middle" font-size="11" fill="#6f7696">Example screen</text></svg><b>1. When downloading</b><p>Your browser asks whether to keep a “possibly harmful” file. This appears for every app installed from outside Google Play (APK). Tap “Download”.</p></div></div>
+    <div class="card warnstep"><div class="ja"><svg viewBox="0 0 280 250" role="img" aria-label="不明なアプリ" xmlns="http://www.w3.org/2000/svg"><rect width="280" height="250" rx="22" fill="#0b0f26" stroke="#252b4d"/><rect x="14" y="40" width="252" height="200" rx="18" fill="#1a1f40"/><text x="30" y="76" font-size="16" font-weight="700" fill="#eef0f8">不明なアプリ</text><text x="30" y="108" font-size="13" fill="#d8dcef">セキュリティのため、この提供元</text><text x="30" y="130" font-size="13" fill="#d8dcef">のアプリはインストールできな</text><text x="30" y="152" font-size="13" fill="#d8dcef">い設定になっています。</text><rect x="198" y="196" width="56" height="34" rx="17" fill="none" stroke="#ff8ad0" stroke-width="3"/><text x="226" y="218" text-anchor="middle" font-size="14" font-weight="700" fill="#7fd8ff">設定</text><text x="142" y="218" text-anchor="middle" font-size="14" font-weight="700" fill="#aab0c8">キャンセル</text><text x="140" y="26" text-anchor="middle" font-size="11" fill="#6f7696">画面のイメージ</text></svg><b>2. 初めて開くとき</b><p>ブラウザやファイルアプリから入れてよいかを聞かれます。「設定」で「この提供元のアプリを許可」をオンにして戻ります（初めての1回だけ）。</p></div><div class="en"><svg viewBox="0 0 280 250" role="img" aria-label="Unknown apps" xmlns="http://www.w3.org/2000/svg"><rect width="280" height="250" rx="22" fill="#0b0f26" stroke="#252b4d"/><rect x="14" y="40" width="252" height="200" rx="18" fill="#1a1f40"/><text x="30" y="76" font-size="16" font-weight="700" fill="#eef0f8">Unknown apps</text><text x="30" y="108" font-size="13" fill="#d8dcef">For your security, your phone</text><text x="30" y="130" font-size="13" fill="#d8dcef">is not allowed to install</text><text x="30" y="152" font-size="13" fill="#d8dcef">unknown apps from this source.</text><rect x="160" y="196" width="94" height="34" rx="17" fill="none" stroke="#ff8ad0" stroke-width="3"/><text x="207" y="218" text-anchor="middle" font-size="14" font-weight="700" fill="#7fd8ff">Settings</text><text x="116" y="218" text-anchor="middle" font-size="14" font-weight="700" fill="#aab0c8">Cancel</text><text x="140" y="26" text-anchor="middle" font-size="11" fill="#6f7696">Example screen</text></svg><b>2. When opening it the first time</b><p>Android asks whether this browser or file app may install apps. Open “Settings”, turn on “Allow from this source”, and go back (only the first time).</p></div></div>
+    <div class="card warnstep"><div class="ja"><svg viewBox="0 0 280 250" role="img" aria-label="Play プロテクト" xmlns="http://www.w3.org/2000/svg"><rect width="280" height="250" rx="22" fill="#0b0f26" stroke="#252b4d"/><rect x="14" y="40" width="252" height="200" rx="18" fill="#1a1f40"/><text x="30" y="76" font-size="16" font-weight="700" fill="#eef0f8">Play プロテクト</text><text x="30" y="108" font-size="13" fill="#d8dcef">このアプリの開発元を確認でき</text><text x="30" y="130" font-size="13" fill="#d8dcef">ません。安全でない可能性が</text><text x="30" y="152" font-size="13" fill="#d8dcef">あります。</text><text x="232" y="218" text-anchor="middle" font-size="14" font-weight="700" fill="#aab0c8">OK</text><rect x="149" y="196" width="56" height="34" rx="17" fill="none" stroke="#ff8ad0" stroke-width="3"/><text x="177" y="218" text-anchor="middle" font-size="14" font-weight="700" fill="#7fd8ff">詳細</text><text x="140" y="26" text-anchor="middle" font-size="11" fill="#6f7696">画面のイメージ</text></svg><b>3. インストールのとき</b><p>Play プロテクトが「知らないアプリ」として止めることがあります。「詳細」を開いて「このままインストール」を選びます。アプリを確認のために送るかを聞かれたら、どちらを選んでもかまいません。</p></div><div class="en"><svg viewBox="0 0 280 250" role="img" aria-label="Play Protect" xmlns="http://www.w3.org/2000/svg"><rect width="280" height="250" rx="22" fill="#0b0f26" stroke="#252b4d"/><rect x="14" y="40" width="252" height="200" rx="18" fill="#1a1f40"/><text x="30" y="76" font-size="16" font-weight="700" fill="#eef0f8">Play Protect</text><text x="30" y="108" font-size="13" fill="#d8dcef">Play Protect doesn’t recognize</text><text x="30" y="130" font-size="13" fill="#d8dcef">this app’s developer. It may</text><text x="30" y="152" font-size="13" fill="#d8dcef">be unsafe.</text><text x="232" y="218" text-anchor="middle" font-size="14" font-weight="700" fill="#aab0c8">OK</text><rect x="77" y="196" width="128" height="34" rx="17" fill="none" stroke="#ff8ad0" stroke-width="3"/><text x="141" y="218" text-anchor="middle" font-size="14" font-weight="700" fill="#7fd8ff">More details</text><text x="140" y="26" text-anchor="middle" font-size="11" fill="#6f7696">Example screen</text></svg><b>3. When installing</b><p>Play Protect may stop an app it does not know. Open “More details” and choose “Install anyway”. If asked to send the app for a scan, either answer is fine.</p></div></div>
+  </div>
+  <p class="small"><span class="ja">文言やボタンの名前は、機種や Android・ブラウザの版で少し違います。<br>安全のために：ダウンロードは必ずこのページのボタン（github.com/kazuSato-Japan/KazuPlayer）から。ほかのサイトに置かれた KazuPlayer は入れないでください（作者の配布物ではありません）。KazuPlayer は、連絡先・位置情報・電話番号などは使いません。</span><span class="en">Wording and button names differ slightly by phone, Android and browser version.<br>For your safety: always download from the button on this page (github.com/kazuSato-Japan/KazuPlayer). Do not install KazuPlayer from other sites — those are not the author’s. KazuPlayer does not use your contacts, location or phone number.</span></p>
+
+  <h2><span class="ja">KazuPlayerアプリ作者の楽曲</span><span class="en">Songs by the author</span></h2>
   <a class="pl" href="https://www.youtube.com/playlist?list=PLL_rooIt0xpI" target="_blank" rel="noopener">
     <img src="kikuhondana.jpg" alt="聴く本棚" loading="lazy">
-    <div><b>聴く本棚</b><span>1冊の本に1曲。作者の自作曲を、YouTubeの再生リストで聴けます ▶</span></div>
+    <div><b><span class="ja">聴く本棚</span><span class="en">Kiku Hondana (Listening Bookshelf)</span></b><span class="ja">1冊の本に1曲。作者の自作曲を、YouTubeの再生リストで聴けます ▶</span><span class="en">One song for each book — the author’s own songs on a YouTube playlist ▶</span></div>
   </a>
 
-  <h2>プライバシー</h2>
-  <p>アカウント・広告・利用状況の送信はありません。設定や再生回数、歌詞などはすべてスマホの中だけに保存されます。歌詞の自動取得（オフにできます）では、曲名・アーティスト名を歌詞サービス LRCLIB に送ります。YouTubeタブを使うと YouTube（Google）の埋め込みプレイヤーが通信します。マスタリングの「流して測る」では、ほかのアプリで再生中の音の特徴（周波数バランスなど）だけを数値で記録します。マイクの音は使わず、音そのものも保存・送信しません。曲ファイルそのものを外部に送ることはありません。</p>
+  <h2><span class="ja">プライバシー</span><span class="en">Privacy</span></h2>
+  <p class="ja">アカウント・広告はありません。設定や再生回数、歌詞などはすべてスマホの中だけに保存されます。曲ファイルそのものを外部に送ることはありません。</p>
+  <p class="en">No account and no ads. Settings, play counts, lyrics and so on are stored only on your phone. Your song files are never uploaded.</p>
+  <ul class="ja small">
+    <li>楽譜づくり・歌詞の自動同期・書き出しを使うとき：配布ページ（GitHub）で使ってよいかを確かめ、作者の鍵のサーバー（Cloudflare）から部品の鍵を受け取ります。送るのはアプリの名前と版番号だけです。</li>
+    <li>歌詞の自動取得（オフにできます）：曲名・アーティスト名を歌詞サービス LRCLIB に送ります。</li>
+    <li>YouTubeタブ：YouTube（Google）の埋め込みプレイヤーが通信します。</li>
+    <li>マスタリングの「流して測る」：ほかのアプリで再生中の音の特徴（周波数バランスなど）だけを数値で記録します。音そのものは保存・送信しません。</li>
+    
+  </ul>
+  <ul class="en small">
+    <li>Sheet music, lyric auto-timing and export: the app checks the download page (GitHub) and receives a component key from the author’s key server (Cloudflare). Only the app name and version number are sent.</li>
+    <li>Automatic lyrics lookup (can be turned off): the song title and artist are sent to the lyrics service LRCLIB.</li>
+    <li>YouTube tab: YouTube’s (Google’s) embedded player connects to YouTube.</li>
+    <li>Mastering “measure while playing”: only sound features (such as frequency balance) of audio playing in other apps are recorded as numbers. The audio itself is not stored or sent.</li>
+    
+  </ul>
 
-  <h2>利用条件</h2>
-  <p>個人での利用は自由です（無料）。アプリの再配布、改変した版の配布、中身を取り出しての転載はお断りします。アプリは、このページ（GitHub）からだけ配布しています。</p>
+  <h2><span class="ja">利用条件</span><span class="en">Terms</span></h2>
+  <p><span class="ja">個人での利用は自由です（無料）。アプリの再配布、改変した版の配布、中身を取り出しての転載はお断りします。アプリは、このページ（GitHub）からだけ配布しています。</span><span class="en">Personal use is free. Redistributing the app, distributing modified versions, or extracting and republishing its contents is not allowed. The app is distributed only from this page (GitHub).</span></p>
 
-  <h2>クレジット</h2>
-  <p class="small">AndroidX Media3（ExoPlayer）、Jetpack Compose、Kotlin、Guava ほか（Apache License 2.0）。歌詞データ：<a href="https://lrclib.net">LRCLIB</a>。ラウドネス測定は ITU-R BS.1770-4 / EBU R128 に準拠。</p>
+  <h2><span class="ja">クレジット</span><span class="en">Credits</span></h2>
+  <p class="small">AndroidX Media3（ExoPlayer）、Jetpack Compose、Kotlin、Guava（Apache License 2.0）、ONNX Runtime、Basic Pitch、CREPE、HT-Demucs、IPADIC、CMUdict、Bravura（SIL OFL）、LAME（LGPL） ほか。<span class="ja">歌詞データ</span><span class="en">Lyrics data</span>：<a href="https://lrclib.net">LRCLIB</a>。<span class="ja">ラウドネス測定は ITU-R BS.1770-4 / EBU R128 に準拠。</span><span class="en">Loudness measurement follows ITU-R BS.1770-4 / EBU R128.</span></p>
 
-  <footer>© 2026 kazuSato ・ <a href="https://github.com/kazuSato-Japan/KazuPlayer/releases">すべてのバージョン</a></footer>
+  <footer>© 2026 kazuSato ・ <a href="https://github.com/kazuSato-Japan/KazuPlayer/releases"><span class="ja">すべてのバージョン</span><span class="en">All versions</span></a></footer>
 </main>
 <script>
+document.getElementById("lang").addEventListener("click",function(){
+  var l=document.documentElement.getAttribute("data-l")==="ja"?"en":"ja";
+  document.documentElement.setAttribute("data-l",l);document.documentElement.lang=l;
+  try{localStorage.setItem("kp-lang",l)}catch(e){}
+});
 fetch("https://api.github.com/repos/kazuSato-Japan/KazuPlayer/releases/latest")
- .then(r=>r.json()).then(j=>{
-  const d=new Date(j.published_at);
-  document.getElementById("ver").textContent="最新版 "+j.tag_name+"（"+d.getFullYear()+"年"+(d.getMonth()+1)+"月"+d.getDate()+"日 公開）";
- }).catch(()=>{document.getElementById("ver").innerHTML='<a href="https://github.com/kazuSato-Japan/KazuPlayer/releases">これまでの版はこちら</a>';});
+ .then(function(r){return r.json()}).then(function(j){
+  var d=new Date(j.published_at);
+  document.getElementById("ver").innerHTML='<span class="ja">最新版 '+j.tag_name+'（'+d.getFullYear()+'年'+(d.getMonth()+1)+'月'+d.getDate()+'日 公開）</span><span class="en">Latest '+j.tag_name+' (released '+d.toISOString().slice(0,10)+')</span>';
+ }).catch(function(){document.getElementById("ver").innerHTML='<a href="https://github.com/kazuSato-Japan/KazuPlayer/releases"><span class="ja">これまでの版はこちら</span><span class="en">All versions</span></a>';});
 </script>
 </body>
 </html>
