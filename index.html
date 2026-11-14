@@ -40,6 +40,10 @@ a{color:var(--cyan)}
 .pl div{padding:12px 16px}
 .pl b{color:var(--cyan)} .pl span{display:block;color:var(--sub);font-size:.9rem}
 .try{display:inline-block;border:2px solid var(--cyan);color:var(--cyan);text-decoration:none;font-weight:700;padding:10px 22px;border-radius:999px}
+.hl{grid-column:1/-1;border-color:var(--pink)}
+.hl audio{width:100%;margin:8px 0 2px}
+.hl .cap{color:var(--text);font-size:.9rem;margin:10px 0 0}
+.lim li{color:var(--sub)}
 </style>
 <script>
 // 言語：?lang=en / ?lang=ja ＞ 前に選んだもの ＞ ブラウザの言語（日本語以外なら英語）
@@ -64,6 +68,14 @@ document.documentElement.setAttribute("data-l",l);document.documentElement.lang=
 
   <h2><span class="ja">できること</span><span class="en">Features</span></h2>
   <div class="grid">
+    <div class="card hl"><div class="ja"><b>歌の部分修正（声を変えずに、その所だけ直す）</b><p>Suno などで作った曲の「1文字だけ発音や読みが違う」所を、作り直さずにスマホの中で直します。歌詞と歌声を1文字ずつ比べて違って聞こえる所を探し、同じ曲の中で同じ歌手が歌っている音を借りて差し替えます。正しい歌詞で1行だけ歌い直すこともできます（残したい所は元の歌のまま）。1音の高さ・長さ・タイミングも直せます。日本語・英語に対応。</p>
+<p class="cap">直す前 → 直した後：「蟻」が「まり」に聞こえていた所</p><audio controls preload="none" src="samples/ari_before_after.mp3"></audio>
+<p class="cap">直す前 → 直した後：「腿（もも）」を「たい」と読んで歌っていた所</p><audio controls preload="none" src="samples/momo_before_after.mp3"></audio>
+<p class="cap">直す前 → 直した後（英語）：“rifts” → “drifts”、“fold” → “Hold”</p><audio controls preload="none" src="samples/english_before_after.mp3"></audio></div>
+<div class="en"><b>Vocal fix — fix just that spot, same voice</b><p>Fix the one word that came out wrong in a Suno (or other AI) track, on your phone, without regenerating. The app compares the singing with your lyrics syllable by syllable, finds what sounds off, and replaces just that sound with the same singer’s take from elsewhere in the same song. You can also re-sing a single line with the correct lyrics, keeping the parts you want from the original, and change one note’s pitch, length or timing. English and Japanese.</p>
+<p class="cap">Before → after (English): “rifts” → “drifts”, “fold” → “Hold”</p><audio controls preload="none" src="samples/english_before_after.mp3"></audio>
+<p class="cap">Before → after (Japanese): a syllable heard as “mari” fixed to “ari”</p><audio controls preload="none" src="samples/ari_before_after.mp3"></audio>
+<p class="cap">Before → after (Japanese): a misread word re-sung with the right reading</p><audio controls preload="none" src="samples/momo_before_after.mp3"></audio></div></div>
     <div class="card"><div class="ja"><b>バージョン聴き比べ</b><p>「曲名_新音源.mp3」などを自動でまとめ、同じ位置のまま切り替え。音量をそろえて公平に比べられます。</p></div><div class="en"><b>Compare versions</b><p>Files like “Song_new.mp3” are grouped automatically. Switch between versions at the same position, with matched loudness.</p></div></div>
     <div class="card"><div class="ja"><b>音の診断</b><p>ラウドネス（LUFS）、トゥルーピーク、音割れの箇所、モノラル互換。YouTubeやSpotifyでの扱いも分かります。</p></div><div class="en"><b>Sound check</b><p>Loudness (LUFS), true peak, clipping spots and mono compatibility — and how YouTube or Spotify will treat your track.</p></div></div>
     <div class="card"><div class="ja"><b>聞こえ方チェック</b><p>スマホのスピーカー、安いイヤホン、車、ラジオ…リスナーの環境での聞こえ方をまねします。</p></div><div class="en"><b>Listening simulator</b><p>Hear your song as listeners will: phone speaker, cheap earbuds, car, radio and more.</p></div></div>
@@ -77,7 +89,23 @@ document.documentElement.setAttribute("data-l",l);document.documentElement.lang=
     <div class="card"><div class="ja"><b>動画とYouTube</b><p>歌詞動画をフォルダごとに連続再生、字幕・小窓再生。YouTubeは小窓で再生しながら他の画面へ。</p></div><div class="en"><b>Video & YouTube</b><p>Play lyric videos folder by folder with subtitles and picture-in-picture. YouTube keeps playing in a mini player.</p></div></div>
     <div class="card"><div class="ja"><b>日本語 / English</b><p>アプリの画面は日本語と英語を切り替えられます（どの画面でも右上のボタンで）。</p></div><div class="en"><b>English / 日本語</b><p>The app works in English and Japanese — switch from the button at the top right of any screen.</p></div></div>
   </div>
-  <p class="small"><span class="ja">楽譜・歌詞の自動同期・書き出しは、インターネットにつながっている所で使えます。</span><span class="en">Sheet music, lyric auto-timing and export need an internet connection.</span></p>
+  <p class="small"><span class="ja">楽譜・歌の部分修正・歌詞の自動同期・書き出しは、インターネットにつながっている所で使えます（曲そのものは外に送らず、計算はスマホの中です）。</span><span class="en">Sheet music, vocal fix, lyric auto-timing and export need an internet connection (your songs are not uploaded; everything is computed on your phone).</span></p>
+
+  <h2><span class="ja">できないこと・注意</span><span class="en">Limitations</span></h2>
+  <ul class="ja lim">
+    <li>部品が大きいです。楽譜と歌の部分修正で約1.9GB、歌い直しのAIで約1.8GB（全部入れると約3.7GB）。使う機能の分だけ入れれば足ります。Wi-Fi での取得をおすすめします。</li>
+    <li>処理が重く、スマホが温かくなります。楽譜の上位版は4分の曲で30分ほどかかります（画面を閉じても続きます）。</li>
+    <li>歌と伴奏、メインとコーラスは完全には分けられません。直した所に、元の音や響きの違いが少し残ることがあります。</li>
+    <li>完全には直せません。英語の h のような弱い音や、前の音とつながった所（「を・あ」など）は、元の音が少し残ります。直す前と後を聴き比べてから使ってください。</li>
+    <li>自動なので、楽譜の音の高さ・歌詞の位置・発音の指摘は間違うことがあります。</li>
+  </ul>
+  <ul class="en lim">
+    <li>Large downloads: about 1.9GB for sheet music and vocal fix, about 1.8GB for the re-singing AI (about 3.7GB with everything). You only need the parts for the features you use. Wi-Fi recommended.</li>
+    <li>Heavy processing; your phone gets warm. Advanced sheet music takes about 30 minutes for a 4-minute song (it keeps going with the screen off).</li>
+    <li>Vocals and backing, lead and chorus can’t be separated perfectly, so a little of the original sound may remain where you fixed.</li>
+    <li>Fixes aren’t perfect: weak sounds such as English “h” and sounds joined to the previous one may keep a little of the original. Compare before and after.</li>
+    <li>It’s automatic, so pitches, lyric positions and pronunciation flags can be wrong.</li>
+  </ul>
 
   <h2><span class="ja">使い始め方</span><span class="en">Getting started</span></h2>
   <ol class="ja">
@@ -111,14 +139,14 @@ document.documentElement.setAttribute("data-l",l);document.documentElement.lang=
   <p class="ja">アカウント・広告はありません。設定や再生回数、歌詞などはすべてスマホの中だけに保存されます。曲ファイルそのものを外部に送ることはありません。</p>
   <p class="en">No account and no ads. Settings, play counts, lyrics and so on are stored only on your phone. Your song files are never uploaded.</p>
   <ul class="ja small">
-    <li>楽譜づくり・歌詞の自動同期・書き出しを使うとき：配布ページ（GitHub）で使ってよいかを確かめ、作者の鍵のサーバー（Cloudflare）から部品の鍵を受け取ります。送るのはアプリの名前と版番号だけです。</li>
+    <li>楽譜づくり・歌の部分修正・歌詞の自動同期・書き出しを使うとき：配布ページ（GitHub）で使ってよいかを確かめ、作者の鍵のサーバー（Cloudflare）から部品の鍵を受け取ります。送るのはアプリの名前と版番号だけです。</li>
     <li>歌詞の自動取得（オフにできます）：曲名・アーティスト名を歌詞サービス LRCLIB に送ります。</li>
     <li>YouTubeタブ：YouTube（Google）の埋め込みプレイヤーが通信します。</li>
     <li>マスタリングの「流して測る」：ほかのアプリで再生中の音の特徴（周波数バランスなど）だけを数値で記録します。音そのものは保存・送信しません。</li>
     
   </ul>
   <ul class="en small">
-    <li>Sheet music, lyric auto-timing and export: the app checks the download page (GitHub) and receives a component key from the author’s key server (Cloudflare). Only the app name and version number are sent.</li>
+    <li>Sheet music, vocal fix, lyric auto-timing and export: the app checks the download page (GitHub) and receives a component key from the author’s key server (Cloudflare). Only the app name and version number are sent.</li>
     <li>Automatic lyrics lookup (can be turned off): the song title and artist are sent to the lyrics service LRCLIB.</li>
     <li>YouTube tab: YouTube’s (Google’s) embedded player connects to YouTube.</li>
     <li>Mastering “measure while playing”: only sound features (such as frequency balance) of audio playing in other apps are recorded as numbers. The audio itself is not stored or sent.</li>
