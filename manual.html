@@ -348,7 +348,7 @@ document.documentElement.setAttribute("data-l",l);document.documentElement.lang=
 </section>
 
 <section class="f" id="c-glitch">
-<h3><span class="ja">傷・音量の直し</span><span class="en">Glitch &amp; volume fix</span><span class="new">NEW v3.6.26</span></h3>
+<h3><span class="ja">傷・音量の直し</span><span class="en">Glitch &amp; volume fix</span><span class="new">NEW v3.6.27</span></h3>
 <div class="ja"><span class="where">「作る」→「傷・音量の直し」</span>
 <p>Suno などの曲によくある、1秒もない小さな傷（プチッ・カチッという音、音が一瞬消える「音の抜け」）を直したり、ある所だけの音量を変えたりします。<b>歌詞・楽譜は要りません。</b>元の曲は残し、同じフォルダに <code>曲名_fix.mp3</code> として書き出します。</p>
 <p class="tip">試聴（日本語・英語）は<a href="./#features">トップページの「傷・音量の直し」</a>にあります。</p>
@@ -356,7 +356,8 @@ document.documentElement.setAttribute("data-l",l);document.documentElement.lang=
 <ul><li>「傷を探す」で曲を最後まで調べます（画面を閉じても続きます）</li>
 <li>「はっきりした傷」が時刻の順に並び、はじめから選んであります：「プチッ・はっきり（強さ 9）」「音の抜け（2.5ms・90dB 下がる）」のように出ます。時刻は 1000分の1秒まで</li>
 <li>打楽器の打ち始めは傷に見えやすいので、はじめから除きます。もともとの音かもしれない弱いものは「かすかな候補も出す」で出ます（傷の無い曲でも1分に約1か所。聴いて分からなければ直さなくて大丈夫です）</li>
-<li>▶：その傷の前後 1.5秒の<b>聴き比べ</b>が開き、直す前から鳴ります。「▶ 直す前」「▶ 直した後」「▶ 変わった音だけ」（直して取り除いた音を大きくして）を、鳴っている間に押すと<b>同じ所のまま切り替わります</b>（くり返し鳴ります）。下に傷の所の波の形（赤＝直す前・青＝直した後、色の帯＝直した所）。プチッは 1000分の2秒ほどなので、波の形のとがりと「変わった音だけ」で確かめられます</li>
+<li><b>傷の位置の図</b>：曲全体の音量の形の上に、傷の位置が縦の線で出ます（赤＝はっきりしたプチッ、橙＝かすかな候補、青＝音の抜け。細い線＝今の再生位置）。線を押すと、図のすぐ下で聴き比べが開きます</li>
+<li>▶：その傷の前後 1.5秒の<b>聴き比べ</b>が（図のすぐ下に）開き、直す前から鳴ります。「▶ 直す前」「▶ 直した後」「▶ 変わった音だけ」（直して取り除いた音を大きくして）を、鳴っている間に押すと<b>同じ所のまま切り替わります</b>（くり返し鳴ります）。下に傷の所の波の形（赤＝直す前・青＝直した後、色の帯＝直した所）。プチッは 1000分の2秒ほどなので、波の形のとがりと「変わった音だけ」で確かめられます</li>
 <li>「全部つける」「全部消す」でまとめて選べます。「選んだ傷を直しに入れる」：プチッと 30ms までの抜けは前後の音から作った音で埋め（プチッは 2.4ms だけ）、長い抜けは曲の中のいちばん似た所から借りて貼ります</li></ul>
 <p><b>2. 所を選んで直す</b>（耳で気になった所・音量の山や谷・音のとび）</p>
 <ul><li>上の再生ボタン・「−3秒」「+3秒」で曲を流し、直したい所で「今の位置を始まりに」「今の位置を終わりに」を押します。「−」「＋」で 0.01秒ずつ動かせます。見つけた傷の「選ぶ」でも入ります</li>
@@ -380,7 +381,8 @@ document.documentElement.setAttribute("data-l",l);document.documentElement.lang=
 <ul><li>“Find glitches” scans the whole song (keeps going if you close the screen)</li>
 <li>Clear glitches are listed in time order, already selected: “Click, clear (strength 9)”, “Dropout (2.5 ms, 90 dB down)”. Times are shown to the thousandth of a second</li>
 <li>Drum attacks look like glitches, so they are left out from the start. Weaker ones that may be part of the music appear with “Show faint candidates too” (about one a minute even in songs without glitches; if you can’t hear anything, you don’t need to fix them)</li>
-<li>▶ opens a <b>comparison</b> of 1.5 s around the glitch, starting with the original. Tap “▶ Before”, “▶ After” or “▶ Only what changed” (what the fix removed, made louder) while it plays to <b>switch at the same spot</b> (it loops). Below is the waveform (red = before, blue = after, shaded band = the fixed spot). A click lasts about 2 thousandths of a second, so check the spike and “Only what changed”</li>
+<li><b>Glitch map</b>: the glitches are shown as vertical lines over the loudness shape of the whole song (red = clear click, orange = faint candidate, blue = dropout; thin line = playback position). Tap a line to open the comparison right below the map</li>
+<li>▶ opens a <b>comparison</b> of 1.5 s around the glitch (right below the map), starting with the original. Tap “▶ Before”, “▶ After” or “▶ Only what changed” (what the fix removed, made louder) while it plays to <b>switch at the same spot</b> (it loops). Below is the waveform (red = before, blue = after, shaded band = the fixed spot). A click lasts about 2 thousandths of a second, so check the spike and “Only what changed”</li>
 <li>“Select all” / “Clear all” select them in one go. “Add selected glitches to the fixes”: clicks and dropouts up to 30 ms are filled with sound made from before and after (clicks only 2.4 ms); longer dropouts are patched from the most similar spot in the song</li></ul>
 <p><b>2. Pick a spot and fix it</b> (a glitch you heard, a volume peak or dip, a skip)</p>
 <ul><li>Play the song with the play button / “−3 s” / “+3 s” at the top and tap “Set start here” and “Set end here”. “−” and “＋” move the edges by 0.01 s. “Pick” on a found glitch also fills this in</li>
