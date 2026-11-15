@@ -347,14 +347,15 @@ document.documentElement.setAttribute("data-l",l);document.documentElement.lang=
 </section>
 
 <section class="f" id="c-glitch">
-<h3><span class="ja">傷・音量の直し</span><span class="en">Glitch &amp; volume fix</span><span class="new">NEW v3.6.24</span></h3>
+<h3><span class="ja">傷・音量の直し</span><span class="en">Glitch &amp; volume fix</span><span class="new">NEW v3.6.25</span></h3>
 <div class="ja"><span class="where">「作る」→「傷・音量の直し」</span>
 <p>Suno などの曲によくある、1秒もない小さな傷（プチッ・カチッという音、音が一瞬消える「音の抜け」）を直したり、ある所だけの音量を変えたりします。<b>歌詞・楽譜は要りません。</b>元の曲は残し、同じフォルダに <code>曲名_fix.mp3</code> として書き出します。</p>
 <p><b>1. 傷を探す</b></p>
 <ul><li>「傷を探す」で曲を最後まで調べます（画面を閉じても続きます）</li>
-<li>見つけた傷が時刻の順に並びます：「プチッ（強さ 12）」のように強さが出ます（大きいほど、はっきりした傷）。「音の抜け（50ms・32dB 下がる）」は、音が一瞬消えた所です</li>
-<li>▶でその前後を聴けます。打楽器の音が傷に見えることもあるので、聴いてから選んでください。強さ8以上のプチッは、はじめから選んであります。「全部つける」「全部消す」でまとめて選べます</li>
-<li>「選んだ傷を直しに入れる」：プチッは前後の音から作った音に置き換え（傷の所 2.4ms だけ）、音の抜けは曲の中のいちばん似た所から借りて貼ります</li></ul>
+<li>「はっきりした傷」が時刻の順に並び、はじめから選んであります：「プチッ・はっきり（強さ 9）」「音の抜け（2.5ms・90dB 下がる）」のように出ます。時刻は 1000分の1秒まで</li>
+<li>打楽器の打ち始めは傷に見えやすいので、はじめから除きます。もともとの音かもしれない弱いものは「かすかな候補も出す」で出ます（傷の無い曲でも1分に約1か所。聴いて分からなければ直さなくて大丈夫です）</li>
+<li>▶：「今の音 → 少し間をあけて → 直した音」の順に鳴り、その行の下に傷の所の波の形（前後 8ms。赤＝今・青＝直した後）が出ます。プチッは 1000分の2秒ほどなので、耳より波の形のとがりのほうが分かりやすいことがあります</li>
+<li>「全部つける」「全部消す」でまとめて選べます。「選んだ傷を直しに入れる」：プチッと 30ms までの抜けは前後の音から作った音で埋め（プチッは 2.4ms だけ）、長い抜けは曲の中のいちばん似た所から借りて貼ります</li></ul>
 <p><b>2. 所を選んで直す</b>（耳で気になった所・音量の山や谷・音のとび）</p>
 <ul><li>上の再生ボタン・「−3秒」「+3秒」で曲を流し、直したい所で「今の位置を始まりに」「今の位置を終わりに」を押します。「−」「＋」で 0.01秒ずつ動かせます。見つけた傷の「選ぶ」でも入ります</li>
 <li>どの音を直すか：「全部（全パート一緒に）」は曲そのものを直します。「歌」「ベース」「ドラム」「その他」は、音を4つに分けて、そのパートだけを直します（上位版の部品が要ります。1か所 6秒まで）</li>
@@ -369,14 +370,15 @@ document.documentElement.setAttribute("data-l",l);document.documentElement.lang=
 <li>入れた直しはアプリに残るので、画面を閉じても続きからできます。同じ所を2回は直せません</li>
 <li>「直して書き出す（元の曲は残す）」：画面を閉じても続き、止まっても次は続きから書き出します</li>
 <li>入れた直しは、歌の部分修正・楽譜の「書き出す」にも一緒に入ります</li></ul>
-<p class="tip">確かめた結果（Suno の曲6曲で）：まわりと同じ強さの 0.8ms の傷 48個のうち 41個を見つけ、見つけた傷を直すと、もう一度探しても見つかりませんでした。傷の無い曲でも、強さ4以上が1分に3〜4か所ほど出ます（多くは打楽器）。サビの2回目なども毎回少しずつ違うので、借りた所はまったく同じ音にはなりません。必ず「直した後」で聴いて確かめてください。</p></div>
+<p class="tip">確かめた結果（作者の Suno の曲10曲・44分）：傷の無い所で「はっきり」と出るのは1分に約0.2か所（4分の曲で0〜2か所。多くは曲の始め・終わり）。まわりの2倍の強さの短い雑音は 20個中 19個、2〜4ms の音の切れ目は 40個中 40個、20〜80ms の音の抜けは 60個中 60個を見つけ、直したあと探し直すと 248個中 247個は見つかりませんでした。サビの2回目なども毎回少しずつ違うので、借りた所はまったく同じ音にはなりません。必ず「直した後」で聴いて確かめてください。</p></div>
 <div class="en"><span class="where">Create → Glitch &amp; volume fix</span>
 <p>Fix tiny glitches under a second that are common in Suno songs — clicks and ticks, and spots where the sound drops out for a moment — or change the volume of just one spot. <b>No lyrics or score needed.</b> The original stays; the result is saved in the same folder as <code>title_fix.mp3</code>.</p>
 <p><b>1. Find glitches</b></p>
 <ul><li>“Find glitches” scans the whole song (keeps going if you close the screen)</li>
-<li>Glitches are listed in time order: “Click (strength 12)” — a bigger number means a clearer glitch; “Dropout (50 ms, 32 dB down)” is where the sound vanished for a moment</li>
-<li>▶ plays around each one. Percussion can look like a glitch, so listen before you choose. Clicks with strength 8 or more are selected from the start. “Select all” / “Clear all” select them in one go</li>
-<li>“Add selected glitches to the fixes”: clicks are replaced with sound made from before and after (only the 2.4 ms of the glitch); dropouts are patched from the most similar spot in the song</li></ul>
+<li>Clear glitches are listed in time order, already selected: “Click, clear (strength 9)”, “Dropout (2.5 ms, 90 dB down)”. Times are shown to the thousandth of a second</li>
+<li>Drum attacks look like glitches, so they are left out from the start. Weaker ones that may be part of the music appear with “Show faint candidates too” (about one a minute even in songs without glitches; if you can’t hear anything, you don’t need to fix them)</li>
+<li>▶ plays “current sound → short pause → fixed sound” and shows the waveform of the glitch under the row (8 ms each side; red = current, blue = fixed). A click lasts about 2 thousandths of a second, so the spike can be easier to see than to hear</li>
+<li>“Select all” / “Clear all” select them in one go. “Add selected glitches to the fixes”: clicks and dropouts up to 30 ms are filled with sound made from before and after (clicks only 2.4 ms); longer dropouts are patched from the most similar spot in the song</li></ul>
 <p><b>2. Pick a spot and fix it</b> (a glitch you heard, a volume peak or dip, a skip)</p>
 <ul><li>Play the song with the play button / “−3 s” / “+3 s” at the top and tap “Set start here” and “Set end here”. “−” and “＋” move the edges by 0.01 s. “Pick” on a found glitch also fills this in</li>
 <li>Which sound to fix: “All (all parts together)” fixes the song itself. “Vo”, “Bass”, “Drums” and “Other” split the sound into four and fix only that part (needs the advanced parts; up to 6 s per spot)</li>
@@ -391,7 +393,7 @@ document.documentElement.setAttribute("data-l",l);document.documentElement.lang=
 <li>Added fixes are kept in the app, so you can close the screen and carry on later. The same spot can’t be fixed twice</li>
 <li>“Fix and export (keep the original)”: keeps going if you close the screen, and resumes where it stopped</li>
 <li>Added fixes are also included when you export from Partial vocal fix or sheet music</li></ul>
-<p class="tip">What we measured (6 Suno songs): of 48 inserted 0.8 ms glitches as loud as the music around them, 41 were found, and after fixing, a second search found none of them. Songs without glitches still show about 3–4 spots per minute at strength 4 or more (mostly percussion). The second chorus is a little different each time, so a borrowed spot won’t be exactly the same sound — always check with “Fixed”.</p></div>
+<p class="tip">What we measured (10 of the author’s Suno songs, 44 minutes): where there are no glitches, about 0.2 per minute show as “clear” (0–2 in a 4-minute song, mostly at the start or end). Of inserted glitches, 19 of 20 short noise bursts twice as loud as the music, 40 of 40 gaps of 2–4 ms and 60 of 60 dropouts of 20–80 ms were found, and after fixing, a second search no longer found 247 of 248. The second chorus is a little different each time, so a borrowed spot won’t be exactly the same sound — always check with “Fixed”.</p></div>
 </section>
 
 <section class="f" id="c-score">
