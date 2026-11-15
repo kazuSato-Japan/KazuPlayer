@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>KazuPlayer — Sunoの曲の1語だけ、同じ声のまま直す / Fix one word in a Suno song without changing the vocals</title>
-<meta name="description" content="Sunoなどで作った曲の、発音や読みが違う1語だけを、作り直さずに同じ声のまま直せる無料のAndroidアプリ。楽譜・マスタリング・歌詞動画も。 Fix one mispronounced word in a Suno song without regenerating and without changing the vocals. Free Android app with sheet music, mastering and lyric videos.">
+<meta name="description" content="Sunoなどで作った曲の、発音や読みが違う1語だけを、作り直さずに同じ声のまま直せる無料のAndroidアプリ。プチッという小さな傷・音の抜け・ある所だけの音量も直せます。楽譜・マスタリング・歌詞動画も。 Fix one mispronounced word in a Suno song without regenerating and without changing the vocals. Also fixes tiny clicks, dropouts and the volume of one spot. Free Android app with sheet music, mastering and lyric videos.">
 <meta property="og:title" content="KazuPlayer — fix one word in a Suno song, same voice">
 <meta property="og:description" content="自分で作った曲を、聴く・比べる・確かめる・仕上げる・公開する。Android用・無料。 Listen, compare, check, finish and release your own songs. Free for Android.">
 <meta property="og:image" content="https://kazusato-japan.github.io/KazuPlayer/logo.png">
@@ -64,6 +64,7 @@ document.documentElement.setAttribute("data-l",l);document.documentElement.lang=
     <p style="margin:14px 0 0"><a class="try" href="lite/"><span class="ja">まずブラウザで試す（インストール不要）</span><span class="en">Try it in your browser first (no install)</span></a></p>
     <p class="small" id="ver"><span class="ja">最新版を確認中…</span><span class="en">Checking the latest version…</span></p>
     <p class="small"><span class="ja">Android 11以降 ・ 広告なし ・ アカウント不要</span><span class="en">Android 11+ · No ads · No account</span></p>
+    <p style="margin:10px 0 0"><a class="try" href="manual.html"><span class="ja">📖 使い方マニュアル（機能ごとに詳しく）</span><span class="en">📖 User manual (feature by feature)</span></a></p>
   </section>
 
   <h2><span class="ja">できること</span><span class="en">Features</span></h2>
@@ -78,6 +79,7 @@ document.documentElement.setAttribute("data-l",l);document.documentElement.lang=
 <p class="cap">Before → after (Japanese): a syllable heard as “mari” fixed to “ari”</p><audio controls preload="none" src="samples/ari_before_after.mp3"></audio>
 <p class="cap">Before → after (Japanese): a misread word re-sung with the right reading</p><audio controls preload="none" src="samples/momo_before_after.mp3"></audio>
 <p class="cap"><a href="https://youtu.be/zOCYKqtx2EY" target="_blank" rel="noopener">▶ Watch the 22-second demo on YouTube</a></p></div></div>
+    <div class="card hl"><div class="ja"><b>傷・音量の直し（プチッ・音の抜け・ある所だけの音量）</b><p>Suno などの曲によくある、1秒もない小さな傷（プチッ・カチッという音、音が一瞬消える所）を、曲全体から自動で探して直します。気になった所だけ、全部の音か1つのパート（歌・ベース・ドラム・その他）の音量を上げ下げしたり、サビの2回目など、くり返しの同じ所から借りて貼ったりもできます。歌詞も楽譜も要りません。<a href="manual.html#c-glitch">使い方</a></p></div><div class="en"><b>Glitch &amp; volume fix — clicks, dropouts, one spot’s volume</b><p>Automatically finds and fixes the tiny glitches under a second that are common in Suno songs — clicks, ticks and spots where the sound drops out. Raise or lower the volume of just one spot, for the whole mix or one part (vocals, bass, drums, other), or patch a spot from a repeat such as the second chorus. No lyrics or score needed. <a href="manual.html#c-glitch">How to use</a></p></div></div>
     <div class="card"><div class="ja"><b>バージョン聴き比べ</b><p>「曲名_新音源.mp3」などを自動でまとめ、同じ位置のまま切り替え。音量をそろえて公平に比べられます。</p></div><div class="en"><b>Compare versions</b><p>Files like “Song_new.mp3” are grouped automatically. Switch between versions at the same position, with matched loudness.</p></div></div>
     <div class="card"><div class="ja"><b>音の診断</b><p>ラウドネス（LUFS）、トゥルーピーク、音割れの箇所、モノラル互換。YouTubeやSpotifyでの扱いも分かります。</p></div><div class="en"><b>Sound check</b><p>Loudness (LUFS), true peak, clipping spots and mono compatibility — and how YouTube or Spotify will treat your track.</p></div></div>
     <div class="card"><div class="ja"><b>聞こえ方チェック</b><p>スマホのスピーカー、安いイヤホン、車、ラジオ…リスナーの環境での聞こえ方をまねします。</p></div><div class="en"><b>Listening simulator</b><p>Hear your song as listeners will: phone speaker, cheap earbuds, car, radio and more.</p></div></div>
@@ -98,11 +100,13 @@ document.documentElement.setAttribute("data-l",l);document.documentElement.lang=
     <div class="ja">
       <p style="margin:0 0 16px"><b>Sunoで作った曲の1語だけ、ボーカルを変えずに直せますか？</b>発音や読みが違う・聞き取りにくい1語なら直せます。Sunoで作り直すと声や歌い方まで変わりますが、KazuPlayerはダウンロードした曲そのものを直すので、声はそのままです。同じ曲の中で同じ歌手がうまく歌えている音を借りて、その所だけ差し替えます。</p>
       <p style="margin:0 0 16px"><b>全く別の言葉に変えられますか？</b>その音が曲の中のどこにも無い言葉には変えられません（例：cat → dog）。その場合は、正しい歌詞で1行だけ歌い直す機能か、Sunoの置き換えを使ってください。</p>
+      <p style="margin:0 0 16px"><b>Sunoの曲の「プチッ」「カチッ」という音や、一瞬音が消える所は直せますか？</b>直せます。「作る」タブの「傷・音量の直し」で「傷を探す」を押すと、曲全体から小さな傷と音の抜けを探して並べます。聴いて選び「直しに入れる」と、プチッは前後の音から作った音に置き換え、音の抜けは曲の中のいちばん似た所から借りて貼ります。元の曲は残します（<a href="manual.html#c-glitch">詳しい使い方</a>）。</p>
       <p style="margin:0 0 16px"><b>お金やクレジットはかかりますか？</b>かかりません。Sunoのクレジットも使いません。曲はスマホの外に送りません。</p>
     </div>
     <div class="en">
       <p style="margin:0 0 16px"><b>Can I change one word in a Suno song without changing the vocals?</b>Yes, if the word is mispronounced, slurred or hard to hear. Regenerating in Suno changes the voice and phrasing too, but KazuPlayer fixes the downloaded song itself, so the voice stays the same. It borrows the same sound from a spot in the same song where the same singer sang it well, and replaces just that spot.</p>
       <p style="margin:0 0 16px"><b>Can I turn a word into a completely different word?</b>Not if those sounds don’t exist anywhere in the song (for example, cat → dog). For that, use the re-sing-one-line feature with the correct lyrics, or Suno’s Replace.</p>
+      <p style="margin:0 0 16px"><b>Can it fix the clicks, ticks and split-second dropouts in a Suno song?</b>Yes. In the Create tab, open “Glitch &amp; volume fix” and tap “Find glitches”: it scans the whole song and lists small glitches and dropouts. Listen, pick, and add them to the fixes — clicks are replaced with sound made from before and after, dropouts are patched from the most similar spot in the song. The original is kept (<a href="manual.html#c-glitch">how to use</a>).</p>
       <p style="margin:0 0 16px"><b>Does it cost money or Suno credits?</b>No. It is free and uses no Suno credits. Your songs never leave your phone.</p>
     </div>
   </div>
@@ -123,6 +127,7 @@ document.documentElement.setAttribute("data-l",l);document.documentElement.lang=
   </ul>
 
   <h2><span class="ja">使い始め方</span><span class="en">Getting started</span></h2>
+  <p class="small"><span class="ja">機能ごとの詳しい使い方は <a href="manual.html">使い方マニュアル</a> へ（プレイヤーとして・音を直すアプリとして）。</span><span class="en">For every feature in detail, see the <a href="manual.html">user manual</a> (the player, and fixing your sound).</span></p>
   <ol class="ja">
     <li>上のボタンから <code>KazuPlayer.apk</code> をダウンロードして開きます。</li>
     <li>「この提供元のアプリを許可」を求められたらオンにして、インストールします（途中で出る警告は<a href="#install-warning">こちら</a>）。</li>

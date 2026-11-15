@@ -1,0 +1,568 @@
+<!doctype html>
+<html lang="ja" data-l="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>KazuPlayer 使い方マニュアル / User manual</title>
+<meta name="description" content="KazuPlayer の使い方を機能ごとに詳しく。プレイヤーとして（ライブラリ・再生・歌詞・聴き比べ・音質・動画・YouTube）と、音を直すアプリとして（歌の部分修正・傷・音量の直し・楽譜・マスタリング・音の診断・歌詞動画・公開準備）。 KazuPlayer user manual, feature by feature: the player, and fixing your sound (partial vocal fix, glitch & volume fix, sheet music, mastering, sound check, lyric videos, release prep).">
+<meta property="og:title" content="KazuPlayer 使い方マニュアル / User manual">
+<meta property="og:image" content="https://kazusato-japan.github.io/KazuPlayer/logo.png">
+<link rel="icon" href="logo.png">
+<style>
+:root{--bg:#070a1c;--card:#11152e;--text:#eef0f8;--sub:#aab0c8;--cyan:#7fd8ff;--pink:#ff8ad0;--line:#252b4d;--new:#ffd38a}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(1200px 600px at 50% -10%,#1b2160 0%,var(--bg) 60%);background-color:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;line-height:1.75}
+html[data-l="ja"] .en,html[data-l="en"] .ja{display:none!important}
+.lang{position:fixed;top:12px;right:12px;z-index:10;background:#11152ecc;border:1px solid var(--cyan);color:var(--cyan);border-radius:999px;padding:6px 14px;font-weight:700;font-size:.9rem;cursor:pointer;backdrop-filter:blur(6px)}
+main{max-width:760px;margin:0 auto;padding:32px 16px 64px}
+header{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+header img{width:56px;height:56px}
+header a{color:var(--text);text-decoration:none}
+h1{font-size:1.6rem;margin:0}
+.sub{color:var(--sub);font-size:.95rem;margin:4px 0 20px}
+h2{font-size:1.3rem;margin:44px 0 10px;border-left:4px solid var(--pink);padding-left:10px}
+h3{font-size:1.08rem;margin:0 0 6px;color:var(--cyan)}
+section.f{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin:12px 0;scroll-margin-top:16px}
+.where{display:inline-block;font-size:.85rem;color:var(--bg);background:var(--cyan);border-radius:6px;padding:0 8px;margin:0 0 6px}
+.new{display:inline-block;font-size:.75rem;color:var(--bg);background:var(--new);border-radius:6px;padding:0 6px;margin-left:6px;vertical-align:2px}
+p{margin:6px 0}
+ul,ol{padding-left:1.3em;margin:6px 0} li{margin:4px 0}
+.tip{color:var(--sub);font-size:.92rem}
+.toc{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 16px}
+.toc b{color:var(--pink)}
+.toc ol{columns:2;column-gap:24px}
+@media(max-width:520px){.toc ol{columns:1}}
+.toc a{color:var(--text);text-decoration:none} .toc a:hover{color:var(--cyan)}
+table{border-collapse:collapse;width:100%;font-size:.92rem;margin:6px 0}
+td,th{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+th{color:var(--cyan);font-weight:600}
+code{background:#1a1f40;padding:1px 6px;border-radius:6px;color:#ffd38a}
+a{color:var(--cyan)}
+.top{display:inline-block;margin-top:24px}
+footer{margin-top:48px;color:var(--sub);font-size:.8rem;text-align:center}
+</style>
+<script>
+(function(){var l=null;try{l=new URLSearchParams(location.search).get("lang")}catch(e){}
+if(l!=="ja"&&l!=="en"){try{l=localStorage.getItem("kp-lang")}catch(e){}}
+if(l!=="ja"&&l!=="en"){l=(navigator.language||"ja").toLowerCase().indexOf("ja")===0?"ja":"en"}
+document.documentElement.setAttribute("data-l",l);document.documentElement.lang=l;})();
+</script>
+</head>
+<body>
+<button class="lang" id="lang" type="button" aria-label="Language"><span class="ja">EN</span><span class="en">日本語</span></button>
+<main id="top">
+<header><a href="./"><img src="logo.png" alt="KazuPlayer"></a><div><h1><span class="ja">使い方マニュアル</span><span class="en">User manual</span></h1></div></header>
+<p class="sub"><span class="ja">KazuPlayer の機能を、ひとつずつ詳しく説明します。前半は「プレイヤーとして」、後半は「音を直す・仕上げるアプリとして」。ボタンの名前は、アプリの画面に出る名前のままです。アプリの中の説明は、右上の「？」（使い方）でも読めます。</span><span class="en">Every KazuPlayer feature, one by one. The first half covers the player; the second half covers fixing and finishing your sound. Button names are exactly as they appear in the app (with the app set to English). The same help is in the app under “?” at the top right.</span></p>
+<p class="sub"><a href="./"><span class="ja">← KazuPlayer のトップページ（ダウンロード）</span><span class="en">← KazuPlayer home (download)</span></a></p>
+
+<nav class="toc">
+<b><span class="ja">プレイヤーとして</span><span class="en">As a player</span></b>
+<ol>
+<li><a href="#p-files"><span class="ja">曲を入れる・自動でまとまる</span><span class="en">Adding songs</span></a></li>
+<li><a href="#p-library"><span class="ja">ライブラリ</span><span class="en">Library</span></a></li>
+<li><a href="#p-now"><span class="ja">再生中の画面</span><span class="en">Now playing</span></a></li>
+<li><a href="#p-lyrics"><span class="ja">歌詞を見る</span><span class="en">Viewing lyrics</span></a></li>
+<li><a href="#p-versions"><span class="ja">バージョン聴き比べ</span><span class="en">Comparing versions</span></a></li>
+<li><a href="#p-ref"><span class="ja">お手本と比べる</span><span class="en">Comparing with a reference</span></a></li>
+<li><a href="#p-sound"><span class="ja">音質（EQ・音の補正）</span><span class="en">Sound quality (EQ)</span></a></li>
+<li><a href="#p-video"><span class="ja">動画</span><span class="en">Video</span></a></li>
+<li><a href="#p-youtube"><span class="ja">YouTube</span><span class="en">YouTube</span></a></li>
+<li><a href="#p-settings"><span class="ja">設定・言語・ジャケット・バックアップ</span><span class="en">Settings, language, cover art, backup</span></a></li>
+</ol>
+<b><span class="ja">音を直す・仕上げるアプリとして</span><span class="en">Fixing and finishing your sound</span></b>
+<ol>
+<li><a href="#c-create"><span class="ja">「作る」タブと次にやること</span><span class="en">The Create tab and Next step</span></a></li>
+<li><a href="#c-paste"><span class="ja">歌詞の貼り付け（Suno の指示を自動で取り除く）</span><span class="en">Pasting lyrics (Suno tags removed)</span></a></li>
+<li><a href="#c-timing"><span class="ja">歌詞の時刻（自動・タップ）</span><span class="en">Lyric timing (auto / tap)</span></a></li>
+<li><a href="#c-vocal"><span class="ja">歌の部分修正</span><span class="en">Partial vocal fix</span></a></li>
+<li><a href="#c-glitch"><span class="ja">傷・音量の直し</span><span class="en">Glitch &amp; volume fix</span></a></li>
+<li><a href="#c-score"><span class="ja">楽譜（自動採譜）</span><span class="en">Sheet music</span></a></li>
+<li><a href="#c-check"><span class="ja">音の診断・聞こえ方</span><span class="en">Sound check &amp; listening check</span></a></li>
+<li><a href="#c-master"><span class="ja">マスタリング</span><span class="en">Mastering</span></a></li>
+<li><a href="#c-export"><span class="ja">音を整えて書き出す</span><span class="en">Polish and export</span></a></li>
+<li><a href="#c-video"><span class="ja">歌詞動画・字幕・歌詞の埋め込み</span><span class="en">Lyric video, subtitles, embedding</span></a></li>
+<li><a href="#c-work"><span class="ja">作品カード・公開準備</span><span class="en">Work card &amp; release prep</span></a></li>
+<li><a href="#c-parts"><span class="ja">部品（上位版）</span><span class="en">Parts (advanced)</span></a></li>
+<li><a href="#c-files"><span class="ja">書き出したファイルの名前</span><span class="en">Names of exported files</span></a></li>
+<li><a href="#c-long"><span class="ja">長い作業・続きから</span><span class="en">Long jobs and resuming</span></a></li>
+<li><a href="#c-limits"><span class="ja">できないこと・注意</span><span class="en">Limitations</span></a></li>
+</ol>
+</nav>
+
+<!-- ================= プレイヤー ================= -->
+<h2><span class="ja">プレイヤーとして</span><span class="en">As a player</span></h2>
+
+<section class="f" id="p-files">
+<h3><span class="ja">曲を入れる・自動でまとまる</span><span class="en">Adding songs</span></h3>
+<div class="ja">
+<p>スマホの Music などのフォルダに、曲（mp3・flac など）を入れるだけです。同じフォルダに同じ名前のファイルを置くと、自動でまとまります。</p>
+<table><tr><th>置くもの</th><th>例</th><th>使われ方</th></tr>
+<tr><td>曲</td><td><code>夜明けの歌.mp3</code></td><td>ライブラリに出る</td></tr>
+<tr><td>時刻付きの歌詞</td><td><code>夜明けの歌.lrc</code></td><td>再生中の歌詞・楽譜・歌の部分修正・歌詞動画</td></tr>
+<tr><td>普通の歌詞</td><td><code>夜明けの歌.txt</code></td><td>歌詞の表示（時刻は後から付けられる）</td></tr>
+<tr><td>歌詞動画</td><td><code>夜明けの歌.mp4</code></td><td>作品カードにまとまる</td></tr>
+<tr><td>ジャケット</td><td><code>夜明けの歌.jpg</code> / <code>.png</code></td><td>曲の画像</td></tr>
+<tr><td>別バージョン</td><td><code>夜明けの歌_v2.mp3</code>・<code>夜明けの歌(別ミックス).mp3</code></td><td>「聴き比べ」に並ぶ</td></tr></table>
+<p class="tip">空白や全角・半角の違いは気にしなくて大丈夫です。同じフォルダの歌詞・字幕・画像を読むには、右上の⚙→「設定」→「歌詞・字幕」で「すべてのファイルへのアクセス」を許可してください。</p>
+</div>
+<div class="en">
+<p>Just put songs (mp3, flac, etc.) in a folder such as Music. Files with the same name in the same folder are grouped automatically.</p>
+<table><tr><th>File</th><th>Example</th><th>Used for</th></tr>
+<tr><td>Song</td><td><code>Dawn.mp3</code></td><td>Shown in the Library</td></tr>
+<tr><td>Timed lyrics</td><td><code>Dawn.lrc</code></td><td>Lyrics on Now playing, sheet music, Partial vocal fix, lyric videos</td></tr>
+<tr><td>Plain lyrics</td><td><code>Dawn.txt</code></td><td>Lyrics display (timing can be added later)</td></tr>
+<tr><td>Lyric video</td><td><code>Dawn.mp4</code></td><td>Grouped on the work card</td></tr>
+<tr><td>Cover art</td><td><code>Dawn.jpg</code> / <code>.png</code></td><td>The song’s picture</td></tr>
+<tr><td>Other version</td><td><code>Dawn_v2.mp3</code>, <code>Dawn(alt mix).mp3</code></td><td>Listed for version comparison</td></tr></table>
+<p class="tip">Spaces and full-width/half-width differences don’t matter. To read lyrics, subtitles and pictures in the same folder, allow “all files access” in ⚙ → Settings → Lyrics &amp; subtitles.</p>
+</div>
+</section>
+
+<section class="f" id="p-library">
+<h3><span class="ja">ライブラリ</span><span class="en">Library</span></h3>
+<div class="ja"><span class="where">下のタブ「ライブラリ」</span>
+<ul>
+<li>上のタブ：「曲」「アルバム」「アーティスト」「フォルダ」「動画」「作品」「プレイリスト」「おすすめ」</li>
+<li>「フォルダ」：内部ストレージ・SDカード → フォルダ → 曲の順に、スマホの中の形のままたどれます。上の「↑」か戻るボタンで上のフォルダへ</li>
+<li>「おすすめ」：「よく聴く曲」「最近再生した曲」「最近追加した曲」</li>
+<li>「作品」：同じ曲の音源のバージョン・歌詞動画・歌詞・ジャケットを1枚にまとめた作品カード（<a href="#c-work">作品カード</a>）</li>
+<li>虫めがね：曲名・アーティストで探す</li>
+<li>曲の「︙」：「次に再生」「キューの最後に追加」「プレイリストに追加」、「作る（歌の部分修正・楽譜・マスタリング・歌詞動画など）」</li>
+<li>消したものは、画面の下の「元に戻す」で少しの間だけ戻せます</li>
+</ul></div>
+<div class="en"><span class="where">Bottom tab “Library”</span>
+<ul>
+<li>Top tabs: Songs, Albums, Artists, Folders, Video, Works, Playlists, For you</li>
+<li>Folders: browse your phone as it is — internal storage / SD card → folders → songs. “↑” at the top or the back button goes up</li>
+<li>For you: most played, recently played and recently added songs</li>
+<li>Works: work cards that gather a song’s versions, lyric videos, lyrics and cover art (see <a href="#c-work">Work card</a>)</li>
+<li>Magnifier: search by title or artist</li>
+<li>A song’s “︙”: Play next, Add to end of queue, Add to playlist, and Create (Partial vocal fix, sheet music, mastering, lyric videos…)</li>
+<li>Things you delete can be brought back for a short while with the button at the bottom of the screen</li>
+</ul></div>
+</section>
+
+<section class="f" id="p-now">
+<h3><span class="ja">再生中の画面</span><span class="en">Now playing</span></h3>
+<div class="ja"><span class="where">下のタブ「再生中」</span>
+<ul>
+<li>上の「曲／歌詞」か、左右にめくって、曲の操作と歌詞を切り替えます</li>
+<li>シャッフル・くり返し・前へ・次へ・シークバー</li>
+<li>「︙」の中：
+<ul><li>「A-B：くり返す区間の始まりをここに」→もう一度押して終わり。A-B の間をくり返します（もう一度押すと解除）</li>
+<li>「スリープタイマー」：時間か、この曲の終わりで止める</li>
+<li>「再生速度・ピッチ」：速さと音の高さを別々に変えられます（練習・聞き取りに）</li>
+<li>「音質（EQ・音の補正）」：<a href="#p-sound">音質</a>の画面へ</li></ul></li>
+<li>同じ曲の別バージョンがあると「聴き比べ」、お手本を登録していると「お手本：曲名」が出ます</li>
+<li>横向きのときは、タブが左に並びます</li>
+</ul></div>
+<div class="en"><span class="where">Bottom tab “Now playing”</span>
+<ul>
+<li>Switch between the player and the lyrics with the toggle at the top, or by swiping left/right</li>
+<li>Shuffle, repeat, previous, next and the seek bar</li>
+<li>Under “︙”:
+<ul><li>“A-B: start the loop here”, then tap again for the end. The A-B section repeats (tap again to clear)</li>
+<li>Sleep timer: stop after a time or at the end of the song</li>
+<li>Playback speed &amp; pitch: change speed and pitch separately (for practice and listening)</li>
+<li>Sound quality (EQ, adjustments): opens <a href="#p-sound">sound quality</a></li></ul></li>
+<li>If the song has other versions, version comparison appears; with a reference set, “Reference: title” appears</li>
+<li>In landscape, the tabs are on the left</li>
+</ul></div>
+</section>
+
+<section class="f" id="p-lyrics">
+<h3><span class="ja">歌詞を見る</span><span class="en">Viewing lyrics</span></h3>
+<div class="ja"><span class="where">「再生中」→「歌詞」</span>
+<ul>
+<li>時刻付きの歌詞（LRC）は、歌っている行が光って自動で進みます。単語ごとの時刻があれば、カラオケのように色が変わります</li>
+<li>行を押すと、その行から再生します</li>
+<li>歌詞が早い・遅いときは、上の「ずれ」で直せます</li>
+<li>全画面ボタンで、歌詞を大きく表示できます</li>
+<li>右上の「︙」：歌詞の貼り付け・時刻・歌詞動画・字幕・埋め込み（<a href="#c-paste">後半</a>で説明）</li>
+</ul></div>
+<div class="en"><span class="where">Now playing → Lyrics</span>
+<ul>
+<li>Timed lyrics (LRC) highlight and scroll with the song. With word timing, the words change colour karaoke-style</li>
+<li>Tap a line to play from there</li>
+<li>If the lyrics are early or late, adjust the offset at the top</li>
+<li>The full-screen button shows the lyrics large</li>
+<li>“︙” at the top right: pasting, timing, lyric video, subtitles and embedding (see <a href="#c-paste">below</a>)</li>
+</ul></div>
+</section>
+
+<section class="f" id="p-versions">
+<h3><span class="ja">バージョン聴き比べ</span><span class="en">Comparing versions</span></h3>
+<div class="ja"><span class="where">「再生中」の「聴き比べ」</span>
+<p>「曲名_新音源.mp3」「曲名_v2.mp3」のように、曲名の後ろに「_」や「(」を付けたファイルは、同じ曲の別バージョンとしてまとまります。</p>
+<ul><li>同じ位置のまま、バージョンを切り替えられます</li>
+<li>「音量をそろえる」をオンにすると、実際の音量を測って −14 LUFS にそろえます（大きい方が良く聞こえる、にだまされません）</li>
+<li>A-B で区間を決めると、切り替えても同じ区間をくり返します</li>
+<li>アプリで書き出した曲（_master・_KazuPlayer・_fix など）も自動で並ぶので、元の音と比べられます</li></ul></div>
+<div class="en"><span class="where">“Compare” on Now playing</span>
+<p>Files with “_” or “(” after the title, such as “Title_new.mp3” or “Title_v2.mp3”, are grouped as versions of the same song.</p>
+<ul><li>Switch versions without losing your position</li>
+<li>“Match volume” measures real loudness and matches everything to −14 LUFS, so louder doesn’t fool you</li>
+<li>With an A-B section, switching keeps looping the same section</li>
+<li>Files exported by the app (_master, _KazuPlayer, _fix…) appear here too, so you can compare with the original</li></ul></div>
+</section>
+
+<section class="f" id="p-ref">
+<h3><span class="ja">お手本と比べる</span><span class="en">Comparing with a reference</span></h3>
+<div class="ja"><span class="where">「作る」→「お手本に登録」</span>
+<p>好きなプロの曲を登録すると、再生中画面に「お手本：曲名」が出て、音量をそろえたまま切り替えて比べられます。音の診断にも、数値を並べた比較表が出ます。マスタリングで「お手本に近づける」ときにも使います。</p></div>
+<div class="en"><span class="where">Create → Set as reference track</span>
+<p>Register a pro track you like. “Reference: title” appears on Now playing and you can switch to it at matched loudness. Sound check shows a side-by-side table, and mastering can “Match a reference”.</p></div>
+</section>
+
+<section class="f" id="p-sound">
+<h3><span class="ja">音質（EQ・音の補正）</span><span class="en">Sound quality (EQ)</span></h3>
+<div class="ja"><span class="where">右上の⚙→「音質」／「再生中」の「︙」→「音質（EQ・音の補正）」</span>
+<ul><li>「イコライザー（10バンド）」</li>
+<li>「出力先ごとに音を自動で切り替え」：スピーカー／Bluetooth／有線で、別の EQ を自動で使う</li>
+<li>「音の補正」「空間・低音」：低音補強・ステレオの広がり・クロスフィード・セリフ強調・夜間モード</li>
+<li>「音量をそろえる（ReplayGain）」</li>
+<li>「動画・映画の音」：5.1ch のステレオ化など</li></ul>
+<p class="tip">ここでの音の補正は聴くときだけです（曲ファイルは変わりません）。書き出しで「今の音の補正をかける」を選んだときだけファイルに入ります。</p></div>
+<div class="en"><span class="where">⚙ at the top right → Sound quality / Now playing “︙” → Sound quality (EQ, adjustments)</span>
+<ul><li>Equalizer (10 bands)</li>
+<li>Automatic switching per output: a different EQ for speaker / Bluetooth / wired</li>
+<li>Adjustments and space/bass: bass boost, stereo width, crossfeed, dialogue boost, night mode</li>
+<li>Volume levelling (ReplayGain)</li>
+<li>Video/film sound: 5.1 to stereo and more</li></ul>
+<p class="tip">These only affect playback (the song file is not changed). They go into a file only if you choose to apply them when exporting.</p></div>
+</section>
+
+<section class="f" id="p-video">
+<h3><span class="ja">動画</span><span class="en">Video</span></h3>
+<div class="ja"><span class="where">「ライブラリ」→「動画」</span>
+<ul><li>フォルダ単位で開き、ファイル名順に並びます。タップした動画から続けて再生します</li>
+<li>全画面（ダブルタップで10秒移動）、字幕・音声の切り替え、続きから再生</li>
+<li>ホームに戻ると小窓で再生。画面を消すと音だけで再生を続けます</li></ul></div>
+<div class="en"><span class="where">Library → Video</span>
+<ul><li>Opened folder by folder, sorted by file name; plays on from the video you tap</li>
+<li>Full screen (double-tap to skip 10 s), subtitle and audio track switching, resume</li>
+<li>Picture-in-picture when you go home; with the screen off, audio keeps playing</li></ul></div>
+</section>
+
+<section class="f" id="p-youtube">
+<h3><span class="ja">YouTube</span><span class="en">YouTube</span></h3>
+<div class="ja"><span class="where">下のタブ「YouTube」</span>
+<p>URL を入れると、公式の埋め込みプレイヤーで再生します。ほかのタブに移っても小窓で再生が続きます。YouTube の規約により、画面が点いている間だけ再生できます。「YouTubeにも出力先ごとのEQをかける」をオンにすると、スピーカー／イヤホンへ出る音に EQ をかけます（対応している端末のみ。「効くか試す」で確認できます）。</p></div>
+<div class="en"><span class="where">Bottom tab “YouTube”</span>
+<p>Enter a URL to play it in YouTube’s official embedded player. It keeps playing in a mini player on other tabs. Under YouTube’s terms it plays only while the screen is on. Turning on per-output EQ for YouTube applies your EQ to the speaker/earphone output (supported devices only; use the test button to check).</p></div>
+</section>
+
+<section class="f" id="p-settings">
+<h3><span class="ja">設定・言語・ジャケット・バックアップ</span><span class="en">Settings, language, cover art, backup</span></h3>
+<div class="ja"><span class="where">右上の⚙→「設定」</span>
+<ul><li>「表示」→「言語 / Language」：自動・日本語・English（自動では、スマホの言語が日本語以外なら英語）</li>
+<li>「作る人向け」：自分のアーティスト名とハッシュタグ（公開準備の説明文に入ります）。「曲情報の一括設定」で、MP3 にアーティスト名・アルバム名・トラック番号（ファイル名の先頭の数字）をまとめて書き込めます</li>
+<li>「部品（上位版：楽譜・歌の部分修正）」：<a href="#c-parts">部品</a>の取得・読み込み・削除</li>
+<li>「歌詞・字幕」：すべてのファイルへのアクセス（同じフォルダの歌詞・画像を読むため）</li>
+<li>「バックアップ」：設定・EQ・お気に入り・プレイリスト・再生回数・作品メモを1つのファイルに書き出し、機種変更のあとに読み込めます</li>
+<li>ジャケット：曲に埋め込まれた画像か、同じ名前の画像。どちらも無い曲は、曲名から作った絵になります。作品カードの「写真から選ぶ」で好きな画像にできます</li></ul></div>
+<div class="en"><span class="where">⚙ at the top right → Settings</span>
+<ul><li>Appearance → Language: auto, Japanese or English (auto uses English unless the phone is set to Japanese)</li>
+<li>For creators: your artist name and hashtags (used in the release description). Bulk tag editing writes artist, album and track number (the number at the start of the file name) to MP3s</li>
+<li>Parts (premium: sheet music / Partial vocal fix): get, import or delete the <a href="#c-parts">parts</a></li>
+<li>Lyrics &amp; subtitles: all files access (to read lyrics and pictures in the same folder)</li>
+<li>Backup: settings, EQ, favourites, playlists, play counts and work notes in one file you can import on a new phone</li>
+<li>Cover art: the picture embedded in the song or a picture file with the same name; otherwise a picture made from the title. “Choose from photos” on the work card sets your own</li></ul></div>
+</section>
+
+<!-- ================= 作る ================= -->
+<h2><span class="ja">音を直す・仕上げるアプリとして</span><span class="en">Fixing and finishing your sound</span></h2>
+<p class="tip"><span class="ja">どの直しも、元の曲は変えません。直した曲は、同じフォルダに別の名前で保存します。計算はすべてスマホの中で、曲を外に送りません。</span><span class="en">No fix ever changes the original song. Results are saved in the same folder under a different name. Everything is computed on your phone; your songs are not uploaded.</span></p>
+
+<section class="f" id="c-create">
+<h3><span class="ja">「作る」タブと次にやること</span><span class="en">The Create tab and Next step</span></h3>
+<div class="ja"><span class="where">下のタブ「作る」</span>
+<p>上の「曲を変える」で、どのアルバム・どのフォルダの曲でも選べます（「フォルダから」で内部ストレージ・SDカードをたどれます）。道具は作業の順に並び、曲ごとに、どこまで済んだかも出ます。</p>
+<ol><li>「2. 歌詞と時刻（楽譜・歌の部分修正の前に）」：歌詞を貼り付け・編集／歌詞の時刻を自動で付ける／タップで同期を作る</li>
+<li>「3. 直す・楽譜にする」：歌の部分修正／傷・音量の直し／楽譜（自動採譜）</li>
+<li>「4. 仕上げる」：マスタリング／音を整えて書き出す（音の診断・聞こえ方もここから）</li>
+<li>「5. 出す」：歌詞動画（テロップ）を作る／字幕（.srt）を書き出す／歌詞を曲ファイルに埋め込む／作品カード</li></ol>
+<p>いちばん上の「次にやること」に、この曲で次にやるとよいことが1つ出ます（押すとその画面を開きます）。おすすめの順番は、歌詞を貼る → 時刻を付ける → 歌の部分修正・楽譜 → 傷を探す → 音の診断 → 歌詞動画 → 公開準備 です。</p>
+<p class="tip">後ろで作業している間は、右上に進み具合が出ます。押すとその画面を開きます。</p></div>
+<div class="en"><span class="where">Bottom tab “Create”</span>
+<p>“Change song” at the top picks a song from any album or folder (“By folder” browses internal storage and the SD card). The tools are listed in the order you work, and each song shows how far you’ve got.</p>
+<ol><li>2. Lyrics and timing (before sheet music / Partial vocal fix): Paste / edit lyrics, Auto-sync lyric timing, Tap to sync</li>
+<li>3. Fix / make sheet music: Partial vocal fix, Glitch &amp; volume fix, Sheet music (automatic transcription)</li>
+<li>4. Finish: Mastering, Polish and export (sound check and listening check are here too)</li>
+<li>5. Release: Make a lyric video (captions), Export subtitles (.srt), Embed lyrics in the song file, Work card</li></ol>
+<p>“Next step” at the very top suggests one thing to do next for this song (tap to open it). The recommended order is: paste lyrics → add timing → Partial vocal fix / sheet music → find glitches → sound check → lyric video → release prep.</p>
+<p class="tip">While a job runs in the background, its progress shows at the top right; tap it to open that screen.</p></div>
+</section>
+
+<section class="f" id="c-paste">
+<h3><span class="ja">歌詞の貼り付け（Suno の指示を自動で取り除く）</span><span class="en">Pasting lyrics (Suno tags removed)</span></h3>
+<div class="ja"><span class="where">「作る」→「歌詞を貼り付け・編集」／歌詞の画面の「︙」</span>
+<ul><li>普通の歌詞でも、<code>[00:12.34]</code> 付きの LRC でも貼れます</li>
+<li>Suno の歌詞をそのまま貼っても、<code>[Verse]</code> <code>[Chorus]</code> などの指示・見出し・1行目のタイトル・スタイルの指定（<code>J-Pop, female vocal, 90 BPM</code> のような行）・<code>(Instrumental)</code> などを自動で取り除きます。取り除いた所は画面に出て、「元に戻す」で戻せます。<code>(ラララ)</code> のような合いの手は残します</li>
+<li>楽譜・歌の部分修正の画面から来たときは、上の「楽譜に戻る」「歌の部分修正に戻る」で戻れます</li></ul></div>
+<div class="en"><span class="where">Create → Paste / edit lyrics, or “︙” on the lyrics screen</span>
+<ul><li>Plain lyrics and LRC with <code>[00:12.34]</code> both work</li>
+<li>If you paste Suno lyrics as they are, directions and headings such as <code>[Verse]</code> and <code>[Chorus]</code>, a title on the first line, style lines (like <code>J-Pop, female vocal, 90 BPM</code>) and <code>(Instrumental)</code> are removed automatically. What was removed is shown, and you can bring it back. Sung ad-libs like <code>(la la la)</code> are kept</li>
+<li>If you came from sheet music or Partial vocal fix, “Back to sheet music” / “Back to Partial vocal fix” at the top takes you back</li></ul></div>
+</section>
+
+<section class="f" id="c-timing">
+<h3><span class="ja">歌詞の時刻（自動・タップ）</span><span class="en">Lyric timing (auto / tap)</span></h3>
+<div class="ja"><span class="where">「作る」→「歌詞の時刻を自動で付ける」「タップで同期を作る」</span>
+<ul><li>「歌詞の時刻を自動で付ける」：歌声を聞き取って、各行と単語に時刻を付けて LRC にします（カラオケ式の単語ごとの時刻つき）。上位版の部品（歌だけを取り出す AI・歌詞を歌に合わせる部品 MMS）があると、伴奏に強く、ずっと正確になります。貼った歌詞に Suno の指示が残っていたら、先に取り除きます</li>
+<li>歌詞に無い声（ハミング・アドリブ）は飛ばします。自動なのでずれる行があり、ずれた所は「タップで同期を作る」で直せます</li>
+<li>「タップで同期を作る」：曲を流しながら、歌い出しでボタンを押すだけ（行ごと／単語ごと）。単語の区切りは、歌詞に「/」を入れると変えられます</li>
+<li>歌の部分修正・楽譜・歌詞動画・字幕は、この時刻を使います。<b>楽譜は時刻を付けてから作ってください</b>（歌詞なしで作った楽譜には、後から歌詞が付かず、作り直しになります）</li></ul></div>
+<div class="en"><span class="where">Create → Auto-sync lyric timing / Tap to sync</span>
+<ul><li>Auto-sync lyric timing listens to the vocals and adds timing to each line and word (karaoke-style LRC). With the advanced parts (vocal separation and MMS lyric alignment) it copes much better with the backing. Leftover Suno tags are removed first</li>
+<li>Vocals not in the lyrics (humming, ad-libs) are skipped. It is automatic, so some lines may be off; fix them with Tap to sync</li>
+<li>Tap to sync: play the song and tap as each line or word starts. Put “/” in the lyrics to change word breaks</li>
+<li>Partial vocal fix, sheet music, lyric videos and subtitles use this timing. <b>Add timing before making sheet music</b> (a score made without lyrics can’t get them later and must be remade)</li></ul></div>
+</section>
+
+<section class="f" id="c-vocal">
+<h3><span class="ja">歌の部分修正</span><span class="en">Partial vocal fix</span></h3>
+<div class="ja"><span class="where">「作る」→「歌の部分修正」</span>
+<p>Suno などで作った曲の「1文字だけ発音や読みが違う」所を、作り直さずに、同じ声のまま直します。時刻付きの歌詞（LRC）と、上位版の部品が要ります。楽譜を先に作らなくてかまいません。</p>
+<ol><li>「歌声を解析する」（数分。画面を閉じても続きます）</li>
+<li>健康診断：歌詞と違う子音・母音で歌っている所、子音が弱くて聞こえない所が、目立つ順に並びます。何文字も続けて聞き取りにくい所は、まとめて1つになります</li>
+<li>それぞれにおすすめの直し方が付きます：同じ曲の中で同じ文字をはっきり歌っている所から差し替える／母音を寄せる</li>
+<li>「▶ 今の音」「▶ 直した後」で聴き比べて「採用」（「全部採用」もできます。「元に戻す」で戻せます）</li>
+<li>「歌詞から選ぶ」：1文字ずつ、タイミング（ミリ秒）・音程（半音）・母音・差し替えを自分で直せます</li>
+<li>「AIで歌い直す」（行を開くと出ます）：同じ声・同じメロディで、正しい歌詞で1行歌い直します。6通りから一番を自動で選び、聴いて決められます。できたあと「入れ替える文字」で字を押すと、その字だけを AI の声にし、ほかは元の歌のまま残せます。英語も歌えます（発音辞書にある単語）。初回は部品 約1.8GB、1通り 約20〜60秒</li>
+<li>「曲全体」の「元の曲」「直した後」で、再生しながら同じ所で切り替えて比べられます</li>
+<li>「書き出す」：直した所を全部入れた曲を、別のファイル（<code>曲名_note_edit.mp3</code>）に保存します</li></ol>
+<p class="tip">言葉（歌詞・発音）はこの画面、音符（高さ・長さ・タイミング）とドラムは楽譜の画面で直します。どちらの「書き出す」でも、両方の直し・歌い直し・ドラムの直し・傷・音量の直しが、まとめて1つのファイルに入ります。その音が曲のどこにも無い、まったく別の言葉（cat → dog など）には変えられません（その時は「AIで歌い直す」）。</p></div>
+<div class="en"><span class="where">Create → Partial vocal fix</span>
+<p>Fix the one word that came out wrong in a Suno (or other AI) track — without regenerating, in the same voice. Needs timed lyrics (LRC) and the advanced parts. You don’t need to make the score first.</p>
+<ol><li>Analyze vocals (a few minutes; keeps going if you close the screen)</li>
+<li>Health check: places sung with the wrong consonant or vowel, or with a consonant too weak to hear, listed by how noticeable they are. Several unclear characters in a row are grouped into one</li>
+<li>Each comes with a suggested fix: replace with a spot in the same song where the same syllable is sung clearly, or move the vowel</li>
+<li>Compare with “▶ Current” / “▶ Fixed” and “Accept” (or “Accept all”; it can be undone)</li>
+<li>Choose from lyrics: fix timing (ms), pitch (semitones), vowel and replacement yourself, character by character</li>
+<li>Re-sing with AI (open a line): re-sings one line with the correct lyrics in the same voice and melody. Picks the best of 6 automatically, and you can listen and choose. Afterwards, tap characters to swap in only those from the AI and keep the rest of the original. English works too (words in the pronunciation dictionary). First time about 1.8GB of parts; 20–60 s per take</li>
+<li>Whole song: “Original” / “Fixed” switch at the same position while it plays</li>
+<li>Export: saves the song with all fixes as a separate file (<code>title_note_edit.mp3</code>)</li></ol>
+<p class="tip">Words (lyrics, pronunciation) are fixed here; notes (pitch, length, timing) and drums on the score screen. Either Export puts both screens’ fixes, re-sung lines, drum fixes and glitch &amp; volume fixes into one file. A completely different word whose sounds aren’t anywhere in the song (cat → dog) can’t be made this way — use Re-sing with AI.</p></div>
+</section>
+
+<section class="f" id="c-glitch">
+<h3><span class="ja">傷・音量の直し</span><span class="en">Glitch &amp; volume fix</span><span class="new">NEW v3.6.24</span></h3>
+<div class="ja"><span class="where">「作る」→「傷・音量の直し」</span>
+<p>Suno などの曲によくある、1秒もない小さな傷（プチッ・カチッという音、音が一瞬消える「音の抜け」）を直したり、ある所だけの音量を変えたりします。<b>歌詞・楽譜は要りません。</b>元の曲は残し、同じフォルダに <code>曲名_fix.mp3</code> として書き出します。</p>
+<p><b>1. 傷を探す</b></p>
+<ul><li>「傷を探す」で曲を最後まで調べます（画面を閉じても続きます）</li>
+<li>見つけた傷が時刻の順に並びます：「プチッ（強さ 12）」のように強さが出ます（大きいほど、はっきりした傷）。「音の抜け（50ms・32dB 下がる）」は、音が一瞬消えた所です</li>
+<li>▶でその前後を聴けます。打楽器の音が傷に見えることもあるので、聴いてから選んでください。強さ8以上のプチッは、はじめから選んであります。「全部つける」「全部消す」でまとめて選べます</li>
+<li>「選んだ傷を直しに入れる」：プチッは前後の音から作った音に置き換え（傷の所 2.4ms だけ）、音の抜けは曲の中のいちばん似た所から借りて貼ります</li></ul>
+<p><b>2. 所を選んで直す</b>（耳で気になった所・音量の山や谷・音のとび）</p>
+<ul><li>上の再生ボタン・「−3秒」「+3秒」で曲を流し、直したい所で「今の位置を始まりに」「今の位置を終わりに」を押します。「−」「＋」で 0.01秒ずつ動かせます。見つけた傷の「選ぶ」でも入ります</li>
+<li>どの音を直すか：「全部（全パート一緒に）」は曲そのものを直します。「歌」「ベース」「ドラム」「その他」は、音を4つに分けて、そのパートだけを直します（上位版の部品が要ります。1か所 6秒まで）</li>
+<li>直し方
+<table><tr><th>直し方</th><th>すること</th><th>向いている所</th></tr>
+<tr><td>「音量」</td><td>−12〜+12dB。−6dB で約半分、+6dB で約2倍の大きさ。端は 20ms でなめらかにつなぐ</td><td>叫び声だけ大きい・ドラムが1か所だけうるさい・ベースが一瞬小さくなる</td></tr>
+<tr><td>「くり返しの同じ所から借りる」</td><td>「借りる所を探す」で、前後1秒の音の色と和音がいちばん似ている所を3つ（似かたの%付き）。▶で聴いて選ぶと、波の形がそろう位置に合わせて貼る</td><td>音の抜け・音のとび・長い傷</td></tr>
+<tr><td>「傷の修復」</td><td>30ms（0.03秒）までの短い所を、前後の音から予想した音に置き換える（「全部」だけ）</td><td>プチッ・カチッ</td></tr></table></li>
+<li>「元の曲」「直した後」で、その前後1.5秒を聴き比べ（もう一度押すと止まります）。よければ「直しに入れる」</li></ul>
+<p><b>3. 入れた直し</b></p>
+<ul><li>▶で直した後を聴けます。✕で消せます（画面の下のボタンで戻せます）。「全部消す」もあります</li>
+<li>入れた直しはアプリに残るので、画面を閉じても続きからできます。同じ所を2回は直せません</li>
+<li>「直して書き出す（元の曲は残す）」：画面を閉じても続き、止まっても次は続きから書き出します</li>
+<li>入れた直しは、歌の部分修正・楽譜の「書き出す」にも一緒に入ります</li></ul>
+<p class="tip">確かめた結果（Suno の曲6曲で）：まわりと同じ強さの 0.8ms の傷 48個のうち 41個を見つけ、見つけた傷を直すと、もう一度探しても見つかりませんでした。傷の無い曲でも、強さ4以上が1分に3〜4か所ほど出ます（多くは打楽器）。サビの2回目なども毎回少しずつ違うので、借りた所はまったく同じ音にはなりません。必ず「直した後」で聴いて確かめてください。</p></div>
+<div class="en"><span class="where">Create → Glitch &amp; volume fix</span>
+<p>Fix tiny glitches under a second that are common in Suno songs — clicks and ticks, and spots where the sound drops out for a moment — or change the volume of just one spot. <b>No lyrics or score needed.</b> The original stays; the result is saved in the same folder as <code>title_fix.mp3</code>.</p>
+<p><b>1. Find glitches</b></p>
+<ul><li>“Find glitches” scans the whole song (keeps going if you close the screen)</li>
+<li>Glitches are listed in time order: “Click (strength 12)” — a bigger number means a clearer glitch; “Dropout (50 ms, 32 dB down)” is where the sound vanished for a moment</li>
+<li>▶ plays around each one. Percussion can look like a glitch, so listen before you choose. Clicks with strength 8 or more are selected from the start. “Select all” / “Clear all” select them in one go</li>
+<li>“Add selected glitches to the fixes”: clicks are replaced with sound made from before and after (only the 2.4 ms of the glitch); dropouts are patched from the most similar spot in the song</li></ul>
+<p><b>2. Pick a spot and fix it</b> (a glitch you heard, a volume peak or dip, a skip)</p>
+<ul><li>Play the song with the play button / “−3 s” / “+3 s” at the top and tap “Set start here” and “Set end here”. “−” and “＋” move the edges by 0.01 s. “Pick” on a found glitch also fills this in</li>
+<li>Which sound to fix: “All (all parts together)” fixes the song itself. “Vo”, “Bass”, “Drums” and “Other” split the sound into four and fix only that part (needs the advanced parts; up to 6 s per spot)</li>
+<li>Fix types
+<table><tr><th>Type</th><th>What it does</th><th>Good for</th></tr>
+<tr><td>Volume</td><td>−12 to +12 dB. −6 dB is about half as loud, +6 dB about twice. Edges blended over 20 ms</td><td>A shout that’s too loud, one drum hit too loud, the bass dipping for a moment</td></tr>
+<tr><td>Borrow from a repeat</td><td>“Find a place to borrow from” lists the 3 spots whose sound colour and chords (1 s before and after) are most similar, with a % match. Listen with ▶, pick one, and it is pasted where the waveforms line up</td><td>Dropouts, skips, longer glitches</td></tr>
+<tr><td>Repair glitch</td><td>Replaces a spot of up to 30 ms (0.03 s) with sound predicted from before and after (All only)</td><td>Clicks and ticks</td></tr></table></li>
+<li>“Original” / “Fixed” compare 1.5 s before and after the spot (tap again to stop). If it sounds right, “Add to fixes”</li></ul>
+<p><b>3. Added fixes</b></p>
+<ul><li>▶ plays the result; ✕ removes one (the button at the bottom of the screen brings it back). “Clear all” too</li>
+<li>Added fixes are kept in the app, so you can close the screen and carry on later. The same spot can’t be fixed twice</li>
+<li>“Fix and export (keep the original)”: keeps going if you close the screen, and resumes where it stopped</li>
+<li>Added fixes are also included when you export from Partial vocal fix or sheet music</li></ul>
+<p class="tip">What we measured (6 Suno songs): of 48 inserted 0.8 ms glitches as loud as the music around them, 41 were found, and after fixing, a second search found none of them. Songs without glitches still show about 3–4 spots per minute at strength 4 or more (mostly percussion). The second chorus is a little different each time, so a borrowed spot won’t be exactly the same sound — always check with “Fixed”.</p></div>
+</section>
+
+<section class="f" id="c-score">
+<h3><span class="ja">楽譜（自動採譜）</span><span class="en">Sheet music</span></h3>
+<div class="ja"><span class="where">「作る」→「楽譜（自動採譜）」</span>
+<ul><li>「簡易版」：音を分けずに解析（1分ほど）。ドラム譜は無し</li>
+<li>「上位版」：歌だけを取り出し、さらにドラム・ベース・その他に分けてから解析（4分の曲で30分ほど。画面を閉じても続きます）。メロディが正確になり、ドラム譜も出ます</li>
+<li>出るもの：メロディ（歌詞付き。日本語はひらがな1拍ずつ、英語は音節ずつ）・コーラス候補・ギター/鍵盤・ベース・ドラム・コード、ギターとベースのタブ譜</li>
+<li>見たいパートを選べます。テンポ（÷2・×2）、小節の頭の位置、8分／16分の細かさを画面で直せます</li>
+<li>「拍子・調・位置を直す」：途中で拍子が変わる所（3/4・6/8・7/8 など）や転調を小節ごとに。3拍子と4拍子が入れかわる曲は自動でも見つけます。「拍のクリック」をオンにして原曲に重ねると、合っているか確かめられます</li>
+<li>「聴く」：音符を原曲に重ねて鳴らします。「原曲」をオフにすると、楽譜の音だけをバンドのように。「原曲との合い方」で、ずれの大きい小節を出します</li>
+<li>「直す」で音符を押すと、「高さ・位置」「発音」「写して足す」「ドラムを足す」「歌詞・パート」の直しが出ます。「歌の音も変える」を選ぶと、曲の音でも、音符の高さ（±12半音）・位置・長さ（0.5〜2倍）を直せます。ドラムは「消す」「2連」「連打」「〜前・〜後に足す」。歌・楽器の音符を曲の音から消すこともできます。↶ で戻せます</li>
+<li>保存：「PDF（まとめて）」（総譜）・「パート譜PDF」・MIDI（ボタンを押したときだけ、曲と同じフォルダへ）。曲の音を直したものは「書き出す」で別のファイルに</li>
+<li>漢字の読みが違うときは「歌詞の読みを直す」（曲の歌詞そのものは変わりません）</li></ul>
+<p class="tip">自動なので間違いを含みます。自分の曲の確認・練習用です。他の人の曲を楽譜にするのは私的利用の範囲に限り、楽譜・MIDI を公開・配布しないでください。</p></div>
+<div class="en"><span class="where">Create → Sheet music (automatic transcription)</span>
+<ul><li>Quick version: analyses without separating (about a minute); no drum part</li>
+<li>Advanced version: separates the vocals, then drums / bass / other, before analysing (about 30 minutes for a 4-minute song; keeps going with the screen closed). Much better melody, plus drums</li>
+<li>You get: melody with lyrics (Japanese by mora, English by syllable), chorus candidates, guitar/keys, bass, drums, chords, and guitar/bass TAB</li>
+<li>Choose which parts to show. Fix tempo (÷2, ×2), the bar start and 8th/16th resolution on screen</li>
+<li>Fix time signature, key &amp; position: meter changes (3/4, 6/8, 7/8…) and key changes per bar. Songs that switch between 3 and 4 beats are also detected automatically. Turn on the beat click over the original to check</li>
+<li>Listen: plays the notes over the original; turn the original off to hear only the score as a band. The match view shows bars that differ most from the original</li>
+<li>Edit and tap a note to get pitch/position, pronunciation, copy-and-add, add drums, and lyrics/part fixes. With “change the sung audio too”, the song’s audio follows: pitch (±12 semitones), position and length (0.5–2×). Drums: remove, doubles, rolls, add before/after. Notes can also be removed from the audio. ↶ undoes</li>
+<li>Save: PDF (all parts), Part PDF and MIDI (only when you tap them, into the song’s folder). Audio fixes are exported as a separate file</li>
+<li>If a kanji reading is wrong, fix the lyric reading per line (the song’s lyrics themselves don’t change)</li></ul>
+<p class="tip">It’s automatic, so it makes mistakes. For checking and practising your own songs. Transcribing other people’s songs is for private use only; don’t publish or share those scores or MIDI files.</p></div>
+</section>
+
+<section class="f" id="c-check">
+<h3><span class="ja">音の診断・聞こえ方</span><span class="en">Sound check &amp; listening check</span></h3>
+<div class="ja"><span class="where">「作る」→「音の診断」「聞こえ方」</span>
+<ul><li>「音の診断」：曲全体の音量（LUFS）・トゥルーピーク・音割れの箇所（時刻を押すとそこから聴ける）・音量の幅（LRA）・モノラル互換。YouTube・Spotify・Apple Music・Amazon Music で、どれだけ下げて（上げて）再生されるか。音量の流れのグラフ。お手本があれば比較表</li>
+<li>目安：−14 LUFS 前後、トゥルーピーク −1.0 dBTP 以下、音割れなし</li>
+<li>「聞こえ方」：スマホのスピーカー・安いイヤホン・ノートPC・車・小型スピーカー・ラジオ・片耳での聞こえ方をまねします（チェック中は画面の上に出て、押すと元に戻ります）</li></ul></div>
+<div class="en"><span class="where">Create → Sound check / Listening check</span>
+<ul><li>Sound check: integrated loudness (LUFS), true peak, clipping spots (tap a time to listen there), loudness range (LRA) and mono compatibility; how much YouTube, Spotify, Apple Music and Amazon Music will turn it down (or up); a loudness graph; and a comparison table if you have a reference</li>
+<li>Targets: around −14 LUFS, true peak −1.0 dBTP or lower, no clipping</li>
+<li>Listening check: hear it like a phone speaker, cheap earbuds, a laptop, a car, a small speaker, the radio or one ear (shown at the top while on; tap to turn off)</li></ul></div>
+</section>
+
+<section class="f" id="c-master">
+<h3><span class="ja">マスタリング</span><span class="en">Mastering</span></h3>
+<div class="ja"><span class="where">「作る」→「マスタリング」／作品カードの「仕上げ」</span>
+<ul><li>目指す音：ジャンル（ポップ・J-POP・アニソン・ロック・EDM・ヒップホップ・バラード・アコースティック・ジャズ・ローファイ・クラシック・おまかせ）と雰囲気（自然・明るく・あたたかく・迫力・クリア・やわらかく）、または「お手本に近づける」（「スマホの曲から」で曲ごとに選べ、次も覚えています）</li>
+<li>「🎧 流して測る」：YouTube などほかのアプリで流している曲を、お手本として測れます（音そのものは保存しません。Spotify など音を受け取れないアプリもあります）</li>
+<li>中身：周波数バランスを合わせる EQ・帯域ごとのコンプ・全体のコンプ・低音を真ん中に・左右の広がり・軽い歪み・音量合わせとトゥルーピークリミッター</li>
+<li>作った仕上がりを、同じ位置のまま元の音と切り替えて聴けます（音量をそろえて比べるので、大きさにだまされません）</li>
+<li>「この仕上がりで書き出す」：同じフォルダに <code>曲名_master</code> として保存（WAV・MP3）</li></ul></div>
+<div class="en"><span class="where">Create → Mastering / “Finish” on the work card</span>
+<ul><li>Target: a genre (pop, J-pop/anime, rock, EDM, hip-hop, ballad, acoustic, jazz, lo-fi, classical, auto) and a mood (natural, bright, warm, punchy, clear, soft), or “Match a reference” (pick per song from songs on your phone; remembered next time)</li>
+<li>“🎧 Play to measure”: measure a track playing in another app such as YouTube as the reference (only its sound profile is kept; some apps such as Spotify can’t be captured)</li>
+<li>What it does: matching EQ, multiband compression, glue compression, mono bass, stereo width, light saturation, loudness and a true-peak limiter</li>
+<li>Switch between the original and the result at the same position, at matched loudness</li>
+<li>“Export with this result”: saves <code>title_master</code> in the same folder (WAV or MP3)</li></ul></div>
+</section>
+
+<section class="f" id="c-export">
+<h3><span class="ja">音を整えて書き出す</span><span class="en">Polish and export</span></h3>
+<div class="ja"><span class="where">「作る」→「音を整えて書き出す」／作品カードの「書き出す」／動画一覧の長押し</span>
+<ul><li>音量を −14 LUFS などに合わせ、ピークを −1.0 dBTP 以下に抑えた新しいファイルを <code>曲名_KazuPlayer</code> として保存します</li>
+<li>形式：WAV 24bit（配信サービスへの提出向け）・M4A（軽い）・MP3（320kbps。元が MP3 なら曲名・アーティスト・ジャケットも写します）</li>
+<li>今の音の補正（EQ など）をかける・頭と終わりの無音を削る、も選べます</li>
+<li>動画は、映像をそのままコピーして音声だけ整えた新しい MP4 になります</li></ul></div>
+<div class="en"><span class="where">Create → Polish and export / “Export” on the work card / long-press in the video list</span>
+<ul><li>Saves a new file <code>title_KazuPlayer</code> at a target loudness such as −14 LUFS with peaks at −1.0 dBTP or lower</li>
+<li>Formats: WAV 24-bit (for distributors), M4A (small), MP3 320 kbps (tags and cover art are copied from an MP3 original)</li>
+<li>Optionally apply your current EQ and trim silence at the start and end</li>
+<li>For videos, the picture is copied as it is and only the audio is processed into a new MP4</li></ul></div>
+</section>
+
+<section class="f" id="c-video">
+<h3><span class="ja">歌詞動画・字幕・歌詞の埋め込み</span><span class="en">Lyric video, subtitles, embedding</span></h3>
+<div class="ja"><span class="where">「作る」→「5. 出す」／歌詞の画面の「︙」</span>
+<ul><li>「歌詞動画（テロップ）を作る」：曲の画像を背景に、歌詞を時刻どおりに出す動画（1920×1080・MP4）を <code>曲名_歌詞動画.mp4</code> として保存。単語ごとの時刻があれば、カラオケ式に色が変わります。画面を閉じても続きます</li>
+<li>「字幕（.srt）を書き出す」：同じ名前の歌詞動画で、自動で字幕として出ます</li>
+<li>「歌詞を曲ファイルに埋め込む」（MP3）：ほかのプレイヤーでも歌詞が出ます。元のファイルはアプリ内に保管され、「埋め込み前のファイルに戻す」で戻せます</li></ul></div>
+<div class="en"><span class="where">Create → 5. Release / “︙” on the lyrics screen</span>
+<ul><li>Make a lyric video (captions): a 1920×1080 MP4 with your cover art and time-synced lyrics, saved as <code>title_歌詞動画.mp4</code>. With word timing it highlights karaoke-style. Keeps going with the screen closed</li>
+<li>Export subtitles (.srt): shown automatically as subtitles with a lyric video of the same name</li>
+<li>Embed lyrics in the song file (MP3): other players show the lyrics too. The original file is kept in the app and can be restored</li></ul></div>
+</section>
+
+<section class="f" id="c-work">
+<h3><span class="ja">作品カード・公開準備</span><span class="en">Work card &amp; release prep</span></h3>
+<div class="ja"><span class="where">「ライブラリ」→「作品」／「作る」→「作品カード」</span>
+<ul><li>音源のバージョン・歌詞動画・歌詞・ジャケット・YouTube の URL・メモ（原作など）を1枚にまとめます</li>
+<li>「公開準備」：音量・ピーク・音割れ・歌詞・字幕・ジャケット・アーティスト名をチェックし、YouTube 用の説明文をコピーできます</li>
+<li>「写真から選ぶ」：好きな画像をジャケットに</li></ul></div>
+<div class="en"><span class="where">Library → Works / Create → Work card</span>
+<ul><li>Gathers versions, lyric videos, lyrics, cover art, the YouTube URL and notes in one card</li>
+<li>Prepare to publish: checks loudness, peaks, clipping, lyrics, subtitles, cover art and artist name, and copies a YouTube description</li>
+<li>Choose from photos: use your own picture as the cover</li></ul></div>
+</section>
+
+<section class="f" id="c-parts">
+<h3><span class="ja">部品（上位版）</span><span class="en">Parts (advanced)</span></h3>
+<div class="ja"><span class="where">右上の⚙→「設定」→「部品（上位版：楽譜・歌の部分修正）」／それぞれの画面</span>
+<p>重い機能は、初めて使うときに部品（AI のモデル）を取得します。使う機能の分だけ入れれば足ります。Wi-Fi をおすすめします。自分で取得したファイルを読み込むこともできます。</p>
+<table><tr><th>部品</th><th>使う機能</th></tr>
+<tr><td>音を4つに分ける部品（HT-Demucs）など 約233MB</td><td>楽譜の上位版・歌の部分修正・ドラムの直し・傷・音量の直しのパート（歌・ベース・ドラム・その他）・歌詞の時刻（伴奏に強くなる）</td></tr>
+<tr><td>歌詞を歌に合わせる部品（MMS）約356MB</td><td>歌の部分修正の健康診断・楽譜の歌詞の位置・歌詞の時刻（正確になる）</td></tr>
+<tr><td>伴奏の楽器を書き起こす部品（MuScriptor）約223MB</td><td>楽譜の楽器パート（無くても使えます）</td></tr>
+<tr><td>コードを聞き取る部品（BTC）約13MB</td><td>楽譜のコード（無くても使えます）</td></tr>
+<tr><td>歌い直し AI 約1.8GB</td><td>「AIで歌い直す」</td></tr></table>
+<p class="tip">傷・音量の直しは、「全部（全パート一緒に）」なら部品なしで使えます。</p></div>
+<div class="en"><span class="where">⚙ → Settings → Parts (premium: sheet music / Partial vocal fix), or from each screen</span>
+<p>Heavy features download their parts (AI models) the first time. You only need the parts for the features you use. Wi-Fi recommended. You can also import files you downloaded yourself.</p>
+<table><tr><th>Part</th><th>Used by</th></tr>
+<tr><td>Four-way source separation (HT-Demucs) etc., about 233MB</td><td>Advanced sheet music, Partial vocal fix, drum fixes, single-part glitch &amp; volume fixes (Vo / Bass / Drums / Other), lyric timing (better with backing)</td></tr>
+<tr><td>Lyric-to-vocal alignment (MMS), about 356MB</td><td>Partial vocal fix health check, lyric positions in the score, lyric timing (more accurate)</td></tr>
+<tr><td>Instrument transcription (MuScriptor), about 223MB</td><td>Instrument parts in the score (optional)</td></tr>
+<tr><td>Chord recognition (BTC), about 13MB</td><td>Chords in the score (optional)</td></tr>
+<tr><td>Re-singing AI, about 1.8GB</td><td>Re-sing with AI</td></tr></table>
+<p class="tip">Glitch &amp; volume fix works without any parts when “All (all parts together)” is selected.</p></div>
+</section>
+
+<section class="f" id="c-files">
+<h3><span class="ja">書き出したファイルの名前</span><span class="en">Names of exported files</span></h3>
+<div class="ja"><p>どれも元の曲と同じフォルダに保存し、元の曲は変えません。同じ名前があるときは <code>_2</code> などが付きます。</p>
+<table><tr><th>名前</th><th>作る所</th></tr>
+<tr><td><code>曲名_fix.mp3</code></td><td>傷・音量の直し</td></tr>
+<tr><td><code>曲名_note_edit.mp3</code></td><td>歌の部分修正・楽譜の「書き出す」（音の直しを全部まとめて）</td></tr>
+<tr><td><code>曲名_master</code>（.wav / .mp3）</td><td>マスタリング</td></tr>
+<tr><td><code>曲名_KazuPlayer</code>（.wav / .m4a / .mp3 / .mp4）</td><td>音を整えて書き出す</td></tr>
+<tr><td><code>曲名_歌詞動画.mp4</code></td><td>歌詞動画</td></tr>
+<tr><td><code>曲名.srt</code>・PDF・MIDI</td><td>字幕・楽譜</td></tr></table></div>
+<div class="en"><p>All are saved in the same folder as the original, which is never changed. If the name exists, <code>_2</code> etc. is added.</p>
+<table><tr><th>Name</th><th>Made by</th></tr>
+<tr><td><code>title_fix.mp3</code></td><td>Glitch &amp; volume fix</td></tr>
+<tr><td><code>title_note_edit.mp3</code></td><td>Export in Partial vocal fix or sheet music (all audio fixes together)</td></tr>
+<tr><td><code>title_master</code> (.wav / .mp3)</td><td>Mastering</td></tr>
+<tr><td><code>title_KazuPlayer</code> (.wav / .m4a / .mp3 / .mp4)</td><td>Polish and export</td></tr>
+<tr><td><code>title_歌詞動画.mp4</code></td><td>Lyric video</td></tr>
+<tr><td><code>title.srt</code>, PDF, MIDI</td><td>Subtitles, sheet music</td></tr></table></div>
+</section>
+
+<section class="f" id="c-long">
+<h3><span class="ja">長い作業・続きから</span><span class="en">Long jobs and resuming</span></h3>
+<div class="ja"><ul><li>楽譜づくり・歌声の解析・歌詞の時刻・歌い直し・傷を探す・書き出し・歌詞動画は、画面を閉じても後ろで続きます（進み具合は通知と、画面の右上に出ます）</li>
+<li>途中でアプリが止まったときは、次に開いたときに「続きから再開」するか聞きます</li>
+<li>一度に1つずつ動きます。ほかの作業中に押すと「ほかの作業が終わってから」と出ます</li></ul></div>
+<div class="en"><ul><li>Sheet music, vocal analysis, lyric timing, re-singing, glitch search, exports and lyric videos keep going in the background when you close the screen (progress shows in a notification and at the top right)</li>
+<li>If the app stopped part-way, it asks whether to resume the next time you open it</li>
+<li>One job runs at a time; if another is running you’ll be asked to try again when it finishes</li></ul></div>
+</section>
+
+<section class="f" id="c-limits">
+<h3><span class="ja">できないこと・注意</span><span class="en">Limitations</span></h3>
+<div class="ja"><ul><li>部品が大きい：楽譜・歌の直しで 約1.9GB、歌い直し AI で 約1.8GB（全部で 約3.7GB）。スマホの空きも同じくらい要ります</li>
+<li>処理が重い：すべてスマホの中で計算します。楽譜の上位版は4分の曲で30分ほど。スマホが温かくなり、電池を使います</li>
+<li>完全には分けられない：歌と伴奏、メインとコーラス、楽器どうしは完全には分けられず、直した所に元の音や響きの違いが少し残ることがあります</li>
+<li>完全には直せない：英語の h のような弱い音や、前の音とつながった所は、元の音が少し残ります。借りて貼った所は、まったく同じ音ではありません。必ず直す前と後を聴き比べてください</li>
+<li>自動なので、楽譜の音の高さ・歌詞の位置・発音の指摘・見つけた傷は、間違うことがあります</li>
+<li>楽譜・歌の部分修正・歌詞の時刻・書き出しは、インターネットにつながっている所で使えます（曲は送りません）</li></ul></div>
+<div class="en"><ul><li>Large downloads: about 1.9GB for sheet music and vocal fixes, about 1.8GB for the re-singing AI (about 3.7GB in all), and the same free space</li>
+<li>Heavy processing on your phone: advanced sheet music takes about 30 minutes for a 4-minute song; the phone gets warm and uses battery</li>
+<li>Separation isn’t perfect: vocals and backing, lead and chorus, and instruments can’t be fully separated, so a little of the original may remain where you fixed</li>
+<li>Fixes aren’t perfect: weak sounds like English “h” and joined sounds keep a little of the original; borrowed spots are not exactly the same sound. Always compare before and after</li>
+<li>It’s automatic, so pitches, lyric positions, pronunciation flags and found glitches can be wrong</li>
+<li>Sheet music, vocal fix, lyric timing and export need an internet connection (your songs are not uploaded)</li></ul></div>
+</section>
+
+<a class="top" href="#top"><span class="ja">↑ 目次へ</span><span class="en">↑ Back to contents</span></a>
+<footer>KazuPlayer · <a href="./"><span class="ja">トップページ</span><span class="en">Home</span></a> · <a href="https://github.com/kazuSato-Japan/KazuPlayer/releases/latest"><span class="ja">ダウンロード</span><span class="en">Download</span></a></footer>
+</main>
+<script>
+document.getElementById("lang").addEventListener("click",function(){
+  var l=document.documentElement.getAttribute("data-l")==="ja"?"en":"ja";
+  document.documentElement.setAttribute("data-l",l);document.documentElement.lang=l;
+  try{localStorage.setItem("kp-lang",l)}catch(e){}
+});
+</script>
+</body>
+</html>
