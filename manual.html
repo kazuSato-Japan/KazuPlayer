@@ -76,6 +76,7 @@ document.documentElement.setAttribute("data-l",l);document.documentElement.lang=
 <li><a href="#c-timing"><span class="ja">歌詞の時刻（自動・タップ）</span><span class="en">Lyric timing (auto / tap)</span></a></li>
 <li><a href="#c-vocal"><span class="ja">歌の部分修正</span><span class="en">Partial vocal fix</span></a></li>
 <li><a href="#c-glitch"><span class="ja">傷・音量の直し</span><span class="en">Glitch &amp; volume fix</span></a></li>
+<li><a href="#c-harmony"><span class="ja">ハモリを足す</span><span class="en">Add harmony</span></a></li>
 <li><a href="#c-score"><span class="ja">楽譜（自動採譜）</span><span class="en">Sheet music</span></a></li>
 <li><a href="#c-check"><span class="ja">音の診断・聞こえ方</span><span class="en">Sound check &amp; listening check</span></a></li>
 <li><a href="#c-master"><span class="ja">マスタリング</span><span class="en">Mastering</span></a></li>
@@ -279,7 +280,7 @@ document.documentElement.setAttribute("data-l",l);document.documentElement.lang=
 <div class="ja"><span class="where">下のタブ「作る」</span>
 <p>上の「曲を変える」で、どのアルバム・どのフォルダの曲でも選べます（「フォルダから」で内部ストレージ・SDカードをたどれます）。道具は作業の順に並び、曲ごとに、どこまで済んだかも出ます。</p>
 <ol><li>「2. 歌詞と時刻（楽譜・歌の部分修正の前に）」：歌詞を貼り付け・編集／歌詞の時刻を自動で付ける／タップで同期を作る</li>
-<li>「3. 直す・楽譜にする」：歌の部分修正／傷・音量の直し／楽譜（自動採譜）</li>
+<li>「3. 直す・楽譜にする」：歌の部分修正／傷・音量の直し／ハモリを足す／楽譜（自動採譜）</li>
 <li>「4. 仕上げる」：マスタリング／音を整えて書き出す（音の診断・聞こえ方もここから）</li>
 <li>「5. 出す」：歌詞動画（テロップ）を作る／字幕（.srt）を書き出す／歌詞を曲ファイルに埋め込む／作品カード</li></ol>
 <p>いちばん上の「次にやること」に、この曲で次にやるとよいことが1つ出ます（押すとその画面を開きます）。おすすめの順番は、歌詞を貼る → 時刻を付ける → 歌の部分修正・楽譜 → 傷を探す → 音の診断 → 歌詞動画 → 公開準備 です。</p>
@@ -287,7 +288,7 @@ document.documentElement.setAttribute("data-l",l);document.documentElement.lang=
 <div class="en"><span class="where">Bottom tab “Create”</span>
 <p>“Change song” at the top picks a song from any album or folder (“By folder” browses internal storage and the SD card). The tools are listed in the order you work, and each song shows how far you’ve got.</p>
 <ol><li>2. Lyrics and timing (before sheet music / Partial vocal fix): Paste / edit lyrics, Auto-sync lyric timing, Tap to sync</li>
-<li>3. Fix / make sheet music: Partial vocal fix, Glitch &amp; volume fix, Sheet music (automatic transcription)</li>
+<li>3. Fix / make sheet music: Partial vocal fix, Glitch &amp; volume fix, Add harmony, Sheet music (automatic transcription)</li>
 <li>4. Finish: Mastering, Polish and export (sound check and listening check are here too)</li>
 <li>5. Release: Make a lyric video (captions), Export subtitles (.srt), Embed lyrics in the song file, Work card</li></ol>
 <p>“Next step” at the very top suggests one thing to do next for this song (tap to open it). The recommended order is: paste lyrics → add timing → Partial vocal fix / sheet music → find glitches → sound check → lyric video → release prep.</p>
@@ -347,14 +348,14 @@ document.documentElement.setAttribute("data-l",l);document.documentElement.lang=
 </section>
 
 <section class="f" id="c-glitch">
-<h3><span class="ja">傷・音量の直し</span><span class="en">Glitch &amp; volume fix</span><span class="new">NEW v3.6.25</span></h3>
+<h3><span class="ja">傷・音量の直し</span><span class="en">Glitch &amp; volume fix</span><span class="new">NEW v3.6.26</span></h3>
 <div class="ja"><span class="where">「作る」→「傷・音量の直し」</span>
 <p>Suno などの曲によくある、1秒もない小さな傷（プチッ・カチッという音、音が一瞬消える「音の抜け」）を直したり、ある所だけの音量を変えたりします。<b>歌詞・楽譜は要りません。</b>元の曲は残し、同じフォルダに <code>曲名_fix.mp3</code> として書き出します。</p>
 <p><b>1. 傷を探す</b></p>
 <ul><li>「傷を探す」で曲を最後まで調べます（画面を閉じても続きます）</li>
 <li>「はっきりした傷」が時刻の順に並び、はじめから選んであります：「プチッ・はっきり（強さ 9）」「音の抜け（2.5ms・90dB 下がる）」のように出ます。時刻は 1000分の1秒まで</li>
 <li>打楽器の打ち始めは傷に見えやすいので、はじめから除きます。もともとの音かもしれない弱いものは「かすかな候補も出す」で出ます（傷の無い曲でも1分に約1か所。聴いて分からなければ直さなくて大丈夫です）</li>
-<li>▶：「今の音 → 少し間をあけて → 直した音」の順に鳴り、その行の下に傷の所の波の形（前後 8ms。赤＝今・青＝直した後）が出ます。プチッは 1000分の2秒ほどなので、耳より波の形のとがりのほうが分かりやすいことがあります</li>
+<li>▶：その傷の前後 1.5秒の<b>聴き比べ</b>が開き、直す前から鳴ります。「▶ 直す前」「▶ 直した後」「▶ 変わった音だけ」（直して取り除いた音を大きくして）を、鳴っている間に押すと<b>同じ所のまま切り替わります</b>（くり返し鳴ります）。下に傷の所の波の形（赤＝直す前・青＝直した後、色の帯＝直した所）。プチッは 1000分の2秒ほどなので、波の形のとがりと「変わった音だけ」で確かめられます</li>
 <li>「全部つける」「全部消す」でまとめて選べます。「選んだ傷を直しに入れる」：プチッと 30ms までの抜けは前後の音から作った音で埋め（プチッは 2.4ms だけ）、長い抜けは曲の中のいちばん似た所から借りて貼ります</li></ul>
 <p><b>2. 所を選んで直す</b>（耳で気になった所・音量の山や谷・音のとび）</p>
 <ul><li>上の再生ボタン・「−3秒」「+3秒」で曲を流し、直したい所で「今の位置を始まりに」「今の位置を終わりに」を押します。「−」「＋」で 0.01秒ずつ動かせます。見つけた傷の「選ぶ」でも入ります</li>
@@ -364,12 +365,12 @@ document.documentElement.setAttribute("data-l",l);document.documentElement.lang=
 <tr><td>「音量」</td><td>−12〜+12dB。−6dB で約半分、+6dB で約2倍の大きさ。端は 20ms でなめらかにつなぐ</td><td>叫び声だけ大きい・ドラムが1か所だけうるさい・ベースが一瞬小さくなる</td></tr>
 <tr><td>「くり返しの同じ所から借りる」</td><td>「借りる所を探す」で、前後1秒の音の色と和音がいちばん似ている所を3つ（似かたの%付き）。▶で聴いて選ぶと、波の形がそろう位置に合わせて貼る</td><td>音の抜け・音のとび・長い傷</td></tr>
 <tr><td>「傷の修復」</td><td>30ms（0.03秒）までの短い所を、前後の音から予想した音に置き換える（「全部」だけ）</td><td>プチッ・カチッ</td></tr></table></li>
-<li>「元の曲」「直した後」で、その前後1.5秒を聴き比べ（もう一度押すと止まります）。よければ「直しに入れる」</li></ul>
+<li>「直す前・直した後を聴き比べる」で、その前後1.5秒を同じ聴き比べで比べます。よければ「直しに入れる」</li></ul>
 <p><b>3. 入れた直し</b></p>
-<ul><li>▶で直した後を聴けます。✕で消せます（画面の下のボタンで戻せます）。「全部消す」もあります</li>
+<ul><li>▶で直す前・直した後を聴き比べられます。✕で消せます（画面の下のボタンで戻せます）。「全部消す」もあります</li>
 <li>入れた直しはアプリに残るので、画面を閉じても続きからできます。同じ所を2回は直せません</li>
 <li>「直して書き出す（元の曲は残す）」：画面を閉じても続き、止まっても次は続きから書き出します</li>
-<li>入れた直しは、歌の部分修正・楽譜の「書き出す」にも一緒に入ります</li></ul>
+<li>入れた直しは、歌の部分修正・楽譜・ハモリの「書き出す」にも一緒に入ります</li></ul>
 <p class="tip">確かめた結果（作者の Suno の曲10曲・44分）：傷の無い所で「はっきり」と出るのは1分に約0.2か所（4分の曲で0〜2か所。多くは曲の始め・終わり）。まわりの2倍の強さの短い雑音は 20個中 19個、2〜4ms の音の切れ目は 40個中 40個、20〜80ms の音の抜けは 60個中 60個を見つけ、直したあと探し直すと 248個中 247個は見つかりませんでした。サビの2回目なども毎回少しずつ違うので、借りた所はまったく同じ音にはなりません。必ず「直した後」で聴いて確かめてください。</p></div>
 <div class="en"><span class="where">Create → Glitch &amp; volume fix</span>
 <p>Fix tiny glitches under a second that are common in Suno songs — clicks and ticks, and spots where the sound drops out for a moment — or change the volume of just one spot. <b>No lyrics or score needed.</b> The original stays; the result is saved in the same folder as <code>title_fix.mp3</code>.</p>
@@ -377,7 +378,7 @@ document.documentElement.setAttribute("data-l",l);document.documentElement.lang=
 <ul><li>“Find glitches” scans the whole song (keeps going if you close the screen)</li>
 <li>Clear glitches are listed in time order, already selected: “Click, clear (strength 9)”, “Dropout (2.5 ms, 90 dB down)”. Times are shown to the thousandth of a second</li>
 <li>Drum attacks look like glitches, so they are left out from the start. Weaker ones that may be part of the music appear with “Show faint candidates too” (about one a minute even in songs without glitches; if you can’t hear anything, you don’t need to fix them)</li>
-<li>▶ plays “current sound → short pause → fixed sound” and shows the waveform of the glitch under the row (8 ms each side; red = current, blue = fixed). A click lasts about 2 thousandths of a second, so the spike can be easier to see than to hear</li>
+<li>▶ opens a <b>comparison</b> of 1.5 s around the glitch, starting with the original. Tap “▶ Before”, “▶ After” or “▶ Only what changed” (what the fix removed, made louder) while it plays to <b>switch at the same spot</b> (it loops). Below is the waveform (red = before, blue = after, shaded band = the fixed spot). A click lasts about 2 thousandths of a second, so check the spike and “Only what changed”</li>
 <li>“Select all” / “Clear all” select them in one go. “Add selected glitches to the fixes”: clicks and dropouts up to 30 ms are filled with sound made from before and after (clicks only 2.4 ms); longer dropouts are patched from the most similar spot in the song</li></ul>
 <p><b>2. Pick a spot and fix it</b> (a glitch you heard, a volume peak or dip, a skip)</p>
 <ul><li>Play the song with the play button / “−3 s” / “+3 s” at the top and tap “Set start here” and “Set end here”. “−” and “＋” move the edges by 0.01 s. “Pick” on a found glitch also fills this in</li>
@@ -387,13 +388,45 @@ document.documentElement.setAttribute("data-l",l);document.documentElement.lang=
 <tr><td>Volume</td><td>−12 to +12 dB. −6 dB is about half as loud, +6 dB about twice. Edges blended over 20 ms</td><td>A shout that’s too loud, one drum hit too loud, the bass dipping for a moment</td></tr>
 <tr><td>Borrow from a repeat</td><td>“Find a place to borrow from” lists the 3 spots whose sound colour and chords (1 s before and after) are most similar, with a % match. Listen with ▶, pick one, and it is pasted where the waveforms line up</td><td>Dropouts, skips, longer glitches</td></tr>
 <tr><td>Repair glitch</td><td>Replaces a spot of up to 30 ms (0.03 s) with sound predicted from before and after (All only)</td><td>Clicks and ticks</td></tr></table></li>
-<li>“Original” / “Fixed” compare 1.5 s before and after the spot (tap again to stop). If it sounds right, “Add to fixes”</li></ul>
+<li>“Compare before and after” opens the same comparison for 1.5 s around the spot. If it sounds right, “Add to fixes”</li></ul>
 <p><b>3. Added fixes</b></p>
-<ul><li>▶ plays the result; ✕ removes one (the button at the bottom of the screen brings it back). “Clear all” too</li>
+<ul><li>▶ compares before and after; ✕ removes one (the button at the bottom of the screen brings it back). “Clear all” too</li>
 <li>Added fixes are kept in the app, so you can close the screen and carry on later. The same spot can’t be fixed twice</li>
 <li>“Fix and export (keep the original)”: keeps going if you close the screen, and resumes where it stopped</li>
-<li>Added fixes are also included when you export from Partial vocal fix or sheet music</li></ul>
+<li>Added fixes are also included when you export from Partial vocal fix, sheet music or Add harmony</li></ul>
 <p class="tip">What we measured (10 of the author’s Suno songs, 44 minutes): where there are no glitches, about 0.2 per minute show as “clear” (0–2 in a 4-minute song, mostly at the start or end). Of inserted glitches, 19 of 20 short noise bursts twice as loud as the music, 40 of 40 gaps of 2–4 ms and 60 of 60 dropouts of 20–80 ms were found, and after fixing, a second search no longer found 247 of 248. The second chorus is a little different each time, so a borrowed spot won’t be exactly the same sound — always check with “Fixed”.</p></div>
+</section>
+
+<section class="f" id="c-harmony">
+<h3><span class="ja">ハモリを足す</span><span class="en">Add harmony</span><span class="new">NEW v3.6.26</span></h3>
+<div class="ja"><span class="where">「作る」→「ハモリを足す」</span>
+<p>メロディに、3度上・3度下・5度上・4度下・6度下・1オクターブ下・同じ高さ（ダブル）のハモリを足します。楽譜（上位版）のメロディ・調・コードを使うので、<b>先に楽譜（上位版）を作ってください</b>。元の曲は残し、同じフォルダに <code>曲名_harmony.mp3</code> として書き出します。</p>
+<ol><li><b>1. ハモリを付ける所</b>：歌詞の行を押します。もう1行押すと、そこまで広げます（「選び直す」でやり直し）</li>
+<li><b>2. どのハモリを足すか</b>：いくつでも重ねられます（「全部つける」「全部消す」）。声ごとに「大きさ」（メインに比べて −18〜0dB）と左右を決めます（はじめは1つ目が少し左、2つ目が少し右）</li>
+<li><b>3. 声の重ね方</b>：「遅れ」（0〜40ms）・「高さのゆらぎ」（0〜20セント）で別の人が歌っているように。「声の感じ」で明るく・太く（高さをずらす方式だけ）。「子音の大きさ」を下げると「s」「t」が二重に聞こえにくくなります</li>
+<li><b>4. ハモリの音</b>：メロディ → ハモリの音が1音ずつ並び、「−」「＋」で半音ずつ直せます。コードの音と半音でぶつかる音には印が出ます</li>
+<li><b>5. 声の作り方</b>
+<table><tr><th>作り方</th><th>すること</th><th>時間</th></tr>
+<tr><td>「歌の高さをずらす（すぐ）」</td><td>分けたメインの歌を、声の響きを変えずにハモリの高さへずらす（メインとコーラスを分ける部品があればメインだけ）</td><td>数秒</td></tr>
+<tr><td>「歌い直しAIで歌う」</td><td>同じ歌い手の声で、ハモリの高さを歌い直す。歌詞の行ごとに2通り歌い、近いほうを使い、最後に1音ずつ高さを合わせる</td><td>1行 約1〜2分（画面を閉じても続き、止まっても続きから）</td></tr></table></li>
+<li>「ハモリの前・後を聴き比べる」：区間の前後1秒を「▶ 直す前」「▶ ハモリを足した後」「▶ 変わった音だけ」（足したハモリだけ）で、同じ所のまま切り替えて聴けます</li>
+<li>「ハモリに入れる」→ 下の「入れたハモリ」で▶聴き比べ・✕消す。「ハモリを入れて書き出す（元の曲は残す）」</li></ol>
+<p><b>音の決め方（♯・♭）</b>：その小節の調の音階で数えます（3度は長3度か短3度かが自動で決まる）。その時のコードに♯・♭の付いた音があり、メロディがコードの音なら、ハモリもコードの音に寄せます（例：ハ長調で E のコード → ソではなくソ♯）。0.2秒より長い音は、コードの音と半音でぶつからない音を選びます。メロディが音階に無い音のときは、その幅（3度なら3〜4半音）の中のコードの音・音階の音を選びます。</p>
+<p class="tip">確かめた結果（作者の曲「もしも（RnB）」の1行・嬰ヘ短調、メインの歌を取り出して）：高さをずらす方式は、狙った高さとの差が中央 5セント、12音すべてが半音の半分以内。声の響きの変わり方は約1dB（ただ速さを変えて高さを変える方法だと5〜6dB）。AIで歌う方式は、AI がそのまま歌うと 12音中6〜8音が狙いの高さ、1音ずつ合わせ直したあとは12音すべて（3度上の乱数2通り・4度下）。作者の8曲の楽譜で、長い音のぶつかりを避ける前と後で、3度上のハモリがコードの音と半音でぶつかる音は 7〜26% → 3〜21% に減りました（残りの多くは短い経過音）。分けた歌に伴奏のにじみが残っていると、それも一緒に高さが動きます（大きさを下げると目立ちにくい）。</p></div>
+<div class="en"><span class="where">Create → Add harmony</span>
+<p>Adds harmony a 3rd above, 3rd below, 5th above, 4th below, 6th below, an octave below or at the same pitch (double). It uses the melody, key and chords of the advanced score, so <b>make the advanced score first</b>. The original stays; the result is saved in the same folder as <code>title_harmony.mp3</code>.</p>
+<ol><li><b>1. Where to add harmony</b>: tap a lyric line; tap another to extend to it (“Choose again” starts over)</li>
+<li><b>2. Which harmony to add</b>: stack as many as you like (“Select all” / “Clear all”). For each voice set the level (−18 to 0 dB relative to the lead) and left/right (at first the 1st voice is a little left, the 2nd a little right)</li>
+<li><b>3. How the voices sit</b>: “Delay” (0–40 ms) and “Pitch spread” (0–20 cents) make it sound like another singer. “Voice character” makes it brighter or fuller (pitch-shift only). Lower “Consonant level” keeps “s” and “t” from sounding doubled</li>
+<li><b>4. Harmony notes</b>: melody → harmony notes one by one; “−” / “＋” change them by a semitone. Notes that clash a semitone with a chord note are marked</li>
+<li><b>5. How the voice is made</b>
+<table><tr><th>Method</th><th>What it does</th><th>Time</th></tr>
+<tr><td>Pitch-shift the vocal (instant)</td><td>Shifts the separated lead vocal to the harmony notes without changing its character (only the lead if the lead/chorus splitter is installed)</td><td>Seconds</td></tr>
+<tr><td>Sing with the re-singing AI</td><td>Re-sings the harmony line in the same singer’s voice. Each lyric line is sung 2 ways, the closer one is used, then each note’s pitch is matched</td><td>About 1–2 min per line (keeps going with the screen closed; resumes if stopped)</td></tr></table></li>
+<li>“Compare before and after the harmony”: 1 s around the section as “▶ Before”, “▶ With harmony” and “▶ Only what changed” (just the harmony), switching at the same spot</li>
+<li>“Add harmony” → under “Added harmony”, ▶ compares and ✕ removes. “Export with harmony (keep the original)”</li></ol>
+<p><b>How notes are chosen (♯/♭)</b>: counted in the scale of the key of that bar (so a 3rd is major or minor automatically). If the chord has a ♯/♭ note and the melody is on a chord note, the harmony moves to the chord note too (e.g. in C major over an E chord: G♯ instead of G). Notes longer than 0.2 s avoid a semitone clash with chord notes. For melody notes outside the scale, a chord or scale note within that interval (3–4 semitones for a 3rd) is chosen.</p>
+<p class="tip">What we measured (one line of the author’s song “Moshimo (RnB)”, F♯ minor, lead vocal separated): pitch-shifting hits the target with a median error of 5 cents, all 12 notes within a quarter tone, and the vocal tract shape changes by about 1 dB (5–6 dB with simple resampling). The AI sang 6–8 of 12 notes at the target as is, and all 12 after per-note matching (3rd above with 2 seeds, 4th below). Across 8 of the author’s scores, avoiding clashes on long notes cut semitone clashes of a 3rd-above harmony from 7–26% to 3–21% (most of the rest are short passing notes). If the separated vocal still contains some backing, it is shifted too (lower the level to hide it).</p></div>
 </section>
 
 <section class="f" id="c-score">
@@ -493,20 +526,20 @@ document.documentElement.setAttribute("data-l",l);document.documentElement.lang=
 <div class="ja"><span class="where">右上の⚙→「設定」→「部品（上位版：楽譜・歌の部分修正）」／それぞれの画面</span>
 <p>重い機能は、初めて使うときに部品（AI のモデル）を取得します。使う機能の分だけ入れれば足ります。Wi-Fi をおすすめします。自分で取得したファイルを読み込むこともできます。</p>
 <table><tr><th>部品</th><th>使う機能</th></tr>
-<tr><td>音を4つに分ける部品（HT-Demucs）など 約233MB</td><td>楽譜の上位版・歌の部分修正・ドラムの直し・傷・音量の直しのパート（歌・ベース・ドラム・その他）・歌詞の時刻（伴奏に強くなる）</td></tr>
+<tr><td>音を4つに分ける部品（HT-Demucs）など 約233MB</td><td>楽譜の上位版・歌の部分修正・ドラムの直し・傷・音量の直しのパート（歌・ベース・ドラム・その他）・ハモリ・歌詞の時刻（伴奏に強くなる）</td></tr>
 <tr><td>歌詞を歌に合わせる部品（MMS）約356MB</td><td>歌の部分修正の健康診断・楽譜の歌詞の位置・歌詞の時刻（正確になる）</td></tr>
 <tr><td>伴奏の楽器を書き起こす部品（MuScriptor）約223MB</td><td>楽譜の楽器パート（無くても使えます）</td></tr>
 <tr><td>コードを聞き取る部品（BTC）約13MB</td><td>楽譜のコード（無くても使えます）</td></tr>
-<tr><td>歌い直し AI 約1.8GB</td><td>「AIで歌い直す」</td></tr></table>
+<tr><td>歌い直し AI 約1.8GB</td><td>「AIで歌い直す」・ハモリの「歌い直しAIで歌う」</td></tr></table>
 <p class="tip">傷・音量の直しは、「全部（全パート一緒に）」なら部品なしで使えます。</p></div>
 <div class="en"><span class="where">⚙ → Settings → Parts (premium: sheet music / Partial vocal fix), or from each screen</span>
 <p>Heavy features download their parts (AI models) the first time. You only need the parts for the features you use. Wi-Fi recommended. You can also import files you downloaded yourself.</p>
 <table><tr><th>Part</th><th>Used by</th></tr>
-<tr><td>Four-way source separation (HT-Demucs) etc., about 233MB</td><td>Advanced sheet music, Partial vocal fix, drum fixes, single-part glitch &amp; volume fixes (Vo / Bass / Drums / Other), lyric timing (better with backing)</td></tr>
+<tr><td>Four-way source separation (HT-Demucs) etc., about 233MB</td><td>Advanced sheet music, Partial vocal fix, drum fixes, single-part glitch &amp; volume fixes (Vo / Bass / Drums / Other), harmony, lyric timing (better with backing)</td></tr>
 <tr><td>Lyric-to-vocal alignment (MMS), about 356MB</td><td>Partial vocal fix health check, lyric positions in the score, lyric timing (more accurate)</td></tr>
 <tr><td>Instrument transcription (MuScriptor), about 223MB</td><td>Instrument parts in the score (optional)</td></tr>
 <tr><td>Chord recognition (BTC), about 13MB</td><td>Chords in the score (optional)</td></tr>
-<tr><td>Re-singing AI, about 1.8GB</td><td>Re-sing with AI</td></tr></table>
+<tr><td>Re-singing AI, about 1.8GB</td><td>Re-sing with AI, and harmony “Sing with the re-singing AI”</td></tr></table>
 <p class="tip">Glitch &amp; volume fix works without any parts when “All (all parts together)” is selected.</p></div>
 </section>
 
@@ -515,6 +548,7 @@ document.documentElement.setAttribute("data-l",l);document.documentElement.lang=
 <div class="ja"><p>どれも元の曲と同じフォルダに保存し、元の曲は変えません。同じ名前があるときは <code>_2</code> などが付きます。</p>
 <table><tr><th>名前</th><th>作る所</th></tr>
 <tr><td><code>曲名_fix.mp3</code></td><td>傷・音量の直し</td></tr>
+<tr><td><code>曲名_harmony.mp3</code></td><td>ハモリを足す</td></tr>
 <tr><td><code>曲名_note_edit.mp3</code></td><td>歌の部分修正・楽譜の「書き出す」（音の直しを全部まとめて）</td></tr>
 <tr><td><code>曲名_master</code>（.wav / .mp3）</td><td>マスタリング</td></tr>
 <tr><td><code>曲名_KazuPlayer</code>（.wav / .m4a / .mp3 / .mp4）</td><td>音を整えて書き出す</td></tr>
@@ -523,6 +557,7 @@ document.documentElement.setAttribute("data-l",l);document.documentElement.lang=
 <div class="en"><p>All are saved in the same folder as the original, which is never changed. If the name exists, <code>_2</code> etc. is added.</p>
 <table><tr><th>Name</th><th>Made by</th></tr>
 <tr><td><code>title_fix.mp3</code></td><td>Glitch &amp; volume fix</td></tr>
+<tr><td><code>title_harmony.mp3</code></td><td>Add harmony</td></tr>
 <tr><td><code>title_note_edit.mp3</code></td><td>Export in Partial vocal fix or sheet music (all audio fixes together)</td></tr>
 <tr><td><code>title_master</code> (.wav / .mp3)</td><td>Mastering</td></tr>
 <tr><td><code>title_KazuPlayer</code> (.wav / .m4a / .mp3 / .mp4)</td><td>Polish and export</td></tr>

@@ -18,6 +18,7 @@
 - **歌の部分修正**：Suno などで作った曲の「1文字だけ発音や読みが違う」所を、作り直さずにスマホの中で直します。歌詞と歌声を1文字ずつ比べて違って聞こえる所を探し、同じ曲の中で同じ歌手が歌っている音を借りて差し替えます。正しい歌詞で1行だけ歌い直すこともできます。日本語・英語に対応
   - 聴き比べ（直す前 → 直した後）：[「蟻」が「まり」に聞こえていた所](samples/ari_before_after.mp3) ・ [「腿」を「たい」と読んでいた所](samples/momo_before_after.mp3) ・ [英語 rifts → drifts](samples/english_before_after.mp3) ・ [YouTube（22秒）](https://youtu.be/zOCYKqtx2EY)
 - **傷・音量の直し**：Suno などの曲によくある、1秒もない小さな傷（プチッ・カチッという音、音が一瞬消える所）を自動で探して直します。気になった所だけ、全部の音か1つのパート（歌・ベース・ドラム・その他）の音量を上げ下げしたり、くり返しの同じ所から借りて貼ったりもできます。歌詞・楽譜は要りません
+- **ハモリを足す**：メロディに3度上・3度下・5度上などのハモリ。楽譜の調とコードから♯・♭も自動で、1音ずつ直せる。大きさ・左右・遅れ。分けた歌の高さをずらすか、歌い直しAIで同じ声のまま歌う。直す前・後を同じ所で切り替えて聴き比べ
 - **楽譜（自動採譜・試作）**：メロディ（歌詞付き）・コーラス・ギター/鍵盤・ベース・ドラム。PDF・MIDI。音符の高さ・長さも曲の音ごと直せます
 - **マスタリング**：ジャンル・雰囲気かお手本の曲を選んで仕上げ、元の音と聴き比べてから書き出し
 - **バージョン聴き比べ・音の診断・聞こえ方チェック・お手本と比べる**
@@ -55,6 +56,7 @@
 - **Vocal fix**: fix the one word that came out wrong in a Suno (or other AI) track, on your phone, without regenerating. The app compares the singing with your lyrics syllable by syllable, finds what sounds off, and replaces just that sound with the same singer’s take from elsewhere in the same song. You can also re-sing a single line with the correct lyrics. English and Japanese
   - Before → after: [English: “rifts” → “drifts”, “fold” → “Hold”](samples/english_before_after.mp3) ・ [Japanese 1](samples/ari_before_after.mp3) ・ [Japanese 2](samples/momo_before_after.mp3) ・ [YouTube demo (22 s)](https://youtu.be/zOCYKqtx2EY)
 - **Glitch & volume fix**: automatically finds and fixes the tiny glitches under a second that are common in Suno songs — clicks, ticks and split-second dropouts. Raise or lower the volume of just one spot (whole mix or one part: vocals, bass, drums, other), or patch a spot from a repeat. No lyrics or score needed
+- **Add harmony**: a 3rd above, 3rd below, 5th above and more, with ♯/♭ from the key and chords of the score; change each note, set level, left/right and delay. Pitch-shift the separated vocal or let the re-singing AI sing it in the same voice, and compare before/after at the same spot
 - **Sheet music (beta)**: melody with lyrics, chorus, guitar/keys, bass, drums. PDF and MIDI. Fix a note’s pitch or length in the audio too
 - **Mastering**: pick a genre, mood or reference track, compare with the original, then export
 - **Version comparison, sound check, listening simulator, reference comparison**
