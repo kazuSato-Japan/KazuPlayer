@@ -413,7 +413,7 @@ document.documentElement.setAttribute("data-l",l);document.documentElement.lang=
 <li><b>5. 声の作り方</b>
 <table><tr><th>作り方</th><th>すること</th><th>時間</th></tr>
 <tr><td>「歌の高さをずらす（すぐ）」</td><td>分けたメインの歌を、声の響きを変えずにハモリの高さへずらす（メインとコーラスを分ける部品があればメインだけ）</td><td>数秒</td></tr>
-<tr><td>「歌い直しAIで歌う」</td><td>同じ歌い手の声で、ハモリの高さを歌い直す。歌詞の行ごとに2通り歌い、近いほうを使い、最後に1音ずつ高さを合わせる</td><td>1行 約1〜2分（画面を閉じても続き、止まっても続きから）</td></tr></table></li>
+<tr><td>「歌い直しAIで歌う」</td><td>同じ歌い手の声で、ハモリの高さを歌い直す。歌詞の行ごとに2通り歌い、近いほうを使い、最後に1音ずつ高さを合わせる。英語の行も歌える（「-」「&」などは語の区切りとして読む）。発音辞書に無い英単語がある行や歌詞の無い所は、その音符だけ「歌の高さをずらす」声で作る（どの行かは終わったときに出る）</td><td>1行 約1〜2分（画面を閉じても続き、止まっても続きから）</td></tr></table></li>
 <li>「ハモリの前・後を聴き比べる」：区間の前後1秒を「▶ 直す前」「▶ ハモリを足した後」「▶ 変わった音だけ」（足したハモリだけ）で、同じ所のまま切り替えて聴けます</li>
 <li>「ハモリに入れる」→ 下の「入れたハモリ」で▶聴き比べ・✕消す。「ハモリを入れて書き出す（元の曲は残す）」</li></ol>
 <p><b>音の決め方（♯・♭）</b>：その小節の調の音階で数えます（3度は長3度か短3度かが自動で決まる）。その時のコードに♯・♭の付いた音があり、メロディがコードの音なら、ハモリもコードの音に寄せます（例：ハ長調で E のコード → ソではなくソ♯）。0.2秒より長い音は、コードの音と半音でぶつからない音を選びます。メロディが音階に無い音のときは、その幅（3度なら3〜4半音）の中のコードの音・音階の音を選びます。</p>
@@ -428,7 +428,7 @@ document.documentElement.setAttribute("data-l",l);document.documentElement.lang=
 <li><b>5. How the voice is made</b>
 <table><tr><th>Method</th><th>What it does</th><th>Time</th></tr>
 <tr><td>Pitch-shift the vocal (instant)</td><td>Shifts the separated lead vocal to the harmony notes without changing its character (only the lead if the lead/chorus splitter is installed)</td><td>Seconds</td></tr>
-<tr><td>Sing with the re-singing AI</td><td>Re-sings the harmony line in the same singer’s voice. Each lyric line is sung 2 ways, the closer one is used, then each note’s pitch is matched</td><td>About 1–2 min per line (keeps going with the screen closed; resumes if stopped)</td></tr></table></li>
+<tr><td>Sing with the re-singing AI</td><td>Re-sings the harmony line in the same singer’s voice. Each lyric line is sung 2 ways, the closer one is used, then each note’s pitch is matched. English lines work too (“-”, “&” and the like are read as word breaks). Lines with an English word missing from the pronunciation dictionary, and parts with no lyrics, use the pitch-shifted voice for just those notes (the lines are listed when it finishes)</td><td>About 1–2 min per line (keeps going with the screen closed; resumes if stopped)</td></tr></table></li>
 <li>“Compare before and after the harmony”: 1 s around the section as “▶ Before”, “▶ With harmony” and “▶ Only what changed” (just the harmony), switching at the same spot</li>
 <li>“Add harmony” → under “Added harmony”, ▶ compares and ✕ removes. “Export with harmony (keep the original)”</li></ol>
 <p><b>How notes are chosen (♯/♭)</b>: counted in the scale of the key of that bar (so a 3rd is major or minor automatically). If the chord has a ♯/♭ note and the melody is on a chord note, the harmony moves to the chord note too (e.g. in C major over an E chord: G♯ instead of G). Notes longer than 0.2 s avoid a semitone clash with chord notes. For melody notes outside the scale, a chord or scale note within that interval (3–4 semitones for a 3rd) is chosen.</p>
