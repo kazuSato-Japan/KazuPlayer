@@ -4,6 +4,7 @@
 
 <p align="center">自分で作った曲を、聴く・比べる・確かめる・仕上げる・公開する。<br>AIで曲を作る人のための、Android用の音楽・動画プレイヤー（無料・趣味で作っています）。</p>
 <p align="center">A free Android music &amp; video player for people who make songs, including with AI (a hobby project).</p>
+<p align="center"><b>Sunoの曲の1語だけ、作り直さずに同じ声のまま直す / Fix one mispronounced word in a Suno song — without regenerating, same voice</b></p>
 
 <p align="center"><b><a href="https://kazusato-japan.github.io/KazuPlayer/">紹介ページ / Website</a></b> ・ <a href="https://github.com/kazuSato-Japan/KazuPlayer/releases/latest/download/KazuPlayer.apk">ダウンロード / Download (KazuPlayer.apk)</a></p>
 
@@ -22,6 +23,11 @@
 - **歌詞を仕上げる**：自動で時刻付け（LRC）、タップで同期、埋め込み、字幕(.srt)、歌詞動画
 - **公開準備・作品カード**
 - **プレイヤー**：10バンドEQ、ReplayGain、動画・YouTube の小窓再生、日本語/英語の画面
+
+### よくある質問
+- **Sunoで作った曲の1語だけ、ボーカルを変えずに直せますか？** 発音や読みが違う・聞き取りにくい1語なら直せます。Sunoで作り直すと声や歌い方まで変わりますが、KazuPlayerはダウンロードした曲そのものを直します。同じ曲の中で同じ歌手がうまく歌えている音を借りて、その所だけ差し替えます
+- **全く別の言葉に変えられますか？** その音が曲の中のどこにも無い言葉には変えられません（例：cat → dog）。正しい歌詞で1行だけ歌い直す機能か、Sunoの置き換えを使ってください
+- **お金やクレジットはかかりますか？** かかりません。Sunoのクレジットも使わず、曲はスマホの外に送りません
 
 ### できないこと・注意
 - 部品が大きいです（楽譜と歌の部分修正で約1.9GB、歌い直しのAIで約1.8GB。使う分だけで足ります）
@@ -50,6 +56,11 @@
 - **Lyrics**: auto-timing (LRC), tap sync, embedding, subtitles (.srt), lyric videos
 - **Release prep and work cards**
 - **Player**: 10-band EQ, ReplayGain, video and YouTube picture-in-picture, English/Japanese UI
+
+### FAQ
+- **Can I change one word in a Suno song without changing the vocals?** Yes, if the word is mispronounced, slurred or hard to hear. Regenerating in Suno changes the voice and phrasing too; KazuPlayer fixes the downloaded song itself, borrowing the same sound from a spot in the same song where the same singer sang it well.
+- **Can I turn a word into a completely different word?** Not if those sounds don’t exist anywhere in the song (e.g. cat → dog). Use the re-sing-one-line feature or Suno’s Replace for that.
+- **Does it cost money or Suno credits?** No. It is free, uses no Suno credits, and your songs never leave your phone.
 
 ### Limitations
 - Large downloads (about 1.9GB for sheet music and vocal fix, about 1.8GB for the re-singing AI — only what you use)

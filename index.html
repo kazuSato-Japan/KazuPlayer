@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>KazuPlayer — 自分で作った曲のためのプレイヤー / A player for your own songs</title>
-<meta name="description" content="AIや自分で曲を作る人のための、Android用の音楽・動画プレイヤー。無料。 A free Android music & video player for people who make songs, including with AI.">
-<meta property="og:title" content="KazuPlayer">
+<title>KazuPlayer — Sunoの曲の1語だけ、同じ声のまま直す / Fix one word in a Suno song without changing the vocals</title>
+<meta name="description" content="Sunoなどで作った曲の、発音や読みが違う1語だけを、作り直さずに同じ声のまま直せる無料のAndroidアプリ。楽譜・マスタリング・歌詞動画も。 Fix one mispronounced word in a Suno song without regenerating and without changing the vocals. Free Android app with sheet music, mastering and lyric videos.">
+<meta property="og:title" content="KazuPlayer — fix one word in a Suno song, same voice">
 <meta property="og:description" content="自分で作った曲を、聴く・比べる・確かめる・仕上げる・公開する。Android用・無料。 Listen, compare, check, finish and release your own songs. Free for Android.">
 <meta property="og:image" content="https://kazusato-japan.github.io/KazuPlayer/logo.png">
 <link rel="icon" href="logo.png">
@@ -91,6 +91,19 @@ document.documentElement.setAttribute("data-l",l);document.documentElement.lang=
   </div>
   <p class="small"><span class="ja">楽譜・歌の部分修正・歌詞の自動同期・書き出しは、インターネットにつながっている所で使えます（曲そのものは外に送らず、計算はスマホの中です）。</span><span class="en">Sheet music, vocal fix, lyric auto-timing and export need an internet connection (your songs are not uploaded; everything is computed on your phone).</span></p>
 
+  <h2 id="faq"><span class="ja">よくある質問</span><span class="en">FAQ</span></h2>
+  <div class="card">
+    <div class="ja">
+      <p style="margin:0 0 16px"><b>Sunoで作った曲の1語だけ、ボーカルを変えずに直せますか？</b>発音や読みが違う・聞き取りにくい1語なら直せます。Sunoで作り直すと声や歌い方まで変わりますが、KazuPlayerはダウンロードした曲そのものを直すので、声はそのままです。同じ曲の中で同じ歌手がうまく歌えている音を借りて、その所だけ差し替えます。</p>
+      <p style="margin:0 0 16px"><b>全く別の言葉に変えられますか？</b>その音が曲の中のどこにも無い言葉には変えられません（例：cat → dog）。その場合は、正しい歌詞で1行だけ歌い直す機能か、Sunoの置き換えを使ってください。</p>
+      <p style="margin:0 0 16px"><b>お金やクレジットはかかりますか？</b>かかりません。Sunoのクレジットも使いません。曲はスマホの外に送りません。</p>
+    </div>
+    <div class="en">
+      <p style="margin:0 0 16px"><b>Can I change one word in a Suno song without changing the vocals?</b>Yes, if the word is mispronounced, slurred or hard to hear. Regenerating in Suno changes the voice and phrasing too, but KazuPlayer fixes the downloaded song itself, so the voice stays the same. It borrows the same sound from a spot in the same song where the same singer sang it well, and replaces just that spot.</p>
+      <p style="margin:0 0 16px"><b>Can I turn a word into a completely different word?</b>Not if those sounds don’t exist anywhere in the song (for example, cat → dog). For that, use the re-sing-one-line feature with the correct lyrics, or Suno’s Replace.</p>
+      <p style="margin:0 0 16px"><b>Does it cost money or Suno credits?</b>No. It is free and uses no Suno credits. Your songs never leave your phone.</p>
+    </div>
+  </div>
   <h2><span class="ja">できないこと・注意</span><span class="en">Limitations</span></h2>
   <ul class="ja lim">
     <li>部品が大きいです。楽譜と歌の部分修正で約1.9GB、歌い直しのAIで約1.8GB（全部入れると約3.7GB）。使う機能の分だけ入れれば足ります。Wi-Fi での取得をおすすめします。</li>
