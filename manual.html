@@ -372,7 +372,8 @@ document.documentElement.setAttribute("data-l",l);document.documentElement.lang=
 <ul><li>▶で直す前・直した後を聴き比べられます。✕で消せます（画面の下のボタンで戻せます）。「全部消す」もあります</li>
 <li>入れた直しはアプリに残るので、画面を閉じても続きからできます。同じ所を2回は直せません</li>
 <li>「直して書き出す（元の曲は残す）」：画面を閉じても続き、止まっても次は続きから書き出します</li>
-<li>入れた直しは、歌の部分修正・楽譜・ハモリの「書き出す」にも一緒に入ります</li></ul>
+<li>入れた直しは、歌の部分修正・楽譜・ハモリの「書き出す」にも一緒に入ります</li>
+<li>どの画面の「書き出す」でも、入れた直しが全部入った同じ曲になります（歌の部分修正・楽譜・歌い直した行・ドラム・ハモリ・傷と音量）。聴き比べにも、近くにあるほかの画面の直しが入ります</li></ul>
 <p class="tip">確かめた結果（作者の Suno の曲10曲・44分）：傷の無い所で「はっきり」と出るのは1分に約0.2か所（4分の曲で0〜2か所。多くは曲の始め・終わり）。まわりの2倍の強さの短い雑音は 20個中 19個、2〜4ms の音の切れ目は 40個中 40個、20〜80ms の音の抜けは 60個中 60個を見つけ、直したあと探し直すと 248個中 247個は見つかりませんでした。サビの2回目なども毎回少しずつ違うので、借りた所はまったく同じ音にはなりません。必ず「直した後」で聴いて確かめてください。</p></div>
 <div class="en"><span class="where">Create → Glitch &amp; volume fix</span>
 <p>Fix tiny glitches under a second that are common in Suno songs — clicks and ticks, and spots where the sound drops out for a moment — or change the volume of just one spot. <b>No lyrics or score needed.</b> The original stays; the result is saved in the same folder as <code>title_fix.mp3</code>.</p>
@@ -397,7 +398,8 @@ document.documentElement.setAttribute("data-l",l);document.documentElement.lang=
 <ul><li>▶ compares before and after; ✕ removes one (the button at the bottom of the screen brings it back). “Clear all” too</li>
 <li>Added fixes are kept in the app, so you can close the screen and carry on later. The same spot can’t be fixed twice</li>
 <li>“Fix and export (keep the original)”: keeps going if you close the screen, and resumes where it stopped</li>
-<li>Added fixes are also included when you export from Partial vocal fix, sheet music or Add harmony</li></ul>
+<li>Added fixes are also included when you export from Partial vocal fix, sheet music or Add harmony</li>
+<li>Every “Export” button produces the same song with all your fixes (vocal fixes, score edits, re-sung lines, drums, harmony, glitch &amp; volume). The A/B previews also include nearby fixes made on the other screens</li></ul>
 <p class="tip">What we measured (10 of the author’s Suno songs, 44 minutes): where there are no glitches, about 0.2 per minute show as “clear” (0–2 in a 4-minute song, mostly at the start or end). Of inserted glitches, 19 of 20 short noise bursts twice as loud as the music, 40 of 40 gaps of 2–4 ms and 60 of 60 dropouts of 20–80 ms were found, and after fixing, a second search no longer found 247 of 248. The second chorus is a little different each time, so a borrowed spot won’t be exactly the same sound — always check with “Fixed”.</p></div>
 </section>
 
@@ -415,7 +417,8 @@ document.documentElement.setAttribute("data-l",l);document.documentElement.lang=
 <tr><td>「歌の高さをずらす（すぐ）」</td><td>分けたメインの歌を、声の響きを変えずにハモリの高さへずらす（メインとコーラスを分ける部品があればメインだけ）</td><td>数秒</td></tr>
 <tr><td>「歌い直しAIで歌う」</td><td>同じ歌い手の声で、ハモリの高さを歌い直す。歌詞の行ごとに2通り歌い、近いほうを使い、最後に1音ずつ高さを合わせる。英語の行も歌える（「-」「&」などは語の区切りとして読む）。発音辞書に無い英単語がある行や歌詞の無い所は、その音符だけ「歌の高さをずらす」声で作る（どの行かは終わったときに出る）</td><td>1行 約1〜2分（画面を閉じても続き、止まっても続きから）</td></tr></table></li>
 <li>「ハモリの前・後を聴き比べる」：区間の前後1秒を「▶ 直す前」「▶ ハモリを足した後」「▶ 変わった音だけ」（足したハモリだけ）で、同じ所のまま切り替えて聴けます</li>
-<li>「ハモリに入れる」→ 下の「入れたハモリ」で▶聴き比べ・✕消す。「ハモリを入れて書き出す（元の曲は残す）」</li></ol>
+<li>「ハモリに入れる」→ 下の「入れたハモリ」で▶聴き比べ・✕消す。「ハモリを入れて書き出す（元の曲は残す）」</li>
+<li>どの画面の「書き出す」でも、入れた直しが全部入った同じ曲になります（歌の部分修正・楽譜・歌い直した行・ドラム・ハモリ・傷と音量）。聴き比べにも、近くにあるほかの画面の直しが入ります</li></ol>
 <p><b>音の決め方（♯・♭）</b>：その小節の調の音階で数えます（3度は長3度か短3度かが自動で決まる）。その時のコードに♯・♭の付いた音があり、メロディがコードの音なら、ハモリもコードの音に寄せます（例：ハ長調で E のコード → ソではなくソ♯）。0.2秒より長い音は、コードの音と半音でぶつからない音を選びます。メロディが音階に無い音のときは、その幅（3度なら3〜4半音）の中のコードの音・音階の音を選びます。</p>
 <p class="tip">確かめた結果（作者の曲「もしも（RnB）」の1行・嬰ヘ短調、メインの歌を取り出して）：高さをずらす方式は、狙った高さとの差が中央 5セント、12音すべてが半音の半分以内。声の響きの変わり方は約1dB（ただ速さを変えて高さを変える方法だと5〜6dB）。AIで歌う方式は、AI がそのまま歌うと 12音中6〜8音が狙いの高さ、1音ずつ合わせ直したあとは12音すべて（3度上の乱数2通り・4度下）。英語の「Before Tomorrow (Younger Days)」の「Carry me away tonight」（ロ短調・7音）では、AI そのまま 2〜4音、合わせ直したあと 6音。作者の8曲の楽譜で、長い音のぶつかりを避ける前と後で、3度上のハモリがコードの音と半音でぶつかる音は 7〜26% → 3〜21% に減りました（残りの多くは短い経過音）。分けた歌に伴奏のにじみが残っていると、それも一緒に高さが動きます（大きさを下げると目立ちにくい）。</p></div>
 <div class="en"><span class="where">Create → Add harmony</span>
@@ -430,7 +433,8 @@ document.documentElement.setAttribute("data-l",l);document.documentElement.lang=
 <tr><td>Pitch-shift the vocal (instant)</td><td>Shifts the separated lead vocal to the harmony notes without changing its character (only the lead if the lead/chorus splitter is installed)</td><td>Seconds</td></tr>
 <tr><td>Sing with the re-singing AI</td><td>Re-sings the harmony line in the same singer’s voice. Each lyric line is sung 2 ways, the closer one is used, then each note’s pitch is matched. English lines work too (“-”, “&” and the like are read as word breaks). Lines with an English word missing from the pronunciation dictionary, and parts with no lyrics, use the pitch-shifted voice for just those notes (the lines are listed when it finishes)</td><td>About 1–2 min per line (keeps going with the screen closed; resumes if stopped)</td></tr></table></li>
 <li>“Compare before and after the harmony”: 1 s around the section as “▶ Before”, “▶ With harmony” and “▶ Only what changed” (just the harmony), switching at the same spot</li>
-<li>“Add harmony” → under “Added harmony”, ▶ compares and ✕ removes. “Export with harmony (keep the original)”</li></ol>
+<li>“Add harmony” → under “Added harmony”, ▶ compares and ✕ removes. “Export with harmony (keep the original)”</li>
+<li>Every “Export” button produces the same song with all your fixes (vocal fixes, score edits, re-sung lines, drums, harmony, glitch &amp; volume). The A/B previews also include nearby fixes made on the other screens</li></ol>
 <p><b>How notes are chosen (♯/♭)</b>: counted in the scale of the key of that bar (so a 3rd is major or minor automatically). If the chord has a ♯/♭ note and the melody is on a chord note, the harmony moves to the chord note too (e.g. in C major over an E chord: G♯ instead of G). Notes longer than 0.2 s avoid a semitone clash with chord notes. For melody notes outside the scale, a chord or scale note within that interval (3–4 semitones for a 3rd) is chosen.</p>
 <p class="tip">What we measured (one line of the author’s song “Moshimo (RnB)”, F♯ minor, lead vocal separated): pitch-shifting hits the target with a median error of 5 cents, all 12 notes within a quarter tone, and the vocal tract shape changes by about 1 dB (5–6 dB with simple resampling). The AI sang 6–8 of 12 notes at the target as is, and all 12 after per-note matching (3rd above with 2 seeds, 4th below). On the English line “Carry me away tonight” from “Before Tomorrow (Younger Days)” (B minor, 7 notes): 2–4 as is, 6 after matching. Across 8 of the author’s scores, avoiding clashes on long notes cut semitone clashes of a 3rd-above harmony from 7–26% to 3–21% (most of the rest are short passing notes). If the separated vocal still contains some backing, it is shifted too (lower the level to hide it).</p></div>
 </section>
