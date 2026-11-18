@@ -338,10 +338,10 @@ document.documentElement.setAttribute("data-l",l);document.documentElement.lang=
 <li>それぞれにおすすめの直し方が付きます：同じ曲の中で同じ文字をはっきり歌っている所から差し替える／母音を寄せる</li>
 <li>「▶ 今の音」「▶ 直した後」で聴き比べて「採用」（「全部採用」もできます。「元に戻す」で戻せます）</li>
 <li>「歌詞から選ぶ」：1文字ずつ、タイミング（ミリ秒）・音程（半音）・母音・差し替えを自分で直せます。曲の中に同じ文字が無いときは「子音と母音を別々に借りる」で、子音は同じ子音の別の字から、母音は同じ母音の別の字から借りて組み合わせます（例：「えん」と歌った所を「ふち」に。「ふ」は「ほ」の子音と「す」の母音から）</li>
-<li>「AIで歌い直す」（行を開くと出ます）：同じ声・同じメロディで、正しい歌詞で1行歌い直します。6通りから一番を自動で選び、聴いて決められます。できたあと「入れ替える文字」で字を押すと、その字だけを AI の声にし、ほかは元の歌のまま残せます。英語も歌えます（発音辞書にある単語）。初回は部品 約1.8GB、1通り 約20〜60秒</li>
+<li>「AIで歌い直す」（行を開くと出ます）：同じ声・同じメロディで、正しい歌詞で1行歌い直します。6通りから一番を自動で選び、聴いて決められます。できたあと「入れ替える文字」で字を押すと、その字だけを AI の声にし、ほかは元の歌のまま残せます。「これにする」で入れた歌い直しはすぐ保存され（書き出さなくても残ります）、最後の「マスタリング」の書き出しに入ります。入れ替えた字の問題は「健康診断」で「AIで歌い直して直しました」と出て、文字ごとの直しは入れません。英語も歌えます（発音辞書にある単語）。初回は部品 約1.8GB、1通り 約20〜60秒</li>
 <li>「曲全体」の「元の曲」「直した後」で、再生しながら同じ所で切り替えて比べられます（書き出しとまったく同じ作り方です。「傷・音量の直し」「ハモリを足す」で保存したものも入ります。聴いたあと、同じ直しのまま書き出すと、作り直さずにすぐ書き出せます）</li>
 <li>「書き出す」：直した所を全部入れた曲を、別のファイル（<code>曲名_note_edit.mp3</code>）に保存します</li></ol>
-<p class="tip">言葉（歌詞・発音）はこの画面、音符（高さ・長さ・タイミング）とドラムは楽譜の画面で直します。どちらの「書き出す」でも、両方の直し・歌い直し・ドラムの直し・傷・音量の直しが、まとめて1つのファイルに入ります。その音が曲のどこにも無い、まったく別の言葉（cat → dog など）には変えられません（その時は「AIで歌い直す」）。</p></div>
+<p class="tip">言葉（歌詞・発音）はこの画面、音符（高さ・長さ・タイミング）とドラムは楽譜の画面で直します。直しはどれも入れたときに保存され、最後の「マスタリング」の書き出しで、両方の直し・歌い直し・ドラムの直し・傷・音量の直し・ハモリが、まとめて1つのファイルに入ります（各画面の「直しだけ書き出す」は、マスタリングなしの曲が欲しいときだけ）。その音が曲のどこにも無い、まったく別の言葉（cat → dog など）には変えられません（その時は「AIで歌い直す」）。</p></div>
 <div class="en"><span class="where">Create → Partial vocal fix</span>
 <p>Fix the one word that came out wrong in a Suno (or other AI) track — without regenerating, in the same voice. Needs timed lyrics (LRC) and the advanced parts. You don’t need to make the score first.</p>
 <ol><li>Analyze vocals (a few minutes; keeps going if you close the screen)</li>
@@ -349,10 +349,10 @@ document.documentElement.setAttribute("data-l",l);document.documentElement.lang=
 <li>Each comes with a suggested fix: replace with a spot in the same song where the same syllable is sung clearly, or move the vowel</li>
 <li>Compare with “▶ Current” / “▶ Fixed” and “Accept” (or “Accept all”; it can be undone)</li>
 <li>Choose from lyrics: fix timing (ms), pitch (semitones), vowel and replacement yourself, character by character</li>
-<li>Re-sing with AI (open a line): re-sings one line with the correct lyrics in the same voice and melody. Picks the best of 6 automatically, and you can listen and choose. Afterwards, tap characters to swap in only those from the AI and keep the rest of the original. English works too (words in the pronunciation dictionary). First time about 1.8GB of parts; 20–60 s per take</li>
+<li>Re-sing with AI (open a line): re-sings one line with the correct lyrics in the same voice and melody. Picks the best of 6 automatically, and you can listen and choose. Afterwards, tap characters to swap in only those from the AI and keep the rest of the original. A take chosen with “Use this” is saved at once (it stays without exporting) and goes into the final “Mastering” export. Problems on the replaced characters show as “Fixed by AI re-singing” in “Health check”, and character fixes are not added there. English works too (words in the pronunciation dictionary). First time about 1.8GB of parts; 20–60 s per take</li>
 <li>Whole song: “Original” / “Fixed” switch at the same position while it plays (Built exactly the way the export is. Anything you saved in “Glitch &amp; volume fix” and “Add harmony” is included. If you export right after listening without changing the fixes, it is not rebuilt, so the export is quick.)</li>
 <li>Export: saves the song with all fixes as a separate file (<code>title_note_edit.mp3</code>)</li></ol>
-<p class="tip">Words (lyrics, pronunciation) are fixed here; notes (pitch, length, timing) and drums on the score screen. Either Export puts both screens’ fixes, re-sung lines, drum fixes and glitch &amp; volume fixes into one file. A completely different word whose sounds aren’t anywhere in the song (cat → dog) can’t be made this way — use Re-sing with AI.</p></div>
+<p class="tip">Words (lyrics, pronunciation) are fixed here; notes (pitch, length, timing) and drums on the score screen. Every fix is saved as you make it, and the final “Mastering” export puts both screens’ fixes, re-sung lines, drum fixes, glitch &amp; volume fixes and harmony into one file (“Export fixes only” on each screen is only for a song without mastering). A completely different word whose sounds aren’t anywhere in the song (cat → dog) can’t be made this way — use Re-sing with AI.</p></div>
 </section>
 
 <section class="f" id="c-glitch">
