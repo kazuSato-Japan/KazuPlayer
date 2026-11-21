@@ -1,0 +1,28 @@
+name: 感想・不具合 / Feedback & bugs
+description: 使ってみた感想、困ったこと、不具合を送る（日本語でも英語でも） / Tell us what worked, what didn't, or what broke.
+title: "[感想・不具合] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        送ってくださってありがとうございます。短くて大丈夫です。曲のファイルは送らなくて大丈夫です。
+        Thanks! Short is fine. You don't need to attach your song.
+  - type: textarea
+    id: details
+    attributes:
+      label: 何をしたら、どうなったか / What you did and what happened
+      description: 例：「楽譜」で「直す」→「歌の音も変える」を押したら、音が出ない / e.g. Tapped "Fix" on a word and no sound played
+    validations:
+      required: true
+  - type: textarea
+    id: wish
+    attributes:
+      label: こうなってほしい・あったらいい機能（任意） / What you'd like instead (optional)
+  - type: input
+    id: version
+    attributes:
+      label: アプリの版 / App version
+  - type: input
+    id: device
+    attributes:
+      label: 機種・Android / Device & Android
