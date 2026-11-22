@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ja" data-l="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>はじめての使い方：Sunoの曲の1語を直して書き出すまで / Getting started</title>
+<meta name="description" content="KazuPlayer を入れてから、Sunoの曲の読み間違い・傷を直して書き出すまでを、押す順に。">
+<meta property="og:title" content="KazuPlayer はじめての使い方 / Getting started">
+<meta property="og:image" content="https://kazusato-japan.github.io/KazuPlayer/logo.png">
+<link rel="icon" href="logo.png">
+<style>
+:root{--bg:#070a1c;--card:#11152e;--text:#eef0f8;--sub:#aab0c8;--cyan:#7fd8ff;--pink:#ff8ad0;--line:#252b4d;--new:#ffd38a}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(1200px 600px at 50% -10%,#1b2160 0%,var(--bg) 60%);background-color:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;line-height:1.75}
+html[data-l="ja"] .en,html[data-l="en"] .ja{display:none!important}
+.lang{position:fixed;top:12px;right:12px;z-index:10;background:#11152ecc;border:1px solid var(--cyan);color:var(--cyan);border-radius:999px;padding:6px 14px;font-weight:700;font-size:.9rem;cursor:pointer;backdrop-filter:blur(6px)}
+main{max-width:760px;margin:0 auto;padding:32px 16px 64px}
+header{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+header img{width:56px;height:56px}
+header a{color:var(--text);text-decoration:none}
+h1{font-size:1.6rem;margin:0}
+.sub{color:var(--sub);font-size:.95rem;margin:4px 0 20px}
+h2{font-size:1.3rem;margin:44px 0 10px;border-left:4px solid var(--pink);padding-left:10px}
+h3{font-size:1.08rem;margin:0 0 6px;color:var(--cyan)}
+section.f{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin:12px 0;scroll-margin-top:16px}
+.where{display:inline-block;font-size:.85rem;color:var(--bg);background:var(--cyan);border-radius:6px;padding:0 8px;margin:0 0 6px}
+.new{display:inline-block;font-size:.75rem;color:var(--bg);background:var(--new);border-radius:6px;padding:0 6px;margin-left:6px;vertical-align:2px}
+p{margin:6px 0}
+ul,ol{padding-left:1.3em;margin:6px 0} li{margin:4px 0}
+.tip{color:var(--sub);font-size:.92rem}
+.toc{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 16px}
+.toc b{color:var(--pink)}
+.toc ol{columns:2;column-gap:24px}
+@media(max-width:520px){.toc ol{columns:1}}
+.toc a{color:var(--text);text-decoration:none} .toc a:hover{color:var(--cyan)}
+table{border-collapse:collapse;width:100%;font-size:.92rem;margin:6px 0}
+td,th{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+th{color:var(--cyan);font-weight:600}
+code{background:#1a1f40;padding:1px 6px;border-radius:6px;color:#ffd38a}
+a{color:var(--cyan)}
+.top{display:inline-block;margin-top:24px}
+footer{margin-top:48px;color:var(--sub);font-size:.8rem;text-align:center}
+</style>
+<script>
+(function(){var l=null;try{l=new URLSearchParams(location.search).get("lang")}catch(e){}
+if(l!=="ja"&&l!=="en"){try{l=localStorage.getItem("kp-lang")}catch(e){}}
+if(l!=="ja"&&l!=="en"){l=(navigator.language||"ja").toLowerCase().indexOf("ja")===0?"ja":"en"}
+document.documentElement.setAttribute("data-l",l);document.documentElement.lang=l;})();
+</script>
+</head>
+<body>
+<button class="lang" id="lang" type="button" aria-label="Language"><span class="ja">EN</span><span class="en">日本語</span></button>
+<main id="top">
+<header><a href="./"><img src="logo.png" alt="KazuPlayer"></a><div><h1><span class="ja">はじめての使い方</span><span class="en">Getting started</span></h1></div></header>
+<p class="sub"><span class="ja">アプリを入れてから、Suno の曲の読み間違い・傷を直して書き出すまで。押す順に、画面の名前のまま書いています（v3.6.79 から）。</span><span class="en">From installing the app to fixing a mis-sung word and glitches in a Suno song and saving the result — in the order you tap, using the on-screen names (v3.6.79 and later).</span></p>
+<section class="f" id="s0"><h3><span class="ja">0. 用意するもの</span><span class="en">0. What you need</span></h3><div class="ja"><ul><li>Android スマホ（Android 11 以降）。パソコン・iPhone では動きません</li>
+<li>空き容量：約4GB（解析の部品 約1.6GB ＋ 歌い直しのAI 約1.8GB。歌い直しを使わなければ約1.6GB）。部品は Wi-Fi で取るのがおすすめ</li>
+<li>直したい曲（Suno からダウンロードした MP3 など）と、その歌詞（Suno の歌詞の欄をそのままコピー。時刻は要りません）</li>
+<li>時間：4分の曲で、解析が30分ほど（画面を閉じて放っておけます）。処理中はスマホが温かくなるので、充電しながらがおすすめです</li></ul></div><div class="en"><ul><li>An Android phone (Android 11+). It does not run on PCs or iPhones</li>
+<li>Free space: about 4GB (analysis parts ~1.6GB + re-singing AI ~1.8GB; ~1.6GB if you don't re-sing). Wi-Fi recommended for the parts</li>
+<li>The song to fix (e.g. the MP3 downloaded from Suno) and its lyrics (copy them from Suno as they are — no timings needed)</li>
+<li>Time: about 30 minutes of analysis for a 4-minute song (you can turn the screen off). The phone gets warm, so charging while it runs is a good idea</li></ul></div></section>
+<section class="f" id="s1"><h3><span class="ja">1. アプリを入れる（更新も同じ）</span><span class="en">1. Install the app (same for updates)</span></h3><div class="ja"><ol><li><a href="./">トップページ</a>の「無料ダウンロード」を押して、<code>KazuPlayer.apk</code> を保存します</li>
+<li>ダウンロードした <code>KazuPlayer.apk</code> を開きます</li>
+<li>「この提供元のアプリを許可」を求められたらオンにして戻り、「インストール」（更新のときは「更新」）を押します</li>
+<li>Play プロテクトの画面が出たら「詳細」→「このままインストール」。くわしくは<a href="./#install-warning">警告の説明</a></li></ol>
+<p class="tip">更新は上書きで入れるだけです。直し・設定は残ります。</p></div><div class="en"><ol><li>On the <a href="./">home page</a>, tap “Free download” and save <code>KazuPlayer.apk</code></li>
+<li>Open the downloaded <code>KazuPlayer.apk</code></li>
+<li>If asked, turn on “Allow from this source”, go back and tap “Install” (“Update” when updating)</li>
+<li>If Play Protect appears, tap “More details” → “Install anyway”. See <a href="./#install-warning">about the warnings</a></li></ol>
+<p class="tip">Updating is just installing over the old version. Your fixes and settings are kept.</p></div></section>
+<section class="f" id="s2"><h3><span class="ja">2. はじめて開く・聴くだけなら</span><span class="en">2. First launch / just listening</span></h3><div class="ja"><ol><li>アプリを開き、音楽へのアクセスを「許可」します。スマホの中の曲が下の「ライブラリ」に並びます</li>
+<li>聴くだけなら、「ライブラリ」で曲を押すだけです。歌詞・聴き比べ・音質などは<a href="manual.html">使い方マニュアル</a>へ</li></ol></div><div class="en"><ol><li>Open the app and “Allow” access to music. Songs on your phone appear under “Library” at the bottom</li>
+<li>To just listen, tap a song in “Library”. For lyrics, A/B listening, sound and more, see the <a href="manual.html">user manual</a></li></ol></div></section>
+<section class="f" id="s3"><span class="where ja">作る</span><span class="where en">Create</span><h3><span class="ja">3. 直す曲を選ぶ</span><span class="en">3. Choose the song to fix</span></h3><div class="ja"><ol><li>下の「作る」を押します</li><li>上の「曲を選んでください」（選んだあとは「曲を変える」）を押して、直したい曲を選びます</li></ol>
+<p class="tip">ここから先は「作る」の一番上の「次にやること」に、その曲で次に押すものが1つずつ出ます。「開く」を押して進めます。</p></div><div class="en"><ol><li>Tap “Create” at the bottom</li><li>Tap “Choose a song” at the top (“Change song” once chosen) and pick the song</li></ol>
+<p class="tip">From here, “Next step” at the top of “Create” shows one thing to do next for that song. Tap “Open” to go on.</p></div></section>
+<section class="f" id="s4"><span class="where ja">作る → 次にやること</span><span class="where en">Create → Next step</span><h3><span class="ja">4. 歌詞を貼る</span><span class="en">4. Paste the lyrics</span></h3><div class="ja"><ol><li>「次にやること」の「歌詞を貼り付ける」→「開く」</li><li>「歌詞を貼り付ける」を押し、Suno の歌詞をそのまま貼って「保存」（[Verse] などの指示は自動で取り除きます。時刻は要りません）</li><li>上の「「作る」に戻る」で戻ります</li></ol>
+<p class="tip">省略せずに、歌っているとおりの歌詞を貼ってください（くり返しのサビも全部）。違っていると、時刻と歌い間違いの見つけ方がずれます。</p></div><div class="en"><ol><li>In “Next step”, “Paste lyrics” → “Open”</li><li>Tap “Paste lyrics”, paste your Suno lyrics as they are and tap “Save” ([Verse] tags are removed automatically; no timings needed)</li><li>Go back with “Back to Create” at the top</li></ol>
+<p class="tip">Paste the full lyrics exactly as sung (every repeated chorus too). If they differ, the timings and the mis-sung word check will be off.</p></div></section>
+<section class="f" id="s5"><span class="where ja">作る → 次にやること</span><span class="where en">Create → Next step</span><h3><span class="ja">5. まとめて準備（1回押すだけ）</span><span class="en">5. Prepare everything (one tap)</span></h3><div class="ja"><ol><li>「次にやること」の「まとめて準備（1回押すだけ）」→「開く」</li>
+<li>はじめての時は「歌の部分修正」の画面が開くので、「部品をダウンロード」を押します（約1.6GB。1回だけ。止まっても続きから）。終わったら「歌声を解析する」を押します</li>
+<li>あとは待つだけです。傷を探す → 歌を取り出す → 歌詞に時刻を付ける → 楽譜と歌い間違い探し、を続けて行います。画面を閉じても続き、進み具合は通知に出ます。止まっても、次に開いたときに続きから再開できます</li></ol>
+<p class="tip">2回目からは部品は要らないので、「開く」を押すとすぐ始まります。曲を読み込んだり歌を取り出したりするのは、この1回だけです（楽譜・歌の部分修正・ハモリは、この結果を使います）。</p></div><div class="en"><ol><li>In “Next step”, “Prepare everything (one tap)” → “Open”</li>
+<li>The first time, the “Partial vocal fix” screen opens: tap “Download components” (~1.6GB, once; resumes if interrupted), then tap “Analyze vocals”</li>
+<li>Then just wait. It runs in one go: find glitches → isolate the vocal → time the lyrics → score and mis-sung word check. It keeps going with the screen off, shows progress in a notification, and resumes if interrupted</li></ol>
+<p class="tip">After the first time no download is needed and “Open” starts right away. The song is read and the vocal isolated only once (sheet music, partial vocal fix and harmony all use this result).</p></div></section>
+<section class="f" id="s6"><span class="where ja">作る → 次にやること</span><span class="where en">Create → Next step</span><h3><span class="ja">6. 見つかった傷を直す（あれば）</span><span class="en">6. Fix the glitches found (if any)</span></h3><div class="ja"><ol><li>「次にやること」の「見つかった傷を直す」→「開く」</li><li>図の線（赤＝プチッ・青＝音の抜け）を押し、▶ で「直す前」「直した後」を聴き比べます</li><li>よければ「選んだ傷を直しに入れる（〇か所）」。直さなくてよければ「この曲ではやらない（次へ）」</li></ol></div><div class="en"><ol><li>In “Next step”, “Fix the glitches found” → “Open”</li><li>Tap a line on the chart (red = click, blue = dropout) and compare “Before” and “After” with ▶</li><li>If it sounds right, tap “Add selected glitches to the fixes (n)”. To skip, tap “Not for this song (next)”</li></ol></div></section>
+<section class="f" id="s7"><span class="where ja">作る → 次にやること → 歌の部分修正</span><span class="where en">Create → Next step → Partial vocal fix</span><h3><span class="ja">7. 歌い間違いを直す</span><span class="en">7. Fix the mis-sung words</span></h3><div class="ja"><ol><li>「次にやること」の「歌の部分修正で、見つけた所を直す」→「開く」</li>
+<li>「直したほうがよい所」に、歌詞と違って聞こえる文字が並びます。行ごとに「▶ 今の音」「▶ 直した後」で聴き比べ、よければ「採用」（全部よければ「全部採用」）</li>
+<li>見つからなかった所は「歌詞から選ぶ」で、行と文字を選んで直します</li>
+<li>差し替えで直らない所・言葉を変えたい所は、行の「AIで歌い直す」：「歌う言葉（ひらがな）」に歌ってほしい読みを書いて「作り直す」→ 6通りを ▶ で聴いて「これにする」。<br>はじめての時は歌い直しのAI（約1.8GB）を取ります。動かす間、スマホの空きメモリが約3GB要ります（ほかのアプリを閉じると空きます）。1行で数分かかります</li></ol></div><div class="en"><ol><li>In “Next step”, “Fix the spots found in Partial vocal fix” → “Open”</li>
+<li>“Spots to fix” lists characters that sound different from the lyrics. For each, compare “▶ Current” and “▶ Fixed”, then tap “Accept” (or “Accept all”)</li>
+<li>For spots it missed, use “Choose from lyrics” to choose the line and character</li>
+<li>If a swap doesn't fix it, or you want different words, use the line's “Re-sing with AI”: type the reading in “Words to sing (hiragana)”, tap “Remake”, listen to the 6 takes with ▶ and tap “Use this”.<br>The first time it downloads the re-singing AI (~1.8GB). It needs about 3GB of free memory while running (close other apps). Each line takes a few minutes</li></ol></div></section>
+<section class="f" id="s8"><span class="where ja">作る → 歌の部分修正</span><span class="where en">Create → Partial vocal fix</span><h3><span class="ja">8. 聴き比べて、書き出す</span><span class="en">8. Compare and save</span></h3><div class="ja"><ol><li>「歌の部分修正」の上の「曲全体」の「▶ 元の曲」「▶ 直した後」で、同じ所のまま切り替えて聴き比べます</li>
+<li>右上の「書き出す」を押します。傷・歌の直し・歌い直しを全部入れた曲が、元の曲と同じフォルダに別の名前で保存されます（元の曲はそのまま）。数分かかり、画面を閉じても続きます</li></ol>
+<p class="tip">その先は「次にやること」に、ハモリ・楽器の直し・構成・マスタリング・歌詞動画が順に出ます（どれも好みで。「この曲ではやらない（次へ）」で飛ばせます）。</p></div><div class="en"><ol><li>At the top of “Partial vocal fix”, switch between “▶ Original” and “▶ Fixed” under “Whole song” to compare at the same spot</li>
+<li>Tap “Export” at the top right. A new file with all glitch fixes, vocal fixes and re-sung lines is saved in the same folder as the original under a different name (the original is untouched). It takes a few minutes and continues with the screen off</li></ol>
+<p class="tip">After that, “Next step” suggests harmony, instrument fixes, structure, mastering and lyric video in turn (all optional; skip with “Not for this song (next)”).</p></div></section>
+<section class="f" id="s9"><h3><span class="ja">9. 困ったとき・感想</span><span class="en">9. Trouble / feedback</span></h3><div class="ja"><ul><li>止まった・落ちた：もう一度開くと「続きから再開」が出ます。アプリが落ちたときは、次に開いたときに出る記録の「作者に送る」で送ってください</li>
+<li>感想・不具合：「このアプリについて」→「感想・不具合を送る」（版と機種が入った用紙が開きます）、または X の <a href="https://x.com/KazuPlayerJP">@KazuPlayerJP</a></li></ul></div><div class="en"><ul><li>Stopped or crashed: open it again and “Resume” appears. After a crash, use “Send to the author” on the record shown at next launch</li>
+<li>Feedback: “About this app” → “Send feedback / report a bug” (opens a form with your version and device), or <a href="https://x.com/KazuPlayerJP">@KazuPlayerJP</a> on X</li></ul></div></section>
+
+document.getElementById("lang").addEventListener("click",function(){
+  var l=document.documentElement.getAttribute("data-l")==="ja"?"en":"ja";
+  document.documentElement.setAttribute("data-l",l);document.documentElement.lang=l;
+  try{localStorage.setItem("kp-lang",l)}catch(e){}
+});
+</script>
+</body>
+</html>

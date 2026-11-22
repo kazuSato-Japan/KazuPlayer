@@ -6,7 +6,7 @@
 <p align="center">A free Android music &amp; video player for people who make songs, including with AI (a hobby project).</p>
 <p align="center"><b>Sunoの曲の1語だけ、作り直さずに同じ声のまま直す / Fix one mispronounced word in a Suno song — without regenerating, same voice</b></p>
 
-<p align="center"><b><a href="https://kazusato-japan.github.io/KazuPlayer/">紹介ページ / Website</a></b> ・ <b><a href="https://kazusato-japan.github.io/KazuPlayer/manual.html">使い方マニュアル / User manual</a></b> ・ <a href="https://github.com/kazuSato-Japan/KazuPlayer/releases/latest/download/KazuPlayer.apk">ダウンロード / Download (KazuPlayer.apk)</a></p>
+<p align="center"><b><a href="https://kazusato-japan.github.io/KazuPlayer/">紹介ページ / Website</a></b> ・ <b><a href="https://kazusato-japan.github.io/KazuPlayer/guide.html">はじめての使い方 / Getting started</a></b> ・ <b><a href="https://kazusato-japan.github.io/KazuPlayer/manual.html">使い方マニュアル / User manual</a></b> ・ <a href="https://github.com/kazuSato-Japan/KazuPlayer/releases/latest/download/KazuPlayer.apk">ダウンロード / Download (KazuPlayer.apk)</a></p>
 
 [日本語](#日本語) ・ [English](#english)
 
