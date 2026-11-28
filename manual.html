@@ -71,6 +71,7 @@ document.documentElement.setAttribute("data-l",l);document.documentElement.lang=
 </ol>
 <b><span class="ja">音を直す・仕上げるアプリとして</span><span class="en">Fixing and finishing your sound</span></b>
 <ol>
+<li><a href="#c-v5"><span class="ja">v5.0.0 の新しい点（3つのやり方・楽譜の広さ・ミキサー）</span><span class="en">What's new in v5.0.0 (three ways, score size, mixer)</span></a></li>
 <li><a href="#c-create"><span class="ja">「作る」タブと次にやること</span><span class="en">The Create tab and Next step</span></a></li>
 <li><a href="#c-paste"><span class="ja">歌詞の貼り付け（Suno の指示を自動で取り除く）</span><span class="en">Pasting lyrics (Suno tags removed)</span></a></li>
 <li><a href="#c-timing"><span class="ja">歌詞の時刻（自動・タップ）</span><span class="en">Lyric timing (auto / tap)</span></a></li>
@@ -275,6 +276,28 @@ document.documentElement.setAttribute("data-l",l);document.documentElement.lang=
 <h2><span class="ja">音を直す・仕上げるアプリとして</span><span class="en">Fixing and finishing your sound</span></h2>
 <p class="tip"><span class="ja">どの直しも、元の曲は変えません。直した曲は、同じフォルダに別の名前で保存します。計算はすべてスマホの中で、曲を外に送りません。</span><span class="en">No fix ever changes the original song. Results are saved in the same folder under a different name. Everything is computed on your phone; your songs are not uploaded.</span></p>
 
+<section class="f" id="c-v5">
+<h3><span class="ja">v5.0.0 の新しい点</span><span class="en">What's new in v5.0.0</span><span class="new">NEW v5.0.0</span></h3>
+<div class="ja"><span class="where">「作る」タブのどの作業でも／楽譜の画面／「効果」「マスタリング」「書き出し」</span>
+<ul><li><b>3つのやり方</b>：作業の画面の一番上で「おまかせ」「自分で細かく」「何もしない（このまま）」を選びます。「おまかせ」はおすすめの値で、見つけた所を全部入れます（傷・歌の部分修正・ハモリ・マスタリング）。入れたものは一覧に出て、1つずつ「外す」ことができます。「自分で細かく」は今までどおり、1つずつ聴いて決めます。「何もしない」はその作業を飛ばします。選んだやり方は曲ごと・作業ごとに覚え、「作る」のカードに「おまかせ」「細かく」「飛ばした」の印が出ます。最初に出すやり方は、設定の「はじめに選ぶやり方」で決められます（初めは「おまかせ」）</li>
+<li>構成・効果・トラック・楽器・ドラム・持ち込みは、どこにどうするかをあなたが決める作業なので、「おまかせ」で入れるものはありません（そう表示します。必要なときは「自分で細かく」）</li>
+<li><b>楽譜の広さ</b>：「直す」「パート」「ステレオ」の画面で、楽譜と操作の間のつまみを上下にドラッグすると、楽譜を広く・狭くできます（25%・50%・75%・全画面に吸い付きます）。「楽譜を広く」「狭く」「元の広さ」のボタンでも変えられ、画面ごとに覚えます</li>
+<li><b>ミキサー</b>（「効果」の画面の一番上）：歌・ドラム・ベース・その他の音量（−15〜+12dB）と左右を決めて「ミキサーを入れる」。書き出しで曲全体に入ります（「外す」で戻せます）</li>
+<li><b>新しい効果</b>：「パートの音量」「パートの左右」「サイドチェイン（キックで沈める）」（ドラムなどが鳴る所で、そのパートの音量を本当に下げます）「音程補正（自然〜ケロケロ）」「きらきらノイズ抑え（Suno）」。「だんだん」で、強さを区間の始まりから終わりへ滑らかに変えられます</li>
+<li><b>マスタリングの追加</b>：「細かく調整」に「サ行を抑える」「テープの質感」「真ん中の声のあたり」「左右の高音の広がり」。音量の選択肢に配信先の目安（Apple Music −16、Spotify・YouTube・Amazon Music −14、TikTok・Instagram −13 の目安、CD・クラブ −9）</li>
+<li><b>書き出しの用途</b>：「ふつう」「テレビ向け」（−24 LUFS・ピーク −1dBTP）「短縮版」（15〜60秒に切り出して終わりをフェードアウト）「ショート動画ループ」（終わりと始まりを1秒混ぜて、つなぎ目なく繰り返せます）。「歌・ドラム・ベース・その他を別々のファイルで全部」も選べます（直し・効果・構成を入れたあとの音から分けます。全部で10〜20分ほど）。映像つきの書き出しでは短縮版・ループは使えません</li>
+<li><b>見た目</b>：色・文字・余白・角の丸みの決まりをそろえ、押す所は 48dp 以上にしました。長い説明は「？」の中に入れています</li></ul></div>
+<div class="en"><span class="where">Any task on the Create tab / score screens / “Effects”, “Mastering” and export</span>
+<ul><li><b>Three ways</b>: at the top of each task screen choose “Do it for me”, “Do it in detail” or “Do nothing (as is)”. “Do it for me” adds everything it found with the recommended values (glitches, partial vocal fix, harmony, mastering) and lists it so you can remove items one by one. “Do it in detail” is the old way: listen and decide one by one. “Do nothing” skips the task. Your choice is remembered per song and per task, and the Create cards show “Auto”, “Detail” or “Skipped”. The first way offered is set in Settings → “How to start” (“Do it for me” at first).</li>
+<li>Arrangement, effects, tracks, instruments/drums and bringing in your own sound are about deciding where and what, so “Do it for me” adds nothing there (and says so). Use “Do it in detail” when you need it.</li>
+<li><b>Score size</b>: on “Fix”, “Parts” and “Stereo”, drag the handle between the score and the controls to make the score larger or smaller (it snaps to 25%, 50%, 75% and full screen). The buttons “Wider score”, “Narrower” and “Original size” do the same; the size is remembered per screen.</li>
+<li><b>Mixer</b> (top of “Effects”): set the volume (−15 to +12 dB) and pan of vocal, drums, bass and other, then press “Apply the mixer”. It goes onto the whole song when you export (“Remove” undoes it).</li>
+<li><b>New effects</b>: “Part volume”, “Part pan”, “Sidechain (duck under the kick)” (really lowers a part where drums and so on play), “Pitch correction (natural to robotic)” and “Shimmer noise reduction (Suno)”. “Gradually” changes the strength smoothly from the start to the end of a section.</li>
+<li><b>Mastering additions</b>: “Fine tuning” gains “De-esser”, “Tape feel”, “Center voice presence” and “Side high-frequency width”. Loudness choices now show streaming guides (Apple Music −16; Spotify, YouTube, Amazon Music −14; TikTok and Instagram about −13; CD and club −9).</li>
+<li><b>Export purpose</b>: “Normal”, “For TV” (−24 LUFS, peak −1 dBTP), “Short version” (cut to 15–60 seconds with a fade-out) and “Short-video loop” (the end is blended into the start for 1 second so it repeats without a seam). You can also export vocal, drums, bass and other as 4 separate files (split from the sound after fixes, effects and arrangement; 10–20 minutes in total). Short version and loop are not available when exporting with video.</li>
+<li><b>Look</b>: colors, type, spacing and corner radius are consistent, and touch targets are at least 48 dp. Long explanations are folded behind “?”.</li></ul></div>
+</section>
+
 <section class="f" id="c-create">
 <h3><span class="ja">「作る」タブと次にやること</span><span class="en">The Create tab and Next step</span></h3>
 <div class="ja"><span class="where">下のタブ「作る」</span>
@@ -468,6 +491,7 @@ document.documentElement.setAttribute("data-l",l);document.documentElement.lang=
 <li><b>NEW v3.6.65</b> 「構成」（左）：色の帯で並びを見ながら、範囲をくり返す（すぐ後ろ・イントロ・アウトロ・選んだ小節の前）・空の小節を足す（曲の前・後ろ・途中）・小節を消す・並べ替える。空の小節には、ほかの小節の選んだパートを写すか、音を足せます。直しはくり返した所にも入り、歌詞動画の時刻も合わせます</li>
 <li><b>NEW v3.6.66</b> 別のテイクから差し替える（「構成」の中）：Suno が同じ歌詞で作った別の曲（テイク）の良い所を、選んだ小節に入れます。「全部の音」か「歌だけ（伴奏はこの曲のまま）」。2つの歌詞の時刻で場所を合わせ、行ごとにテンポ、全体でキーを合わせます。「▶ 元のまま」「▶ 差し替えた後」で聴き比べて「差し替える」。どちらの曲も歌詞の時刻が要ります</li>
 <li><b>NEW v4.0.3</b> 「効果」（左）が44種類に：オートパン・ワウ（左右に振る）・オートワウ・タッチワウ・フィルターを開く／閉じる・低音を抜いていく・トレモロ・コーラス・フランジャー・フェイザー・ビブラート・ロータリー・オーバードライブ・ファズ・ビットクラッシャー・ローファイ・リングモジュレーター・スラップバック・ピンポンディレイ・小部屋／ホールの響き・コンプ・トランスゲート・ポンプ・だんだん大きく／小さく・オクターブ上／下を重ねる・ダブラー・左右に広げる／真ん中に寄せる。かける所にメインの歌・コーラス・ギター・ピアノを足し、揺らす効果は速さ（4拍で1回〜32分ごと）を拍に合わせて選べます。トラックの効果も同じ44種類です</li>
+<li><b>NEW v5.0.0</b> 「効果」の一番上に「ミキサー」（歌・ドラム・ベース・その他の音量と左右を曲全体に）。新しい効果「パートの音量」「パートの左右」「サイドチェイン（キックで沈める）」「音程補正（自然〜ケロケロ）」「きらきらノイズ抑え（Suno）」。「だんだん」で、強さを区間の中で滑らかに変えられます（例：音量を −12dB から +6dB へ）</li>
 <li><b>NEW v3.6.76</b> トラックの選んだ小節だけに効果（ガイコツマイク・ディストーションなど）。ハモリは音程がそろい、コードも見ます。「トラックを分けて書き出す」で伴奏とトラック1本ずつを別の MP3 に（最大8本）</li>
 <li><b>NEW v3.6.75</b> 「▶ 直した後」は小節の頭から、曲の前に足したドラムも入れて鳴らします。スマホのスピーカーで録ったとき、マイクに入った曲の音を消します（前に録ったトラックは「マイクに入った曲の音を消す」）</li>
 <li><b>NEW v3.6.74</b> ドラムの「同じ所」に別の太鼓を重ねられます。楽譜の「▶」は選んだ音の小節の頭から。トラックが重なって2回聞こえることと、ハモリの変な声を直しました</li>
@@ -493,6 +517,7 @@ document.documentElement.setAttribute("data-l",l);document.documentElement.lang=
 <li><b>NEW v3.6.65</b> Add outside the song: “Add” also offers bars before the song (bar −1 to −8) and after it; adding there extends the song by whole bars</li>
 <li><b>NEW v3.6.65</b> “Structure” (left): with a colored overview, repeat a range (right after, intro, outro, before a chosen bar), add empty bars (before, after, inside), remove bars, reorder. Empty bars can take chosen parts copied from other bars or added sounds. Fixes also go into repeats and lyric-video timing follows</li>
 <li><b>NEW v3.6.66</b> Replace from another take (inside “Structure”): put the good part of another song (take) Suno made with the same lyrics into the bars you choose — “Everything” or “Vocal only (keep this song’s backing)”. Position is matched with both lyric timings, tempo line by line and key overall. Compare with “▶ Original” / “▶ After replacing”, then “Replace”. Both songs need lyric timing</li>
+<li><b>NEW v5.0.0</b> “Mixer” at the top of “Effects” (volume and pan of vocal, drums, bass and other for the whole song). New effects: “Part volume”, “Part pan”, “Sidechain (duck under the kick)”, “Pitch correction (natural to robotic)” and “Shimmer noise reduction (Suno)”. “Gradually” changes the strength smoothly within a section (for example volume from -12 dB to +6 dB).</li>
 <li><b>NEW v3.6.76</b> Effects on chosen bars of a track (skeleton mic, distortion…). In-tune harmony that follows chords. “Export as separate tracks” saves the backing and each track as MP3s (up to 8)</li>
 <li><b>NEW v3.6.75</b> “▶ After” plays from the bar start including drums added before the song. When recording with the phone speaker, the song picked up by the mic is removed (for older tracks: “Remove the song picked up by the mic”)</li>
 <li><b>NEW v3.6.74</b> Layer another drum at the “Same spot”. The score “▶” starts at the selected note’s bar head. Fixed tracks playing twice and odd-sounding harmony</li>
@@ -526,6 +551,7 @@ document.documentElement.setAttribute("data-l",l);document.documentElement.lang=
 <li>中身：周波数バランスを合わせる EQ・帯域ごとのコンプ・全体のコンプ・低音を真ん中に・左右の広がり・軽い歪み・音量合わせとトゥルーピークリミッター</li>
 <li>作った仕上がりを、同じ位置のまま元の音と切り替えて聴けます（音量をそろえて比べるので、大きさにだまされません）</li>
 <li><span class="new">NEW v4.0.3</span> 「自分で決める（手動マスタリング）」を押すと、すぐ操作盤が出ます（仕上がりの準備も同時に始まり、できたら動かした値がすぐ音に入ります）。②「仕上がりを作る」と書き出しは画面を閉じても続きます（書き出し中もほかの操作ができます。書き出しの進み具合は通知に出ます）</li>
+<li><span class="new">NEW v5.0.0</span> 「細かく調整」に「サ行を抑える」「テープの質感」「真ん中の声のあたり」「左右の高音の広がり」。画面の一番上で「おまかせ」「自分で細かく」「何もしない」を選べ、「おまかせで仕上がりを作る」で測定から書き出し用の仕上がりまで進みます。音量の選択肢に配信先の目安（Apple Music −16、Spotify・YouTube・Amazon Music −14、TikTok・Instagram −13 の目安、CD・クラブ −9）。書き出しの「用途」でテレビ向け（−24 LUFS）・短縮版・ショート動画ループ・パート別4ファイルも選べます</li>
 <li><span class="new">NEW v4.0.2</span> 試し聴き・「この曲を測っておすすめを出す」・仕上がりは、この曲に入れた直し（傷・歌・楽器・ドラム・ハモリ・トラック・構成・効果）を全部入れた音で作ります。「元の音」も直しを入れた音（マスタリング前）です</li><li><span class="new">NEW v4.0.2</span> 「自分で決める（手動マスタリング）」：何もかけない所から、EQ（音色、±12dB）・圧縮・歪み・左右の広がり・低音を真ん中に、を自分で決めます。「自動の値から始める」でこの曲に合わせた値を入れてから直すこともできます。値は曲ごとに覚えます</li><li><span class="new">NEW v4.0.2</span> 区間ごとの調整（ここからこう）：「盛り上げる（サビ）」「落ち着かせる」「ラジオ風（細く）」、「くわしく」で低音（約150Hz より下）・声のあたり（約0.8〜4kHz）・左右の広がり・迫力を、その区間だけ足し引き</li><li>「この仕上がりで書き出す」：同じフォルダに <code>曲名_master</code> として保存（WAV・MP3）。この曲に入れた直し（傷・歌・楽器・ドラム・ハモリ）は全部入ります（直しを入れた曲を先に作るので、初めは数分長くかかります。試し聴きは元の曲で鳴ります）</li>
 <li><b>NEW v3.6.65</b> 「この曲を測っておすすめを出す」：周波数のバランス・強弱の幅・左右の広がり・音量（楽譜があればテンポ）から、ジャンル・雰囲気・強さ・音量のおすすめを理由付きで出します。「おすすめにする」で選ばれます</li>
 <li>「案を聴き比べる」：「控えめ」「作った案」「はっきり」を再生したまま切り替え。「細かく調整（上級者向け）」：EQ の帯ごと・圧縮・歪み・広がり・低音を真ん中に。「区間ごとの調整」：曲を流しながら区間を決め、その所だけ音量・明るさを変える（サビだけ大きく など）</li>
@@ -537,6 +563,7 @@ document.documentElement.setAttribute("data-l",l);document.documentElement.lang=
 <li>What it does: matching EQ, multiband compression, glue compression, mono bass, stereo width, light saturation, loudness and a true-peak limiter</li>
 <li>Switch between the original and the result at the same position, at matched loudness</li>
 <li>“Export with this result”: saves <code>title_master</code> in the same folder (WAV or MP3). All fixes made to this song (flaws, vocals, instruments, drums, harmony) are included (the fixed song is built first, so the first export takes a few minutes longer; the preview plays the original)</li>
+<li><span class="new">NEW v5.0.0</span> “Fine tuning” gains “De-esser”, “Tape feel”, “Center voice presence” and “Side high-frequency width”. Choose “Do it for me”, “Do it in detail” or “Do nothing” at the top; “Make the result automatically” goes from measuring to the result for export. Loudness choices show streaming guides (Apple Music −16; Spotify, YouTube, Amazon Music −14; TikTok and Instagram about −13; CD and club −9). The export “Purpose” offers For TV (−24 LUFS), Short version, Short-video loop and 4 separate part files.</li>
 <li><b>NEW v3.6.65</b> “Measure this song and recommend”: recommends a genre, character, strength and loudness with reasons, from the frequency balance, dynamic range, stereo width and loudness (and tempo if there is a score). “Use the recommendation” selects them</li>
 <li>“Compare versions”: switch between “Subtle”, “As made” and “Bold” while playing. “Fine-tune (advanced)”: each EQ band, compression, saturation, width, bass to center. “Per-section adjustments”: set a section while the song plays and change just its level and brightness (e.g. a louder chorus)</li>
 <li>Content, key and tempo: everything, karaoke (no vocal), a cappella (vocal only) or chosen parts; key −6 to +6 semitones; tempo 0.80–1.20× (with or without vocals)</li>
@@ -614,6 +641,7 @@ document.documentElement.setAttribute("data-l",l);document.documentElement.lang=
 <tr><td><code>曲名_note_edit.mp3</code></td><td>歌の部分修正・楽譜の「書き出す」（音の直しを全部まとめて）</td></tr>
 <tr><td><code>曲名_master</code>（.wav / .mp3）</td><td>マスタリング</td></tr>
 <tr><td><code>曲名_KazuPlayer</code>（.wav / .m4a / .mp3 / .mp4）</td><td>音を整えて書き出す</td></tr>
+<tr><td><code>曲名_KazuPlayer_tv</code>・<code>_short30s</code>・<code>_loop30s</code>・<code>_stems_歌</code> など</td><td>書き出しの「用途」（テレビ向け・短縮版・ショート動画ループ・パート別）</td></tr>
 <tr><td><code>曲名_歌詞動画.mp4</code></td><td>歌詞動画</td></tr>
 <tr><td><code>曲名.srt</code>・PDF・MIDI</td><td>字幕・楽譜</td></tr></table></div>
 <div class="en"><p>All are saved in the same folder as the original, which is never changed. If the name exists, <code>_2</code> etc. is added.</p>
@@ -623,6 +651,7 @@ document.documentElement.setAttribute("data-l",l);document.documentElement.lang=
 <tr><td><code>title_note_edit.mp3</code></td><td>Export in Partial vocal fix or sheet music (all audio fixes together)</td></tr>
 <tr><td><code>title_master</code> (.wav / .mp3)</td><td>Mastering</td></tr>
 <tr><td><code>title_KazuPlayer</code> (.wav / .m4a / .mp3 / .mp4)</td><td>Polish and export</td></tr>
+<tr><td><code>title_KazuPlayer_tv</code>, <code>_short30s</code>, <code>_loop30s</code>, <code>_stems_…</code> etc.</td><td>Export “Purpose” (for TV, short version, short-video loop, per-part files)</td></tr>
 <tr><td><code>title_歌詞動画.mp4</code></td><td>Lyric video</td></tr>
 <tr><td><code>title.srt</code>, PDF, MIDI</td><td>Subtitles, sheet music</td></tr></table></div>
 </section>
